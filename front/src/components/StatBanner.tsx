@@ -8,7 +8,6 @@ export function StatBanner({ movies }: Props) {
   if (movies.length === 0) return null
 
   const avgRating = (movies.reduce((s, m) => s + m.vote_average, 0) / movies.length).toFixed(1)
-  const topGross = movies.reduce((a, b) => (a.revenue > b.revenue ? a : b))
   const totalRevenue = movies.reduce((s, m) => s + m.revenue, 0)
 
   const kobisMovies = movies.filter((m) => m.audi_acc != null)
@@ -17,37 +16,43 @@ export function StatBanner({ movies }: Props) {
     : null
 
   const stats = [
-    { label: '총 영화', value: `${movies.length}편` },
-    { label: '평균 평점', value: `★ ${avgRating}` },
-    {
-      label: '최고 흥행 (글로벌)',
-      value: topGross.title.length > 16 ? topGross.title.slice(0, 14) + '…' : topGross.title,
-    },
-    {
-      label: '누적 수익',
-      value: `$${(totalRevenue / 1e9).toFixed(1)}B`,
-    },
+    { label: '총 영화', value: `${movies.length}편`, sub: '데이터셋 규모' },
+    { label: '평균 평점', value: avgRating, sub: '/ 10점 만점', accent: true },
+    { label: '글로벌 수익 합계', value: `$${(totalRevenue / 1e9).toFixed(1)}B`, sub: '전체 기간' },
     ...(topAudience
       ? [{
           label: '최다 관객 (한국)',
-          value: `${((topAudience.audi_acc ?? 0) / 1e4).toFixed(0)}만 명`,
+          value: `${((topAudience.audi_acc ?? 0) / 1e4).toFixed(0)}만`,
+          sub: topAudience.title.length > 12 ? topAudience.title.slice(0, 11) + '…' : topAudience.title,
+          accent: true,
         }]
       : []),
   ]
 
-  const cols = stats.length >= 5 ? 'grid-cols-2 sm:grid-cols-5' : 'grid-cols-2 sm:grid-cols-4'
+  const colClass = stats.length >= 4
+    ? 'grid-cols-2 sm:grid-cols-4'
+    : 'grid-cols-2 sm:grid-cols-3'
 
   return (
-    <div className={`grid ${cols} gap-3 py-6 px-4 sm:px-6 max-w-7xl mx-auto w-full`}>
-      {stats.map((s) => (
-        <div
-          key={s.label}
-          className="rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-4"
-        >
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{s.label}</p>
-          <p className="text-lg font-semibold text-gray-900 dark:text-white truncate">{s.value}</p>
+    <section className="w-full border-b border-gray-200 dark:border-gray-800">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 py-8">
+        <div className={`grid ${colClass} gap-4`}>
+          {stats.map((s) => (
+            <div
+              key={s.label}
+              className="rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 px-6 py-5 flex flex-col gap-2"
+            >
+              <p className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-widest">
+                {s.label}
+              </p>
+              <p className={`text-3xl font-bold tracking-tight ${s.accent ? 'text-green-500' : 'text-gray-900 dark:text-white'}`}>
+                {s.value}
+              </p>
+              <p className="text-xs text-gray-400 dark:text-gray-500">{s.sub}</p>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    </section>
   )
 }

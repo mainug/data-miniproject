@@ -19,9 +19,9 @@ export function MovieCard({ movie, rank }: Props) {
 
   return (
     <motion.div
-      whileHover={{ y: -4, scale: 1.02 }}
-      transition={{ duration: 0.2 }}
-      className="relative group rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 cursor-pointer"
+      whileHover={{ y: -6, scale: 1.02 }}
+      transition={{ duration: 0.18, ease: 'easeOut' }}
+      className="relative group rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 cursor-pointer shadow-sm hover:shadow-lg dark:hover:shadow-black/40 transition-shadow"
     >
       {/* Poster */}
       <div className="aspect-[2/3] w-full bg-gray-200 dark:bg-gray-800 overflow-hidden">
@@ -30,37 +30,42 @@ export function MovieCard({ movie, rank }: Props) {
             src={posterUrl}
             alt={movie.title}
             loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-400 text-4xl">
             🎬
           </div>
         )}
-        {/* Rank badge */}
-        <div className="absolute top-2 left-2 w-7 h-7 rounded-full bg-black/70 text-white text-xs font-bold flex items-center justify-center">
-          {rank}
+
+        {/* 상단 배지들 */}
+        <div className="absolute top-2.5 left-2.5">
+          <span className="inline-flex w-7 h-7 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm text-white text-xs font-bold">
+            {rank}
+          </span>
         </div>
-        {/* Rating badge */}
-        <div className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-green-500/90 text-white text-xs font-bold">
-          {ratingPct}%
+        <div className="absolute top-2.5 right-2.5">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-green-500/90 backdrop-blur-sm text-white text-[11px] font-bold">
+            {ratingPct}%
+          </span>
+        </div>
+
+        {/* 하단 그라디언트 + 평점 오버레이 */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="absolute bottom-2.5 left-3 flex items-baseline gap-1">
+          <span className="text-green-400 text-sm font-bold">★ {movie.vote_average.toFixed(1)}</span>
+          <span className="text-white/50 text-xs">/ 10</span>
         </div>
       </div>
 
       {/* Info */}
-      <div className="p-3">
-        <p className="text-sm font-semibold text-gray-900 dark:text-white truncate leading-tight">
+      <div className="px-3 py-3">
+        <p className="text-sm font-semibold text-gray-900 dark:text-white truncate leading-snug">
           {movie.title}
         </p>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+        <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
           {year} · {movie.genres.slice(0, 2).join(', ')}
         </p>
-        <div className="mt-2 flex items-center gap-1">
-          <span className="text-green-500 dark:text-green-400 text-sm font-bold">
-            ★ {movie.vote_average.toFixed(1)}
-          </span>
-          <span className="text-gray-400 text-xs">/ 10</span>
-        </div>
       </div>
     </motion.div>
   )
