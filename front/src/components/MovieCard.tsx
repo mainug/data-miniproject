@@ -24,7 +24,7 @@ export function MovieCard({ movie, rank }: Props) {
       className="relative group rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 cursor-pointer shadow-sm hover:shadow-lg dark:hover:shadow-black/40 transition-shadow"
     >
       {/* Poster */}
-      <div className="aspect-[2/3] w-full bg-gray-200 dark:bg-gray-800 overflow-hidden">
+      <div className="relative aspect-[2/3] w-full bg-gray-200 dark:bg-gray-800 overflow-hidden">
         {posterUrl ? (
           <img
             src={posterUrl}
