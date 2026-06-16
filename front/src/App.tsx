@@ -8,7 +8,11 @@ import { GenreChart } from './components/charts/GenreChart'
 import { YearTrendChart } from './components/charts/YearTrendChart'
 import { RatingScatter } from './components/charts/RatingScatter'
 import { TopNChart } from './components/charts/TopNChart'
+import { AudienceBarChart } from './components/charts/AudienceBarChart'
+import { BoxOfficeTable } from './components/charts/BoxOfficeTable'
+import { BoxOfficeTimeline } from './components/charts/BoxOfficeTimeline'
 import { useMovieData } from './hooks/useMovieData'
+import { useBoxOffice } from './hooks/useBoxOffice'
 import type { SortKey, TabId } from './types/movie'
 
 const TABS: { id: TabId; label: string }[] = [
@@ -16,6 +20,7 @@ const TABS: { id: TabId; label: string }[] = [
   { id: 'genre', label: '🎭 장르' },
   { id: 'trend', label: '📈 트렌드' },
   { id: 'analysis', label: '🔬 분석' },
+  { id: 'kobis', label: '🇰🇷 한국' },
 ]
 
 export default function App() {
@@ -25,6 +30,9 @@ export default function App() {
   const [selectedGenres, setSelectedGenres] = useState<string[]>([])
   const [sortKey, setSortKey] = useState<SortKey>('vote_average')
   const [topN, setTopN] = useState(20)
+  const [boxOfficeDate, setBoxOfficeDate] = useState('')
+
+  const { entries: boxOfficeEntries, loading: boLoading } = useBoxOffice(boxOfficeDate || undefined)
 
   const filtered = useMemo(() => {
     let ms = movies.filter((m) => {
@@ -40,9 +48,12 @@ export default function App() {
   const sorted = useMemo(() => {
     return [...filtered].sort((a, b) => {
       if (sortKey === 'release_date') return b.release_date.localeCompare(a.release_date)
+      if (sortKey === 'audi_acc') return (b.audi_acc ?? 0) - (a.audi_acc ?? 0)
       return (b[sortKey] as number) - (a[sortKey] as number)
     })
   }, [filtered, sortKey])
+
+  const boDate = boxOfficeEntries[0]?.date ?? '(샘플)'
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#0f0f0f] text-gray-900 dark:text-white">
@@ -80,12 +91,12 @@ export default function App() {
 
           {/* Tabs */}
           <div className="border-b border-gray-200 dark:border-gray-800">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 flex gap-1">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 flex gap-1 overflow-x-auto">
               {TABS.map((t) => (
                 <button
                   key={t.id}
                   onClick={() => setTab(t.id)}
-                  className={`relative px-4 py-3 text-sm font-medium transition-colors ${
+                  className={`relative whitespace-nowrap px-4 py-3 text-sm font-medium transition-colors ${
                     tab === t.id
                       ? 'text-green-500'
                       : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
@@ -122,6 +133,42 @@ export default function App() {
                     <div className="border-t border-gray-200 dark:border-gray-800 pt-10">
                       <TopNChart movies={filtered} topN={topN} sortKey={sortKey} />
                     </div>
+                  </div>
+                )}
+                {tab === 'kobis' && (
+                  <div className="space-y-12">
+                    {/* 날짜 선택 */}
+                    <div className="flex items-center gap-3">
+                      <label className="text-sm text-gray-500 dark:text-gray-400">조회 날짜</label>
+                      <input
+                        type="date"
+                        value={boxOfficeDate}
+                        onChange={(e) => setBoxOfficeDate(e.target.value)}
+                        className="px-3 py-1.5 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm"
+                      />
+                      {boxOfficeDate && (
+                        <button
+                          onClick={() => setBoxOfficeDate('')}
+                          className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                        >
+                          초기화
+                        </button>
+                      )}
+                    </div>
+
+                    {boLoading ? (
+                      <div className="text-gray-400 text-sm animate-pulse">박스오피스 데이터 로딩 중...</div>
+                    ) : (
+                      <>
+                        <BoxOfficeTable entries={boxOfficeEntries} date={boDate} />
+                        <div className="border-t border-gray-200 dark:border-gray-800 pt-10">
+                          <BoxOfficeTimeline entries={boxOfficeEntries} />
+                        </div>
+                        <div className="border-t border-gray-200 dark:border-gray-800 pt-10">
+                          <AudienceBarChart movies={filtered} topN={topN} />
+                        </div>
+                      </>
+                    )}
                   </div>
                 )}
               </motion.div>
