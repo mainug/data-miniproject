@@ -13,6 +13,14 @@ export interface Movie {
   audi_acc?: number   // 누적 관객수
   sales_acc?: number  // 누적 매출액 (원)
   scrn_cnt?: number   // 최대 스크린수
+
+  // TMDB 상세 필드 (상세 페이지용)
+  overview?: string
+  runtime?: number
+  vote_count?: number
+  budget?: number
+  backdrop_path?: string | null
+  original_title?: string
 }
 
 export interface BoxOfficeEntry {

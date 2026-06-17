@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import { useNavigate } from 'react-router-dom'
 import type { Movie } from '../types/movie'
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 const TMDB_IMG = 'https://image.tmdb.org/t/p/w342'
 
 export function MovieCard({ movie, rank }: Props) {
+  const navigate = useNavigate()
   const year = movie.release_date.slice(0, 4)
   const ratingPct = Math.round((movie.vote_average / 10) * 100)
   const posterUrl = movie.poster_path
@@ -21,6 +23,7 @@ export function MovieCard({ movie, rank }: Props) {
     <motion.div
       whileHover={{ y: -6, scale: 1.02 }}
       transition={{ duration: 0.18, ease: 'easeOut' }}
+      onClick={() => navigate(`/movie/${movie.id}`)}
       className="relative group rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 cursor-pointer shadow-sm hover:shadow-lg dark:hover:shadow-black/40 transition-shadow"
     >
       {/* Poster */}
