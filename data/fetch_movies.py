@@ -25,7 +25,7 @@ def fetch_tmdb():
     """인기 영화를 받아 변환해서 반환."""
     genre_res = requests.get(
         f"{TMDB_BASE}/genre/movie/list",
-        params={"api_key": TMDB_KEY, "language": "en-US"},   # 장르 언어 (백엔드가 가공)
+        params={"api_key": TMDB_KEY, "language": "ko-KR"},   # 장르 언어 (데이터단에서 한글로 변환)
         timeout=10,
     ).json()
     genre_map = {g["id"]: g["name"] for g in genre_res["genres"]}

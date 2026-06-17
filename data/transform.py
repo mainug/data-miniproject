@@ -10,6 +10,7 @@ def kobis_to_contract(api_response):
     date = f"{raw[:4]}-{raw[4:6]}-{raw[6:]}"       # "2023-12-17"
     return [
         {
+            "movieCd": m["movieCd"],
             "rank": int(m["rank"]),
             "movieNm": m["movieNm"],
             "openDt": m["openDt"],
