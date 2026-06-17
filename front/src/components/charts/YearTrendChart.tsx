@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   ComposedChart,
   Bar,
@@ -9,32 +10,44 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts'
-import type { Movie } from '../../types/movie'
+import type { YearTrendItem } from '../../hooks/useAnalysis'
+
+type Metric = 'rating' | 'revenue'
 
 interface Props {
-  movies: Movie[]
+  trend: YearTrendItem[]
 }
 
-export function YearTrendChart({ movies }: Props) {
-  const yearMap = new Map<number, { count: number; ratingSum: number }>()
-  movies.forEach((m) => {
-    const y = parseInt(m.release_date.slice(0, 4))
-    if (!y) return
-    const prev = yearMap.get(y) || { count: 0, ratingSum: 0 }
-    yearMap.set(y, { count: prev.count + 1, ratingSum: prev.ratingSum + m.vote_average })
-  })
+export function YearTrendChart({ trend }: Props) {
+  const [metric, setMetric] = useState<Metric>('rating')
 
-  const data = Array.from(yearMap.entries())
-    .sort(([a], [b]) => a - b)
-    .map(([year, { count, ratingSum }]) => ({
-      year,
-      개봉작수: count,
-      평균평점: parseFloat((ratingSum / count).toFixed(2)),
-    }))
+  const data = trend.map((t) => ({
+    year: t.year,
+    개봉작수: t.count,
+    평균평점: t.avg_rating,
+    '평균수익($M)': Math.round(t.avg_revenue / 1e6),
+  }))
 
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-semibold text-gray-900 dark:text-white">연도별 트렌드</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">연도별 트렌드</h2>
+        <div className="flex gap-2">
+          {([['rating', '평점'], ['revenue', '수익']] as const).map(([m, label]) => (
+            <button
+              key={m}
+              onClick={() => setMetric(m)}
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                metric === m
+                  ? 'bg-green-500 text-white'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
       <ResponsiveContainer width="100%" height={420}>
         <ComposedChart data={data} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.3} />
@@ -47,9 +60,15 @@ export function YearTrendChart({ movies }: Props) {
           <YAxis
             yAxisId="right"
             orientation="right"
-            domain={[6, 10]}
+            domain={metric === 'rating' ? [4, 10] : ['auto', 'auto']}
             tick={{ fontSize: 12, fill: '#6b7280' }}
-            label={{ value: '평균 평점', angle: 90, position: 'insideRight', fill: '#9ca3af', fontSize: 12 }}
+            label={{
+              value: metric === 'rating' ? '평균 평점' : '평균 수익($M)',
+              angle: 90,
+              position: 'insideRight',
+              fill: '#9ca3af',
+              fontSize: 12,
+            }}
           />
           <Tooltip
             contentStyle={{
@@ -64,7 +83,7 @@ export function YearTrendChart({ movies }: Props) {
           <Line
             yAxisId="right"
             type="monotone"
-            dataKey="평균평점"
+            dataKey={metric === 'rating' ? '평균평점' : '평균수익($M)'}
             stroke="#4ade80"
             strokeWidth={2.5}
             dot={{ r: 4, fill: '#4ade80' }}

@@ -29,4 +29,4 @@ export interface BoxOfficeEntry {
 }
 
 export type SortKey = 'vote_average' | 'popularity' | 'revenue' | 'release_date' | 'audi_acc'
-export type TabId = 'ranking' | 'genre' | 'trend' | 'analysis' | 'kobis'
+export type TabId = 'tmdb' | 'kobis'
