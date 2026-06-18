@@ -6,9 +6,7 @@
     "vote_average": 7.917,
     "popularity": 669.5524,
     "revenue": 290347910,
-    "genres": [
-      "공포"
-    ],
+    "genres": ["공포"],
     "poster_path": "https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg",
     "runtime": 108,
     "director": "커리 바커",
@@ -23,11 +21,7 @@
     "vote_average": 8.008,
     "popularity": 579.1548,
     "revenue": 128826495,
-    "genres": [
-      "액션",
-      "판타지",
-      "모험"
-    ],
+    "genres": ["액션", "판타지", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/1NgBKiPrJzv1VHdEN8brdy59Rxo.jpg",
     "runtime": 116,
     "director": "Simon McQuoid",
@@ -42,10 +36,7 @@
     "vote_average": 8.645,
     "popularity": 556.8145,
     "revenue": 934009960,
-    "genres": [
-      "음악",
-      "드라마"
-    ],
+    "genres": ["음악", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/piMZqtd0gGS7OgkhDwiQ7vVViBQ.jpg",
     "runtime": 128,
     "director": "안톤 후쿠아",
@@ -60,10 +51,7 @@
     "vote_average": 7.2,
     "popularity": 412.8818,
     "revenue": 3345079,
-    "genres": [
-      "액션",
-      "판타지"
-    ],
+    "genres": ["액션", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/4KZXlZ5tTT6ghbW77gS4hSLkCd7.jpg",
     "runtime": 152,
     "director": "RJ Balaji",
@@ -78,10 +66,7 @@
     "vote_average": 6.7,
     "popularity": 426.0296,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "드라마"
-    ],
+    "genres": ["액션", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/kJAJNNBYlbqAcpTDxBNnaILSMTy.jpg",
     "runtime": 192,
     "director": "Buchi Babu Sana",
@@ -96,10 +81,7 @@
     "vote_average": 5.471,
     "popularity": 341.0197,
     "revenue": 0,
-    "genres": [
-      "로맨스",
-      "코미디"
-    ],
+    "genres": ["로맨스", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/vmlJvz6qVzYgei2V74GvnmcuQfW.jpg",
     "runtime": 136,
     "director": "David Dhawan",
@@ -114,11 +96,7 @@
     "vote_average": 6.8,
     "popularity": 375.0176,
     "revenue": 98196385,
-    "genres": [
-      "액션",
-      "SF",
-      "스릴러"
-    ],
+    "genres": ["액션", "SF", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/86EdVHOEFjFNPeE0sWjpCqcUORj.jpg",
     "runtime": 146,
     "director": "스티븐 스필버그",
@@ -133,10 +111,7 @@
     "vote_average": 4.714,
     "popularity": 235.2681,
     "revenue": 0,
-    "genres": [
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/rMgG7cWuq9O6zhhLs2CbqIKVA8V.jpg",
     "runtime": 105,
     "director": "Bobby Bonifacio",
@@ -151,11 +126,7 @@
     "vote_average": 6.786,
     "popularity": 256.9239,
     "revenue": 315100000,
-    "genres": [
-      "액션",
-      "모험",
-      "SF"
-    ],
+    "genres": ["액션", "모험", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/tMP99wq45GQMoeZwITgjAS8Wihm.jpg",
     "runtime": 132,
     "director": "존 파브로",
@@ -170,13 +141,7 @@
     "vote_average": 8.2,
     "popularity": 261.279,
     "revenue": 1000843925,
-    "genres": [
-      "가족",
-      "코미디",
-      "모험",
-      "판타지",
-      "애니메이션"
-    ],
+    "genres": ["가족", "코미디", "모험", "판타지", "애니메이션"],
     "poster_path": "https://image.tmdb.org/t/p/w500/knaXOBDBecVBWZVup3zXaOoy23v.jpg",
     "runtime": 99,
     "director": "마이클 제레닉, 아론 호바스",
@@ -191,10 +156,7 @@
     "vote_average": 5.583,
     "popularity": 293.2174,
     "revenue": 20000000,
-    "genres": [
-      "공포",
-      "코미디"
-    ],
+    "genres": ["공포", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/79RBp8afL4u4z3nVGR78z6eIvBB.jpg",
     "runtime": 163,
     "director": "Priyadarshan",
@@ -209,12 +171,7 @@
     "vote_average": 7.5,
     "popularity": 220.9666,
     "revenue": 0,
-    "genres": [
-      "역사",
-      "범죄",
-      "액션",
-      "판타지"
-    ],
+    "genres": ["역사", "범죄", "액션", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/9cgwiPHZ57NjI0RKb2yIu8mUnNs.jpg",
     "runtime": 141,
     "director": "Prem",
@@ -229,10 +186,7 @@
     "vote_average": 6.978,
     "popularity": 214.5581,
     "revenue": 7578000,
-    "genres": [
-      "로맨스",
-      "드라마"
-    ],
+    "genres": ["로맨스", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/iGpMm603GUKH2SiXB2S5m4sZ17t.jpg",
     "runtime": 134,
     "director": "Михаил Вайнберг",
@@ -247,11 +201,7 @@
     "vote_average": 7.298,
     "popularity": 174.796,
     "revenue": 86387310,
-    "genres": [
-      "액션",
-      "판타지",
-      "SF"
-    ],
+    "genres": ["액션", "판타지", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/u3g020QxrnsMdHDw0vvv1NjeFJA.jpg",
     "runtime": 141,
     "director": "트래비스 나이트",
@@ -266,10 +216,7 @@
     "vote_average": 8.05,
     "popularity": 179.8683,
     "revenue": 90452113,
-    "genres": [
-      "공포",
-      "미스터리"
-    ],
+    "genres": ["공포", "미스터리"],
     "poster_path": "https://image.tmdb.org/t/p/w500/zXlwtzXP80yc3X0VokdxvmsFQfw.jpg",
     "runtime": 133,
     "director": "리 크로닌",
@@ -284,10 +231,7 @@
     "vote_average": 6.6,
     "popularity": 181.0522,
     "revenue": 31000000,
-    "genres": [
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/bc6ADs3tcdyQFrGrSsmujKSEPYo.jpg",
     "runtime": 111,
     "director": "루이 말",
@@ -302,9 +246,7 @@
     "vote_average": 7.0,
     "popularity": 156.5874,
     "revenue": 0,
-    "genres": [
-      "스릴러"
-    ],
+    "genres": ["스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/3TrQUHmnEL2tOYf4KKkXb01BQt2.jpg",
     "runtime": 140,
     "director": "Anurag Kashyap",
@@ -319,10 +261,7 @@
     "vote_average": 8.043,
     "popularity": 171.7234,
     "revenue": 1400000,
-    "genres": [
-      "액션",
-      "범죄"
-    ],
+    "genres": ["액션", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/ftFM5P0ucyUwIEMs88oqxCpkzjf.jpg",
     "runtime": 114,
     "director": "谷垣健治",
@@ -337,10 +276,7 @@
     "vote_average": 7.0,
     "popularity": 175.61,
     "revenue": 77048,
-    "genres": [
-      "범죄",
-      "스릴러"
-    ],
+    "genres": ["범죄", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/fXSdAujfiRRW6LqekN4FvFQidh3.jpg",
     "runtime": 127,
     "director": "Martin Joseph",
@@ -355,12 +291,7 @@
     "vote_average": 8.965,
     "popularity": 162.9906,
     "revenue": 0,
-    "genres": [
-      "모험",
-      "애니메이션",
-      "가족",
-      "판타지"
-    ],
+    "genres": ["모험", "애니메이션", "가족", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/uv0iRQXDbtWHo1zPk3TZNo4Biti.jpg",
     "runtime": 102,
     "director": "네이든 그레노",
@@ -375,11 +306,7 @@
     "vote_average": 4.969,
     "popularity": 156.5237,
     "revenue": 0,
-    "genres": [
-      "스릴러",
-      "액션",
-      "범죄"
-    ],
+    "genres": ["스릴러", "액션", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/arRNmW27fs1TFsIBOwPYCfZQFJC.jpg",
     "runtime": 89,
     "director": "Fernando Di Leo",
@@ -394,10 +321,7 @@
     "vote_average": 8.7,
     "popularity": 152.4552,
     "revenue": 681404846,
-    "genres": [
-      "SF",
-      "모험"
-    ],
+    "genres": ["SF", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/qqGpVVZk2KD1lAvccgTU4Z6nh1H.jpg",
     "runtime": 157,
     "director": "필 로드, 크리스토퍼 밀러",
@@ -412,11 +336,7 @@
     "vote_average": 8.349,
     "popularity": 144.7455,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "드라마",
-      "범죄"
-    ],
+    "genres": ["액션", "드라마", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/dfKKipbQswChklXaaVTh6FP3oaJ.jpg",
     "runtime": 51,
     "director": "Reinaldo Marcus Green",
@@ -431,10 +351,7 @@
     "vote_average": 6.6,
     "popularity": 153.9684,
     "revenue": 22726621,
-    "genres": [
-      "액션",
-      "스릴러"
-    ],
+    "genres": ["액션", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/dQgIcW6Th08kMRf2HBoYWoFE6OD.jpg",
     "runtime": 97,
     "director": "가이 리치",
@@ -449,10 +366,7 @@
     "vote_average": 6.512,
     "popularity": 132.655,
     "revenue": 0,
-    "genres": [
-      "로맨스",
-      "코미디"
-    ],
+    "genres": ["로맨스", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/udcNzdIqZMiVYYvq50XDEPhpJks.jpg",
     "runtime": 115,
     "director": "Ol Parker",
@@ -467,9 +381,7 @@
     "vote_average": 0.0,
     "popularity": 229.4319,
     "revenue": 0,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/wTFF1SFTDYL7M1yWjY0K8Ga5pZS.jpg",
     "runtime": 0,
     "director": "",
@@ -484,11 +396,7 @@
     "vote_average": 7.3,
     "popularity": 137.8492,
     "revenue": 152900759,
-    "genres": [
-      "액션",
-      "범죄",
-      "스릴러"
-    ],
+    "genres": ["액션", "범죄", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/hsJG5r6etrMNwW00BVp4NC7zi67.jpg",
     "runtime": 229,
     "director": "Aditya Dhar",
@@ -503,10 +411,7 @@
     "vote_average": 7.086,
     "popularity": 123.7577,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "스릴러"
-    ],
+    "genres": ["액션", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/3PufRWSVgSVwIr9M5YOmx4gu5Fu.jpg",
     "runtime": 107,
     "director": "Andrew Bernstein",
@@ -521,10 +426,7 @@
     "vote_average": 6.935,
     "popularity": 133.3214,
     "revenue": 0,
-    "genres": [
-      "스릴러",
-      "범죄"
-    ],
+    "genres": ["스릴러", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/8EHehEMsJVIPp2n2ROhZU8dbpJC.jpg",
     "runtime": 90,
     "director": "Andy Edwards",
@@ -539,12 +441,7 @@
     "vote_average": 7.222,
     "popularity": 132.4506,
     "revenue": 0,
-    "genres": [
-      "애니메이션",
-      "가족",
-      "코미디",
-      "모험"
-    ],
+    "genres": ["애니메이션", "가족", "코미디", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/AqrJx3nVVMlKWXGaPIH32GzjEJA.jpg",
     "runtime": 102,
     "director": "앤드류 스탠튼",
@@ -559,12 +456,7 @@
     "vote_average": 7.768,
     "popularity": 121.4666,
     "revenue": 174400000,
-    "genres": [
-      "액션",
-      "범죄",
-      "드라마",
-      "스릴러"
-    ],
+    "genres": ["액션", "범죄", "드라마", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/uiIT7CsJ4V7rMnTqy7xYvj9IRhs.jpg",
     "runtime": 142,
     "director": "杨子",
@@ -579,11 +471,7 @@
     "vote_average": 6.7,
     "popularity": 108.9136,
     "revenue": 0,
-    "genres": [
-      "코미디",
-      "스릴러",
-      "드라마"
-    ],
+    "genres": ["코미디", "스릴러", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/dpQIeEunpgj0C4rngb6OFb4zSd1.jpg",
     "runtime": 127,
     "director": "Suresh Triveni",
@@ -598,10 +486,7 @@
     "vote_average": 5.5,
     "popularity": 91.1042,
     "revenue": 0,
-    "genres": [
-      "코미디",
-      "로맨스"
-    ],
+    "genres": ["코미디", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/4x32HOq15WeTxNcda6oJaWmbNxp.jpg",
     "runtime": 101,
     "director": "ฤกษ์ชัย พวงเพ็ชร",
@@ -616,11 +501,7 @@
     "vote_average": 6.901,
     "popularity": 120.7205,
     "revenue": 262595784,
-    "genres": [
-      "공포",
-      "미스터리",
-      "SF"
-    ],
+    "genres": ["공포", "미스터리", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/c3Cb7h4ecFsGfUM02KF638kbbtC.jpg",
     "runtime": 111,
     "director": "케인 파슨스",
@@ -635,13 +516,7 @@
     "vote_average": 8.2,
     "popularity": 120.5732,
     "revenue": 372010783,
-    "genres": [
-      "모험",
-      "애니메이션",
-      "코미디",
-      "가족",
-      "SF"
-    ],
+    "genres": ["모험", "애니메이션", "코미디", "가족", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/vJu9THzQ26Q5sWOVnhOkuRH5M1P.jpg",
     "runtime": 104,
     "director": "다니엘 총",
@@ -656,11 +531,7 @@
     "vote_average": 7.587,
     "popularity": 108.0377,
     "revenue": 1490477656,
-    "genres": [
-      "SF",
-      "모험",
-      "판타지"
-    ],
+    "genres": ["SF", "모험", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/l18o0AK18KS118tWeROOKYkF0ng.jpg",
     "runtime": 195,
     "director": "제임스 카메론",
@@ -675,9 +546,7 @@
     "vote_average": 5.0,
     "popularity": 110.437,
     "revenue": 0,
-    "genres": [
-      "공포"
-    ],
+    "genres": ["공포"],
     "poster_path": "https://image.tmdb.org/t/p/w500/fDyjVv5ryBYDiE1sN9mbBbZycBL.jpg",
     "runtime": 76,
     "director": "Sergio Gonzalez, Brandon Piskorik, Felipe Vargas, Corey Benson Powers, Brian Sepanzyk",
@@ -692,10 +561,7 @@
     "vote_average": 5.7,
     "popularity": 97.5032,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "스릴러"
-    ],
+    "genres": ["액션", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/xIZ8huVdXCL7OMtsjd3XvmFP5sK.jpg",
     "runtime": 87,
     "director": "Sandra Sciberras",
@@ -710,10 +576,7 @@
     "vote_average": 4.667,
     "popularity": 93.3397,
     "revenue": 0,
-    "genres": [
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/jNV46xSIONTEvIAWon6NnveH7eG.jpg",
     "runtime": 113,
     "director": "Alberto Bevilacqua",
@@ -728,9 +591,7 @@
     "vote_average": 5.1,
     "popularity": 101.948,
     "revenue": 0,
-    "genres": [
-      "공포"
-    ],
+    "genres": ["공포"],
     "poster_path": "https://image.tmdb.org/t/p/w500/uJOW6pWxJ0i5sji9VXRR6Y1wXyE.jpg",
     "runtime": 87,
     "director": "Jonathan Zuck",
@@ -745,9 +606,7 @@
     "vote_average": 6.69,
     "popularity": 94.1962,
     "revenue": 23563104,
-    "genres": [
-      "공포"
-    ],
+    "genres": ["공포"],
     "poster_path": "https://image.tmdb.org/t/p/w500/jKPWwsbAM6HKURPYQ1eG8DmKMKn.jpg",
     "runtime": 107,
     "director": "다미안 맥카시",
@@ -762,11 +621,7 @@
     "vote_average": 7.724,
     "popularity": 100.1295,
     "revenue": 733030221,
-    "genres": [
-      "애니메이션",
-      "액션",
-      "판타지"
-    ],
+    "genres": ["애니메이션", "액션", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/m6Dho6hDCcL5KI8mOQNemZAedFI.jpg",
     "runtime": 155,
     "director": "소토자키 하루오",
@@ -781,9 +636,7 @@
     "vote_average": 5.979,
     "popularity": 91.853,
     "revenue": 2,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/grIFQLXXwQmjvYYfXVXCgGTMUWw.jpg",
     "runtime": 113,
     "director": "Jerry Lopez Sineneng",
@@ -798,11 +651,7 @@
     "vote_average": 6.547,
     "popularity": 96.4284,
     "revenue": 2055131,
-    "genres": [
-      "액션",
-      "코미디",
-      "스릴러"
-    ],
+    "genres": ["액션", "코미디", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/kZCauMzAt9eMAhLMopCqnFw1Q5k.jpg",
     "runtime": 105,
     "director": "요르마 타코니",
@@ -817,11 +666,7 @@
     "vote_average": 6.963,
     "popularity": 92.0132,
     "revenue": 377925,
-    "genres": [
-      "공포",
-      "스릴러",
-      "드라마"
-    ],
+    "genres": ["공포", "스릴러", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/wZWBXIsX3QBXf94vzCSUqlZDp57.jpg",
     "runtime": 123,
     "director": "Paolo Strippoli",
@@ -836,11 +681,7 @@
     "vote_average": 7.662,
     "popularity": 93.177,
     "revenue": 53933639,
-    "genres": [
-      "액션",
-      "범죄",
-      "스릴러"
-    ],
+    "genres": ["액션", "범죄", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/tS3UZlVfESO4z8inIZXGiHNgDfE.jpg",
     "runtime": 108,
     "director": "Ric Roman Waugh",
@@ -855,11 +696,7 @@
     "vote_average": 6.663,
     "popularity": 88.123,
     "revenue": 0,
-    "genres": [
-      "스릴러",
-      "미스터리",
-      "범죄"
-    ],
+    "genres": ["스릴러", "미스터리", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/kqGS7zqOjMK6LsV6XjKUz5yreYZ.jpg",
     "runtime": 110,
     "director": "Adrian Panek",
@@ -874,9 +711,7 @@
     "vote_average": 0.0,
     "popularity": 97.2529,
     "revenue": 0,
-    "genres": [
-      "공포"
-    ],
+    "genres": ["공포"],
     "poster_path": "https://image.tmdb.org/t/p/w500/2JzXsjm4xrbyHaK5VwAYuyMtsEX.jpg",
     "runtime": 0,
     "director": "Vikram Bhatt",
@@ -891,10 +726,7 @@
     "vote_average": 5.5,
     "popularity": 83.8849,
     "revenue": 172893990,
-    "genres": [
-      "코미디",
-      "공포"
-    ],
+    "genres": ["코미디", "공포"],
     "poster_path": "https://image.tmdb.org/t/p/w500/reZ8NInXjMkkaOpUHcI3Pn7iaRN.jpg",
     "runtime": 96,
     "director": "Michael Tiddes",
@@ -909,10 +741,7 @@
     "vote_average": 7.929,
     "popularity": 77.0422,
     "revenue": 22244207,
-    "genres": [
-      "음악",
-      "드라마"
-    ],
+    "genres": ["음악", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/aElHyIdF5jmctFGhlhhaPFsbBJC.jpg",
     "runtime": 95,
     "director": "앨런 파커",
@@ -927,9 +756,7 @@
     "vote_average": 5.0,
     "popularity": 68.198,
     "revenue": 0,
-    "genres": [
-      "로맨스"
-    ],
+    "genres": ["로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/vTtq8iqEQlmgDTec9oe3YzjkOGT.jpg",
     "runtime": 92,
     "director": "今岡信治",
@@ -944,11 +771,7 @@
     "vote_average": 6.1,
     "popularity": 80.6489,
     "revenue": 0,
-    "genres": [
-      "범죄",
-      "드라마",
-      "스릴러"
-    ],
+    "genres": ["범죄", "드라마", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/uIrFdMWlJFdc1jPBP9bxeaISCDj.jpg",
     "runtime": 161,
     "director": "Vignesh Raja",
@@ -963,9 +786,7 @@
     "vote_average": 6.414,
     "popularity": 80.8573,
     "revenue": 278023280,
-    "genres": [
-      "코미디"
-    ],
+    "genres": ["코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/7WgS8qO4KYZxjUQMs0JSFxqcYgn.jpg",
     "runtime": 88,
     "director": "Keenen Ivory Wayans",
@@ -980,10 +801,7 @@
     "vote_average": 5.357,
     "popularity": 85.0289,
     "revenue": 0,
-    "genres": [
-      "다큐멘터리",
-      "TV 영화"
-    ],
+    "genres": ["다큐멘터리", "TV 영화"],
     "poster_path": "https://image.tmdb.org/t/p/w500/5dcgoyf8nt6Xt4VSR6Nrn6nwhuz.jpg",
     "runtime": 60,
     "director": "Victoria Silver",
@@ -998,10 +816,7 @@
     "vote_average": 8.722,
     "popularity": 76.5797,
     "revenue": 28341469,
-    "genres": [
-      "드라마",
-      "범죄"
-    ],
+    "genres": ["드라마", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/qV9BQZdiM8foEzDz0Ag5hGWE5qM.jpg",
     "runtime": 142,
     "director": "프랭크 다라본트",
@@ -1016,9 +831,7 @@
     "vote_average": 6.31,
     "popularity": 84.1113,
     "revenue": 0,
-    "genres": [
-      "공포"
-    ],
+    "genres": ["공포"],
     "poster_path": "https://image.tmdb.org/t/p/w500/wTlqMc4Jt8ZBtHh8CREblU3ajAB.jpg",
     "runtime": 113,
     "director": "Natalie Erika James",
@@ -1033,10 +846,7 @@
     "vote_average": 6.815,
     "popularity": 78.2023,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "스릴러"
-    ],
+    "genres": ["액션", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/wGHGVAJGTn2BqsuFfPK8lzPiKjH.jpg",
     "runtime": 96,
     "director": "Baltasar Kormákur",
@@ -1051,10 +861,7 @@
     "vote_average": 6.0,
     "popularity": 89.1958,
     "revenue": 0,
-    "genres": [
-      "로맨스",
-      "드라마"
-    ],
+    "genres": ["로맨스", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/8n7OeeyAqwmGS81Is2c6Ho65tgW.jpg",
     "runtime": 166,
     "director": "Imtiaz Ali",
@@ -1069,11 +876,7 @@
     "vote_average": 8.1,
     "popularity": 75.0943,
     "revenue": 193566330,
-    "genres": [
-      "애니메이션",
-      "코미디",
-      "가족"
-    ],
+    "genres": ["애니메이션", "코미디", "가족"],
     "poster_path": "https://image.tmdb.org/t/p/w500/otP94vckeMXAgQxzhcRkZSeSmYv.jpg",
     "runtime": 100,
     "director": "Tyree Dillihay",
@@ -1088,13 +891,7 @@
     "vote_average": 7.7,
     "popularity": 68.9162,
     "revenue": 1868208796,
-    "genres": [
-      "애니메이션",
-      "모험",
-      "코미디",
-      "미스터리",
-      "가족"
-    ],
+    "genres": ["애니메이션", "모험", "코미디", "미스터리", "가족"],
     "poster_path": "https://image.tmdb.org/t/p/w500/ib6v6qUXzez1x2qIOLN7C0yJNPQ.jpg",
     "runtime": 108,
     "director": "재러드 부시, 바이런 하워드",
@@ -1109,12 +906,7 @@
     "vote_average": 0.0,
     "popularity": 69.3658,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "모험",
-      "애니메이션",
-      "판타지"
-    ],
+    "genres": ["액션", "모험", "애니메이션", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/29Jdsak3SrwGds5k1t43kH6Khed.jpg",
     "runtime": 99,
     "director": "로런 몽고메리",
@@ -1129,11 +921,7 @@
     "vote_average": 7.025,
     "popularity": 70.554,
     "revenue": 203356793,
-    "genres": [
-      "액션",
-      "드라마",
-      "역사"
-    ],
+    "genres": ["액션", "드라마", "역사"],
     "poster_path": "https://image.tmdb.org/t/p/w500/ki0ilBYgbOZKUuE1NN53FYWK9zQ.jpg",
     "runtime": 126,
     "director": "원화평",
@@ -1148,10 +936,7 @@
     "vote_average": 7.4,
     "popularity": 65.71,
     "revenue": 326588371,
-    "genres": [
-      "드라마",
-      "코미디"
-    ],
+    "genres": ["드라마", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/lxjGbkRnY9d2j8cxIHxX57NNvRH.jpg",
     "runtime": 109,
     "director": "데이비드 프랭클",
@@ -1166,11 +951,7 @@
     "vote_average": 7.107,
     "popularity": 65.3727,
     "revenue": 299300000,
-    "genres": [
-      "액션",
-      "SF",
-      "드라마"
-    ],
+    "genres": ["액션", "SF", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/lbN080kn6nzq978jqsdgxci9llR.jpg",
     "runtime": 127,
     "director": "숀 레비",
@@ -1185,10 +966,7 @@
     "vote_average": 5.471,
     "popularity": 63.8607,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "스릴러"
-    ],
+    "genres": ["액션", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/HjapTwwYaWBz4qC2Lg3mKqFlNJ.jpg",
     "runtime": 93,
     "director": "James Mark",
@@ -1203,11 +981,7 @@
     "vote_average": 7.2,
     "popularity": 67.5654,
     "revenue": 137246897,
-    "genres": [
-      "액션",
-      "범죄",
-      "스릴러"
-    ],
+    "genres": ["액션", "범죄", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/8FHOtUpNIk5ZPEay2N2EY5lrxkv.jpg",
     "runtime": 212,
     "director": "Aditya Dhar",
@@ -1222,11 +996,7 @@
     "vote_average": 8.478,
     "popularity": 69.9304,
     "revenue": 746606706,
-    "genres": [
-      "모험",
-      "드라마",
-      "SF"
-    ],
+    "genres": ["모험", "드라마", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/evoEi8SBSvIIEveM3V6nCJ6vKj8.jpg",
     "runtime": 169,
     "director": "크리스토퍼 놀란",
@@ -1241,9 +1011,7 @@
     "vote_average": 4.5,
     "popularity": 60.3032,
     "revenue": 0,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/v7yCEzF9BCF82lbp42X5ZLjIieo.jpg",
     "runtime": 90,
     "director": "잔느 모로",
@@ -1258,10 +1026,7 @@
     "vote_average": 7.498,
     "popularity": 60.1819,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "스릴러"
-    ],
+    "genres": ["액션", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/26milocWotfItrjwnadk4gyHwyi.jpg",
     "runtime": 103,
     "director": "Rodrigo Valdes",
@@ -1276,11 +1041,7 @@
     "vote_average": 7.047,
     "popularity": 56.3111,
     "revenue": 84426031,
-    "genres": [
-      "액션",
-      "판타지",
-      "모험"
-    ],
+    "genres": ["액션", "판타지", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/3dTg1pgasstOa0XJTwt3dBFHjFf.jpg",
     "runtime": 110,
     "director": "Simon McQuoid",
@@ -1295,10 +1056,7 @@
     "vote_average": 7.003,
     "popularity": 56.6679,
     "revenue": 21753705,
-    "genres": [
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/o0PgoBD6jLYId3LYpu9yUY06SLT.jpg",
     "runtime": 99,
     "director": "Castille Landon",
@@ -1313,11 +1071,7 @@
     "vote_average": 6.6,
     "popularity": 55.033,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "로맨스",
-      "스릴러"
-    ],
+    "genres": ["액션", "로맨스", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/yUn0et9QaiHXME4awdwxeEsuslc.jpg",
     "runtime": 150,
     "director": "Shaneil Deo",
@@ -1332,11 +1086,7 @@
     "vote_average": 6.439,
     "popularity": 55.8824,
     "revenue": 44856736,
-    "genres": [
-      "모험",
-      "스릴러",
-      "SF"
-    ],
+    "genres": ["모험", "스릴러", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/63MYZJKDgg1jg1ISo9QUiE33lrT.jpg",
     "runtime": 98,
     "director": "Ric Roman Waugh",
@@ -1351,10 +1101,7 @@
     "vote_average": 5.91,
     "popularity": 55.7305,
     "revenue": 17534314,
-    "genres": [
-      "드라마",
-      "스릴러"
-    ],
+    "genres": ["드라마", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/fAERrD6vvmznDoL99wlgjhSfPcH.jpg",
     "runtime": 106,
     "director": "Bille Woodruff",
@@ -1369,9 +1116,7 @@
     "vote_average": 4.7,
     "popularity": 61.9032,
     "revenue": 0,
-    "genres": [
-      "코미디"
-    ],
+    "genres": ["코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/zNfqugt7ZPFpWeXAQsF5IqDCDft.jpg",
     "runtime": 94,
     "director": "Guido Malatesta",
@@ -1386,12 +1131,7 @@
     "vote_average": 8.152,
     "popularity": 53.6989,
     "revenue": 2259822417,
-    "genres": [
-      "애니메이션",
-      "액션",
-      "판타지",
-      "모험"
-    ],
+    "genres": ["애니메이션", "액션", "판타지", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/tc3wdEEov3SdMja9ZkBiAZ6fBGV.jpg",
     "runtime": 144,
     "director": "饺子",
@@ -1406,9 +1146,7 @@
     "vote_average": 4.796,
     "popularity": 51.7468,
     "revenue": 78613981,
-    "genres": [
-      "코미디"
-    ],
+    "genres": ["코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/f8Ms3vhJ1ANVtUmQUW4uZlLqKWH.jpg",
     "runtime": 86,
     "director": "Malcolm D. Lee",
@@ -1423,11 +1161,7 @@
     "vote_average": 6.173,
     "popularity": 54.2948,
     "revenue": 213835967,
-    "genres": [
-      "공포",
-      "미스터리",
-      "범죄"
-    ],
+    "genres": ["공포", "미스터리", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/gqgBqxyr8tGQGJCFrRWAzfA7Cml.jpg",
     "runtime": 114,
     "director": "케빈 윌리엄슨",
@@ -1442,11 +1176,7 @@
     "vote_average": 6.4,
     "popularity": 51.5867,
     "revenue": 0,
-    "genres": [
-      "공포",
-      "드라마",
-      "미스터리"
-    ],
+    "genres": ["공포", "드라마", "미스터리"],
     "poster_path": "https://image.tmdb.org/t/p/w500/tD9yi1i2t6cgXDrqaBRzjUy7bEX.jpg",
     "runtime": 89,
     "director": "Toa Stappard",
@@ -1461,10 +1191,7 @@
     "vote_average": 4.083,
     "popularity": 53.0542,
     "revenue": 0,
-    "genres": [
-      "SF",
-      "스릴러"
-    ],
+    "genres": ["SF", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/yvirUYrva23IudARHn3mMGVxWqM.jpg",
     "runtime": 145,
     "director": "Rich Lee",
@@ -1479,11 +1206,7 @@
     "vote_average": 6.96,
     "popularity": 50.3417,
     "revenue": 131893308,
-    "genres": [
-      "로맨스",
-      "코미디",
-      "드라마"
-    ],
+    "genres": ["로맨스", "코미디", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/qhGCY6DIemLoCi7x1GuEt98m4JF.jpg",
     "runtime": 105,
     "director": "크리스토퍼 보글리",
@@ -1498,10 +1221,7 @@
     "vote_average": 6.385,
     "popularity": 54.2167,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "드라마"
-    ],
+    "genres": ["액션", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/7NrvUI3vnW8H3rD7ExKcTL7KRcQ.jpg",
     "runtime": 115,
     "director": "Tyler Atkins",
@@ -1516,11 +1236,7 @@
     "vote_average": 8.3,
     "popularity": 53.8353,
     "revenue": 11301450,
-    "genres": [
-      "스릴러",
-      "역사",
-      "전쟁"
-    ],
+    "genres": ["스릴러", "역사", "전쟁"],
     "poster_path": "https://image.tmdb.org/t/p/w500/9RkDrI8V8QJBjhtyRX7y6Qow3aq.jpg",
     "runtime": 104,
     "director": "Anthony Maras",
@@ -1535,12 +1251,7 @@
     "vote_average": 7.977,
     "popularity": 59.6027,
     "revenue": 401157969,
-    "genres": [
-      "가족",
-      "코미디",
-      "애니메이션",
-      "모험"
-    ],
+    "genres": ["가족", "코미디", "애니메이션", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/iJbm78MxPjLutWUYixbeege8EVe.jpg",
     "runtime": 81,
     "director": "존 라세터",
@@ -1555,11 +1266,7 @@
     "vote_average": 8.237,
     "popularity": 53.601,
     "revenue": 2052415039,
-    "genres": [
-      "모험",
-      "액션",
-      "SF"
-    ],
+    "genres": ["모험", "액션", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/kmP6viwzcEkZeoi1LaVcQemcvZh.jpg",
     "runtime": 149,
     "director": "조 루소, 안소니 루소",
@@ -1574,10 +1281,7 @@
     "vote_average": 7.256,
     "popularity": 53.04,
     "revenue": 399644671,
-    "genres": [
-      "미스터리",
-      "스릴러"
-    ],
+    "genres": ["미스터리", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/fUDX16A4fJXmAuUA5t0pnqzXS0b.jpg",
     "runtime": 132,
     "director": "폴 피그",
@@ -1592,11 +1296,7 @@
     "vote_average": 7.065,
     "popularity": 52.3247,
     "revenue": 19382152,
-    "genres": [
-      "공포",
-      "코미디",
-      "액션"
-    ],
+    "genres": ["공포", "코미디", "액션"],
     "poster_path": "https://image.tmdb.org/t/p/w500/6oI4oQKTWMVUlr8Ivqydp28Ruu6.jpg",
     "runtime": 95,
     "director": "Кирилл Соколов",
@@ -1611,9 +1311,7 @@
     "vote_average": 0.0,
     "popularity": 51.918,
     "revenue": 0,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/wcZleoLz2us9dCxraSivVhyES0z.jpg",
     "runtime": 50,
     "director": "",
@@ -1628,10 +1326,7 @@
     "vote_average": 5.375,
     "popularity": 42.6966,
     "revenue": 0,
-    "genres": [
-      "공포",
-      "스릴러"
-    ],
+    "genres": ["공포", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/5e877bTsl71ENZLtQ7L1lGVV9yN.jpg",
     "runtime": 80,
     "director": "Mariano Cattaneo",
@@ -1646,10 +1341,7 @@
     "vote_average": 6.7,
     "popularity": 46.0727,
     "revenue": 0,
-    "genres": [
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/iVS3ZiPsKy8Hhc5Dipqgrjmoj2b.jpg",
     "runtime": 99,
     "director": "Christopher Novabos",
@@ -1664,10 +1356,7 @@
     "vote_average": 8.247,
     "popularity": 51.7378,
     "revenue": 463517383,
-    "genres": [
-      "액션",
-      "SF"
-    ],
+    "genres": ["액션", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/fxBxoXFAYKWde6lKzXxSusn18Av.jpg",
     "runtime": 136,
     "director": "라나 워쇼스키, 릴리 워쇼스키",
@@ -1682,11 +1371,7 @@
     "vote_average": 7.773,
     "popularity": 45.108,
     "revenue": 0,
-    "genres": [
-      "로맨스",
-      "드라마",
-      "코미디"
-    ],
+    "genres": ["로맨스", "드라마", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/2ynUMfrwnEdGmkZmpiiJmTdTi4w.jpg",
     "runtime": 103,
     "director": "Bruno Ascenzo",
@@ -1701,11 +1386,7 @@
     "vote_average": 7.157,
     "popularity": 47.4517,
     "revenue": 42404858,
-    "genres": [
-      "공포",
-      "판타지",
-      "로맨스"
-    ],
+    "genres": ["공포", "판타지", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/hCKkybW6EfSZoOW3xia9ZsQwaUd.jpg",
     "runtime": 130,
     "director": "뤽 베송",
@@ -1720,10 +1401,7 @@
     "vote_average": 6.405,
     "popularity": 48.1518,
     "revenue": 844281,
-    "genres": [
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/4kF4qRXFd7MqX2bAJX3e3zQSxhV.jpg",
     "runtime": 109,
     "director": "훌리오 메뎀",
@@ -1738,9 +1416,7 @@
     "vote_average": 5.835,
     "popularity": 43.8681,
     "revenue": 141220678,
-    "genres": [
-      "코미디"
-    ],
+    "genres": ["코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/iRS4R009OJM4KmhikmzGvkbeEaT.jpg",
     "runtime": 82,
     "director": "Keenen Ivory Wayans",
@@ -1755,9 +1431,7 @@
     "vote_average": 5.8,
     "popularity": 41.5154,
     "revenue": 0,
-    "genres": [
-      "코미디"
-    ],
+    "genres": ["코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/9YA2erSNcca9NWd0xePC9ArFWnx.jpg",
     "runtime": 99,
     "director": "이반 라이트만",
@@ -1772,11 +1446,7 @@
     "vote_average": 7.735,
     "popularity": 45.9644,
     "revenue": 0,
-    "genres": [
-      "드라마",
-      "로맨스",
-      "스릴러"
-    ],
+    "genres": ["드라마", "로맨스", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/duT8Vks5FXwDkpxoR84xb2a6VB6.jpg",
     "runtime": 116,
     "director": "도밍고 곤살레스",
@@ -1791,11 +1461,7 @@
     "vote_average": 7.388,
     "popularity": 45.6649,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "SF",
-      "스릴러"
-    ],
+    "genres": ["액션", "SF", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/cfeIYPthWgq5XFZnx7cbpr7xFTp.jpg",
     "runtime": 110,
     "director": "패트릭 휴스",
@@ -1810,11 +1476,7 @@
     "vote_average": 8.044,
     "popularity": 46.7047,
     "revenue": 1518815515,
-    "genres": [
-      "SF",
-      "액션",
-      "모험"
-    ],
+    "genres": ["SF", "액션", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/krgjV3rJtBcEpQehODKXNCt6uFL.jpg",
     "runtime": 142,
     "director": "조스 웨던",
@@ -1829,10 +1491,7 @@
     "vote_average": 5.508,
     "popularity": 40.1574,
     "revenue": 0,
-    "genres": [
-      "스릴러",
-      "범죄"
-    ],
+    "genres": ["스릴러", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/diKhdwtx2Ij3Qx2bnYIcSLT0EKT.jpg",
     "runtime": 109,
     "director": "Gabe Ibáñez",
@@ -1847,10 +1506,7 @@
     "vote_average": 0.0,
     "popularity": 54.9778,
     "revenue": 0,
-    "genres": [
-      "드라마",
-      "스릴러"
-    ],
+    "genres": ["드라마", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/bNXFBZYX50ttN0SYdOc0hPyDlpP.jpg",
     "runtime": 127,
     "director": "Manoj Tapadia",
@@ -1865,10 +1521,7 @@
     "vote_average": 6.0,
     "popularity": 44.2445,
     "revenue": 0,
-    "genres": [
-      "드라마",
-      "스릴러"
-    ],
+    "genres": ["드라마", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/g0GjFVz4u5wDU8d6r7HySuduCZE.jpg",
     "runtime": 122,
     "director": "Chinmay Mandlekar",
@@ -1883,11 +1536,7 @@
     "vote_average": 7.008,
     "popularity": 35.6467,
     "revenue": 51226173,
-    "genres": [
-      "공포",
-      "미스터리",
-      "SF"
-    ],
+    "genres": ["공포", "미스터리", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/sIwakdbMGS1krtgendTWpxTY9Hw.jpg",
     "runtime": 127,
     "director": "Mark Fischbach",
@@ -1902,11 +1551,7 @@
     "vote_average": 7.7,
     "popularity": 37.3508,
     "revenue": 42212563,
-    "genres": [
-      "스릴러",
-      "공포",
-      "코미디"
-    ],
+    "genres": ["스릴러", "공포", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/9XMwsbof7HoOiNxEahreQay3pXs.jpg",
     "runtime": 108,
     "director": "맷 베티넬리올핀, Tyler Gillett",
@@ -1921,11 +1566,7 @@
     "vote_average": 6.215,
     "popularity": 37.744,
     "revenue": 14329678,
-    "genres": [
-      "공포",
-      "액션",
-      "스릴러"
-    ],
+    "genres": ["공포", "액션", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/8ExwomWgJoXBdY3u1Otiw2zY9wZ.jpg",
     "runtime": 94,
     "director": "Pål Øie",
@@ -1940,12 +1581,7 @@
     "vote_average": 8.025,
     "popularity": 37.1275,
     "revenue": 24619953,
-    "genres": [
-      "판타지",
-      "음악",
-      "코미디",
-      "애니메이션"
-    ],
+    "genres": ["판타지", "음악", "코미디", "애니메이션"],
     "poster_path": "https://image.tmdb.org/t/p/w500/5fqcLmrgVDicMuGLOa9PKErFP72.jpg",
     "runtime": 96,
     "director": "매기 강, 크리스 아펠한스",
@@ -1960,11 +1596,7 @@
     "vote_average": 4.0,
     "popularity": 32.1335,
     "revenue": 0,
-    "genres": [
-      "로맨스",
-      "드라마",
-      "스릴러"
-    ],
+    "genres": ["로맨스", "드라마", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/hxJOr9MRXTg3HYMpdj6VbD1FSXZ.jpg",
     "runtime": 123,
     "director": "L. Pranava Swaroop",
@@ -1979,11 +1611,7 @@
     "vote_average": 7.6,
     "popularity": 34.4888,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "드라마",
-      "가족"
-    ],
+    "genres": ["액션", "드라마", "가족"],
     "poster_path": "https://image.tmdb.org/t/p/w500/ho824aZtnBzE6FuJRn2znQCq4qQ.jpg",
     "runtime": 143,
     "director": "Subash",
@@ -1998,11 +1626,7 @@
     "vote_average": 6.871,
     "popularity": 34.1703,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "스릴러",
-      "공포"
-    ],
+    "genres": ["액션", "스릴러", "공포"],
     "poster_path": "https://image.tmdb.org/t/p/w500/thK6glS5pklrlijsgSN6Hw9GLQK.jpg",
     "runtime": 123,
     "director": "연상호",
@@ -2017,11 +1641,7 @@
     "vote_average": 7.563,
     "popularity": 29.0183,
     "revenue": 0,
-    "genres": [
-      "코미디",
-      "역사",
-      "드라마"
-    ],
+    "genres": ["코미디", "역사", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/xOL58rwFCq7Zw0yg8OeLTU59NSt.jpg",
     "runtime": 95,
     "director": "Gabriel Ripstein",
@@ -2036,10 +1656,7 @@
     "vote_average": 0.0,
     "popularity": 29.8338,
     "revenue": 0,
-    "genres": [
-      "코미디",
-      "드라마"
-    ],
+    "genres": ["코미디", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/89n9cfc5dm0kdkABmDJalzveEwU.jpg",
     "runtime": 182,
     "director": "Pravin Tarde",
@@ -2054,10 +1671,7 @@
     "vote_average": 5.533,
     "popularity": 33.6415,
     "revenue": 0,
-    "genres": [
-      "코미디",
-      "범죄"
-    ],
+    "genres": ["코미디", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/zuiZDJcjlNWB6EcXHer06u9BQke.jpg",
     "runtime": 105,
     "director": "Mourad Winter",
@@ -2072,10 +1686,7 @@
     "vote_average": 6.5,
     "popularity": 30.4249,
     "revenue": 0,
-    "genres": [
-      "미스터리",
-      "SF"
-    ],
+    "genres": ["미스터리", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/bi7Aeaozl51cd5K6vAn8tI1lOW0.jpg",
     "runtime": 112,
     "director": "Jonathan Sobol",
@@ -2090,11 +1701,7 @@
     "vote_average": 0.0,
     "popularity": 32.4694,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "모험",
-      "SF"
-    ],
+    "genres": ["액션", "모험", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/2LSzCgS4StdD2hizIzwgLLCNVnN.jpg",
     "runtime": 108,
     "director": "크레이그 길레스피",
@@ -2109,10 +1716,7 @@
     "vote_average": 6.6,
     "popularity": 31.929,
     "revenue": 2286163,
-    "genres": [
-      "스릴러",
-      "공포"
-    ],
+    "genres": ["스릴러", "공포"],
     "poster_path": "https://image.tmdb.org/t/p/w500/ZWHxL2ETItcZzeVsVfs6gv3SZ7.jpg",
     "runtime": 107,
     "director": "레니 할린",
@@ -2127,12 +1731,7 @@
     "vote_average": 5.8,
     "popularity": 29.6394,
     "revenue": 4834402,
-    "genres": [
-      "애니메이션",
-      "가족",
-      "모험",
-      "코미디"
-    ],
+    "genres": ["애니메이션", "가족", "모험", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/fcDXgGL14qL46It1XOozEjX5Jws.jpg",
     "runtime": 91,
     "director": "Ricard Cussó",
@@ -2147,9 +1746,7 @@
     "vote_average": 7.5,
     "popularity": 31.3367,
     "revenue": 0,
-    "genres": [
-      "코미디"
-    ],
+    "genres": ["코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/5MweEeMzPbueb65BcJpdiy0ihwU.jpg",
     "runtime": 117,
     "director": "Mudassar Aziz",
@@ -2164,11 +1761,7 @@
     "vote_average": 7.263,
     "popularity": 26.411,
     "revenue": 0,
-    "genres": [
-      "코미디",
-      "범죄",
-      "드라마"
-    ],
+    "genres": ["코미디", "범죄", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/5aK6PmgYVoGa5oJezT4oY3UtRXj.jpg",
     "runtime": 116,
     "director": "Anders Thomas Jensen",
@@ -2183,11 +1776,7 @@
     "vote_average": 7.7,
     "popularity": 30.5552,
     "revenue": 115953209,
-    "genres": [
-      "코미디",
-      "가족",
-      "미스터리"
-    ],
+    "genres": ["코미디", "가족", "미스터리"],
     "poster_path": "https://image.tmdb.org/t/p/w500/6QtL9rl3Zb4d8qW6EJ4qO5hSSfU.jpg",
     "runtime": 109,
     "director": "Kyle Balda",
@@ -2202,13 +1791,7 @@
     "vote_average": 7.765,
     "popularity": 29.0322,
     "revenue": 488977919,
-    "genres": [
-      "애니메이션",
-      "코미디",
-      "판타지",
-      "모험",
-      "가족"
-    ],
+    "genres": ["애니메이션", "코미디", "판타지", "모험", "가족"],
     "poster_path": "https://image.tmdb.org/t/p/w500/hABnmgdAU3u6Nu61b9GUGaOseVl.jpg",
     "runtime": 90,
     "director": "앤드류 애덤슨, 빅키 젠슨",
@@ -2223,11 +1806,7 @@
     "vote_average": 7.499,
     "popularity": 30.1524,
     "revenue": 370000000,
-    "genres": [
-      "공포",
-      "액션",
-      "스릴러"
-    ],
+    "genres": ["공포", "액션", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/qEipksU5SzHxbeZbE0cZQzEt6bD.jpg",
     "runtime": 137,
     "director": "라이언 쿠글러",
@@ -2242,10 +1821,7 @@
     "vote_average": 8.687,
     "popularity": 39.3909,
     "revenue": 245066411,
-    "genres": [
-      "드라마",
-      "범죄"
-    ],
+    "genres": ["드라마", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/1yvBkSv4ZLS1GohlmMDmdpSgfYo.jpg",
     "runtime": 175,
     "director": "프란시스 포드 코폴라",
@@ -2260,10 +1836,7 @@
     "vote_average": 8.572,
     "popularity": 24.4561,
     "revenue": 102600000,
-    "genres": [
-      "드라마",
-      "범죄"
-    ],
+    "genres": ["드라마", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/35RGDgySfINL9V2e6lkDECQ0hRa.jpg",
     "runtime": 202,
     "director": "프란시스 포드 코폴라",
@@ -2278,10 +1851,7 @@
     "vote_average": 8.569,
     "popularity": 31.7954,
     "revenue": 0,
-    "genres": [
-      "드라마",
-      "미스터리"
-    ],
+    "genres": ["드라마", "미스터리"],
     "poster_path": "https://image.tmdb.org/t/p/w500/mUt0SnTp0oAN38BHD7NGX8hmwAT.jpg",
     "runtime": 114,
     "director": "Olivia Newman",
@@ -2296,11 +1866,7 @@
     "vote_average": 8.569,
     "popularity": 21.9697,
     "revenue": 321365567,
-    "genres": [
-      "드라마",
-      "역사",
-      "전쟁"
-    ],
+    "genres": ["드라마", "역사", "전쟁"],
     "poster_path": "https://image.tmdb.org/t/p/w500/oyyUcGwLX7LTFS1pQbLrQpyzIyt.jpg",
     "runtime": 195,
     "director": "스티븐 스필버그",
@@ -2315,9 +1881,7 @@
     "vote_average": 8.562,
     "popularity": 21.2136,
     "revenue": 4360000,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/yg2XzSxH10DVGNY73e7yZgLnDF5.jpg",
     "runtime": 97,
     "director": "시드니 루멧",
@@ -2332,11 +1896,7 @@
     "vote_average": 8.535,
     "popularity": 29.3842,
     "revenue": 274925095,
-    "genres": [
-      "애니메이션",
-      "가족",
-      "판타지"
-    ],
+    "genres": ["애니메이션", "가족", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/u1L4qxIu5sC2P082uMHYt7Ifvnj.jpg",
     "runtime": 124,
     "director": "미야자키 하야오",
@@ -2351,11 +1911,7 @@
     "vote_average": 8.531,
     "popularity": 43.069,
     "revenue": 1004558444,
-    "genres": [
-      "액션",
-      "범죄",
-      "스릴러"
-    ],
+    "genres": ["액션", "범죄", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/9ICUbdveP56jRoMMVkXSOr3ceyV.jpg",
     "runtime": 152,
     "director": "크리스토퍼 놀란",
@@ -2370,11 +1926,7 @@
     "vote_average": 8.512,
     "popularity": 14.7429,
     "revenue": 100000000,
-    "genres": [
-      "코미디",
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["코미디", "드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/2CAL2433ZeIihfX1Hb2139CX0pW.jpg",
     "runtime": 190,
     "director": "Aditya Chopra",
@@ -2389,11 +1941,7 @@
     "vote_average": 8.507,
     "popularity": 25.7743,
     "revenue": 286801374,
-    "genres": [
-      "판타지",
-      "드라마",
-      "범죄"
-    ],
+    "genres": ["판타지", "드라마", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/pk1TPODQVnI8GdLf0DhlJQYxWjd.jpg",
     "runtime": 189,
     "director": "프랭크 다라본트",
@@ -2408,11 +1956,7 @@
     "vote_average": 8.5,
     "popularity": 41.005,
     "revenue": 1118888979,
-    "genres": [
-      "모험",
-      "판타지",
-      "액션"
-    ],
+    "genres": ["모험", "판타지", "액션"],
     "poster_path": "https://image.tmdb.org/t/p/w500/n8BPIRqvj1SdTRND828ANXhmSng.jpg",
     "runtime": 199,
     "director": "피터 잭슨",
@@ -2427,11 +1971,7 @@
     "vote_average": 8.494,
     "popularity": 32.8232,
     "revenue": 257591776,
-    "genres": [
-      "코미디",
-      "스릴러",
-      "드라마"
-    ],
+    "genres": ["코미디", "스릴러", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/jjHccoFjbqlfr4VGLVLT7yek0Xn.jpg",
     "runtime": 131,
     "director": "봉준호",
@@ -2446,10 +1986,7 @@
     "vote_average": 8.5,
     "popularity": 9.302,
     "revenue": 0,
-    "genres": [
-      "코미디",
-      "로맨스"
-    ],
+    "genres": ["코미디", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/6PQJsmuvSMZQMmlJfTpjIkrizUh.jpg",
     "runtime": 100,
     "director": "Ihtzi Hurtado",
@@ -2464,11 +2001,7 @@
     "vote_average": 8.5,
     "popularity": 33.2884,
     "revenue": 213928762,
-    "genres": [
-      "스릴러",
-      "범죄",
-      "코미디"
-    ],
+    "genres": ["스릴러", "범죄", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/lnRkeQstaCvfMahZq7p9eAWzK1a.jpg",
     "runtime": 154,
     "director": "쿠엔틴 타란티노",
@@ -2483,11 +2016,7 @@
     "vote_average": 8.481,
     "popularity": 23.1301,
     "revenue": 405320132,
-    "genres": [
-      "애니메이션",
-      "로맨스",
-      "드라마"
-    ],
+    "genres": ["애니메이션", "로맨스", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/2DJCufz3Oa703PbLjNX1pM6MCG2.jpg",
     "runtime": 106,
     "director": "신카이 마코토",
@@ -2502,9 +2031,7 @@
     "vote_average": 8.467,
     "popularity": 18.9173,
     "revenue": 38900000,
-    "genres": [
-      "서부"
-    ],
+    "genres": ["서부"],
     "poster_path": "https://image.tmdb.org/t/p/w500/s7qPuoj4liolAtmx9vcL6AyaZzR.jpg",
     "runtime": 161,
     "director": "세르조 레오네",
@@ -2519,11 +2046,7 @@
     "vote_average": 8.465,
     "popularity": 22.4033,
     "revenue": 677387716,
-    "genres": [
-      "코미디",
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["코미디", "드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/l8wvbQQIBV8LBHmx3Wx9xbE2kzt.jpg",
     "runtime": 142,
     "director": "로버트 저메키스",
@@ -2538,10 +2061,7 @@
     "vote_average": 8.454,
     "popularity": 26.9731,
     "revenue": 47072327,
-    "genres": [
-      "드라마",
-      "범죄"
-    ],
+    "genres": ["드라마", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/zF9hSBS1t7PVFLo01GrJ3OjGi67.jpg",
     "runtime": 146,
     "director": "마틴 스콜세지",
@@ -2556,10 +2076,7 @@
     "vote_average": 8.45,
     "popularity": 11.4472,
     "revenue": 105000000,
-    "genres": [
-      "액션",
-      "드라마"
-    ],
+    "genres": ["액션", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/6Y8Q5t79ybiDA7XubUTneqZhjA3.jpg",
     "runtime": 207,
     "director": "구로사와 아키라",
@@ -2574,11 +2091,7 @@
     "vote_average": 8.442,
     "popularity": 0.0117,
     "revenue": 842132,
-    "genres": [
-      "애니메이션",
-      "드라마",
-      "전쟁"
-    ],
+    "genres": ["애니메이션", "드라마", "전쟁"],
     "poster_path": "https://image.tmdb.org/t/p/w500/uN0x0G4uuRjFJIFN57iYihBV2Qh.jpg",
     "runtime": 89,
     "director": "다카하타 이사오",
@@ -2593,10 +2106,7 @@
     "vote_average": 8.439,
     "popularity": 14.3902,
     "revenue": 230098753,
-    "genres": [
-      "코미디",
-      "드라마"
-    ],
+    "genres": ["코미디", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/iyQ8pmCpmnPrGtaHMfmSvQLv8Fy.jpg",
     "runtime": 116,
     "director": "로베르토 베니니",
@@ -2611,11 +2121,7 @@
     "vote_average": 8.439,
     "popularity": 7.9652,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "드라마",
-      "역사"
-    ],
+    "genres": ["액션", "드라마", "역사"],
     "poster_path": "https://image.tmdb.org/t/p/w500/6Cw2LJzt6jRALHystjzWazeB4Pg.jpg",
     "runtime": 135,
     "director": "고바야시 마사키",
@@ -2630,10 +2136,7 @@
     "vote_average": 8.438,
     "popularity": 29.7356,
     "revenue": 100853753,
-    "genres": [
-      "드라마",
-      "스릴러"
-    ],
+    "genres": ["드라마", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/eKZ07Ted7VHxQjbuZrRBFOamcKJ.jpg",
     "runtime": 139,
     "director": "데이비드 핀처",
@@ -2648,11 +2151,7 @@
     "vote_average": 8.435,
     "popularity": 37.23,
     "revenue": 871368364,
-    "genres": [
-      "모험",
-      "판타지",
-      "액션"
-    ],
+    "genres": ["모험", "판타지", "액션"],
     "poster_path": "https://image.tmdb.org/t/p/w500/r18JdjImbWDRwkbVDIzWoLQqkCo.jpg",
     "runtime": 227,
     "director": "피터 잭슨",
@@ -2667,10 +2166,7 @@
     "vote_average": 8.429,
     "popularity": 11.8388,
     "revenue": 30641770,
-    "genres": [
-      "드라마",
-      "범죄"
-    ],
+    "genres": ["드라마", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/iKXrQB16sxeXoc6GlnYjeeZKsOW.jpg",
     "runtime": 129,
     "director": "페르난도 메이렐레스",
@@ -2685,10 +2181,7 @@
     "vote_average": 8.427,
     "popularity": 11.5181,
     "revenue": 35962062,
-    "genres": [
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/r782z4H7GzkyNaf3hAtBB4pVkOj.jpg",
     "runtime": 124,
     "director": "주세페 토르나토레",
@@ -2703,11 +2196,7 @@
     "vote_average": 8.42,
     "popularity": 26.366,
     "revenue": 926287400,
-    "genres": [
-      "모험",
-      "판타지",
-      "액션"
-    ],
+    "genres": ["모험", "판타지", "액션"],
     "poster_path": "https://image.tmdb.org/t/p/w500/zxZdTi3fA7aDxEOivmzZAY2bmTu.jpg",
     "runtime": 177,
     "director": "피터 잭슨",
@@ -2722,11 +2211,7 @@
     "vote_average": 8.413,
     "popularity": 16.7135,
     "revenue": 50000000,
-    "genres": [
-      "공포",
-      "스릴러",
-      "미스터리"
-    ],
+    "genres": ["공포", "스릴러", "미스터리"],
     "poster_path": "https://image.tmdb.org/t/p/w500/vC3P8hH4r3I3fHiRFa1kj6yzeaN.jpg",
     "runtime": 109,
     "director": "알프레드 히치콕",
@@ -2741,9 +2226,7 @@
     "vote_average": 8.412,
     "popularity": 13.4467,
     "revenue": 108981275,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/9FfIRtY1BpUHDeYQ6CyOEXnJXLn.jpg",
     "runtime": 133,
     "director": "밀로스 포먼",
@@ -2758,12 +2241,7 @@
     "vote_average": 8.408,
     "popularity": 4.5946,
     "revenue": 4903192,
-    "genres": [
-      "코미디",
-      "드라마",
-      "판타지",
-      "로맨스"
-    ],
+    "genres": ["코미디", "드라마", "판타지", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/imcOp1kJsCsAFCoOtY5OnPrFbAf.jpg",
     "runtime": 104,
     "director": "Guel Arraes",
@@ -2778,12 +2256,7 @@
     "vote_average": 8.41,
     "popularity": 26.0596,
     "revenue": 191400000,
-    "genres": [
-      "애니메이션",
-      "액션",
-      "로맨스",
-      "판타지"
-    ],
+    "genres": ["애니메이션", "액션", "로맨스", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/oTn0PoR8gSMpMqJaT2pUtkkN0Ia.jpg",
     "runtime": 100,
     "director": "요시하라 타츠야",
@@ -2798,9 +2271,7 @@
     "vote_average": 8.402,
     "popularity": 17.8302,
     "revenue": 0,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/PZlNvDwKwHeHUsXnd6SEDXWZNn.jpg",
     "runtime": 123,
     "director": "이준익",
@@ -2815,10 +2286,7 @@
     "vote_average": 8.395,
     "popularity": 3.9574,
     "revenue": 0,
-    "genres": [
-      "가족",
-      "드라마"
-    ],
+    "genres": ["가족", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/eaf7GQj0ieOwm08rrvjJQNbN0kN.jpg",
     "runtime": 88,
     "director": "에르네스토 콘트레라스",
@@ -2833,12 +2301,7 @@
     "vote_average": 8.393,
     "popularity": 22.208,
     "revenue": 394884133,
-    "genres": [
-      "애니메이션",
-      "액션",
-      "모험",
-      "SF"
-    ],
+    "genres": ["애니메이션", "액션", "모험", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/d9V6Q9vpVpmaca7vwSUbCajtDb3.jpg",
     "runtime": 117,
     "director": "밥 퍼시케티, 피터 램지, 로드니 로스먼",
@@ -2853,11 +2316,7 @@
     "vote_average": 8.392,
     "popularity": 11.4143,
     "revenue": 538400000,
-    "genres": [
-      "모험",
-      "액션",
-      "SF"
-    ],
+    "genres": ["모험", "액션", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/icaO5w8uLVm4JxMew71JJrQE2YX.jpg",
     "runtime": 124,
     "director": "어빈 케쉬너",
@@ -2872,10 +2331,7 @@
     "vote_average": 8.389,
     "popularity": 7.6616,
     "revenue": 0,
-    "genres": [
-      "드라마",
-      "가족"
-    ],
+    "genres": ["드라마", "가족"],
     "poster_path": "https://image.tmdb.org/t/p/w500/yfnJ5qIYx7q33fY4jqv9Pu95RSg.jpg",
     "runtime": 87,
     "director": "Rob Diamond",
@@ -2890,11 +2346,7 @@
     "vote_average": 8.388,
     "popularity": 16.937,
     "revenue": 30819442,
-    "genres": [
-      "애니메이션",
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["애니메이션", "드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/aUF10sSW5OVfpK6Ma3vJYd3Tp3A.jpg",
     "runtime": 130,
     "director": "야마다 나오코",
@@ -2909,11 +2361,7 @@
     "vote_average": 8.387,
     "popularity": 22.2316,
     "revenue": 236049757,
-    "genres": [
-      "판타지",
-      "애니메이션",
-      "모험"
-    ],
+    "genres": ["판타지", "애니메이션", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/xiz6TiSduvR1U3VLfWVlBEdT9fO.jpg",
     "runtime": 119,
     "director": "미야자키 하야오",
@@ -2928,10 +2376,7 @@
     "vote_average": 8.384,
     "popularity": 3.8091,
     "revenue": 0,
-    "genres": [
-      "로맨스",
-      "드라마"
-    ],
+    "genres": ["로맨스", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/oyG9TL7FcRP4EZ9Vid6uKzwdndz.jpg",
     "runtime": 122,
     "director": "Tosca Musk",
@@ -2946,11 +2391,7 @@
     "vote_average": 8.382,
     "popularity": 24.0931,
     "revenue": 327311859,
-    "genres": [
-      "범죄",
-      "미스터리",
-      "스릴러"
-    ],
+    "genres": ["범죄", "미스터리", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/izzk8dbmrLowcoGbFaebqJvzyXg.jpg",
     "runtime": 127,
     "director": "데이비드 핀처",
@@ -2965,10 +2406,7 @@
     "vote_average": 8.381,
     "popularity": 13.5003,
     "revenue": 5500000,
-    "genres": [
-      "드라마",
-      "범죄"
-    ],
+    "genres": ["드라마", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/xbuc6sjIIopkA1Ep24rR6yCw0DK.jpg",
     "runtime": 229,
     "director": "세르조 레오네",
@@ -2983,11 +2421,7 @@
     "vote_average": 8.375,
     "popularity": 22.2526,
     "revenue": 50307484,
-    "genres": [
-      "드라마",
-      "음악",
-      "스릴러"
-    ],
+    "genres": ["드라마", "음악", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/oKNkhmyIBiDENivK6ELZxfBWa3q.jpg",
     "runtime": 106,
     "director": "데이미언 셔젤",
@@ -3002,10 +2436,7 @@
     "vote_average": 8.374,
     "popularity": 11.1845,
     "revenue": 120098945,
-    "genres": [
-      "드라마",
-      "전쟁"
-    ],
+    "genres": ["드라마", "전쟁"],
     "poster_path": "https://image.tmdb.org/t/p/w500/t7L2YDpu635qKT3ehqZxry4yvTX.jpg",
     "runtime": 150,
     "director": "로만 폴란스키",
@@ -3020,11 +2451,7 @@
     "vote_average": 8.372,
     "popularity": 31.6964,
     "revenue": 839030630,
-    "genres": [
-      "액션",
-      "SF",
-      "모험"
-    ],
+    "genres": ["액션", "SF", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/atSxEGstxXRoSKDQFBgqQ5lpGSt.jpg",
     "runtime": 148,
     "director": "크리스토퍼 놀란",
@@ -3039,11 +2466,7 @@
     "vote_average": 8.363,
     "popularity": 6.1221,
     "revenue": 0,
-    "genres": [
-      "드라마",
-      "범죄",
-      "스릴러"
-    ],
+    "genres": ["드라마", "범죄", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/3faOft1rjJrIahaLHof9AwDth2z.jpg",
     "runtime": 142,
     "director": "구로사와 아키라",
@@ -3058,10 +2481,7 @@
     "vote_average": 8.349,
     "popularity": 3.056,
     "revenue": 0,
-    "genres": [
-      "로맨스",
-      "드라마"
-    ],
+    "genres": ["로맨스", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/x5o8cLZfEXMoZczTYWLrUo1P7UJ.jpg",
     "runtime": 106,
     "director": "Tosca Musk",
@@ -3076,11 +2496,7 @@
     "vote_average": 8.345,
     "popularity": 3.9396,
     "revenue": 272742922,
-    "genres": [
-      "범죄",
-      "스릴러",
-      "드라마"
-    ],
+    "genres": ["범죄", "스릴러", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/hOr56UKAsB9waNDHhriOntCjHTJ.jpg",
     "runtime": 118,
     "director": "조나단 드미",
@@ -3095,10 +2511,7 @@
     "vote_average": 8.341,
     "popularity": 6.1928,
     "revenue": 0,
-    "genres": [
-      "로맨스",
-      "드라마"
-    ],
+    "genres": ["로맨스", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/fYtHxTxlhzD4QWfEbrC1rypysSD.jpg",
     "runtime": 102,
     "director": "Tosca Musk",
@@ -3113,11 +2526,7 @@
     "vote_average": 8.337,
     "popularity": 7.8599,
     "revenue": 37042336,
-    "genres": [
-      "스릴러",
-      "미스터리",
-      "드라마"
-    ],
+    "genres": ["스릴러", "미스터리", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/jU5Fe7n9rsEBa0uaV5dqGjJGwmX.jpg",
     "runtime": 115,
     "director": "알프레드 히치콕",
@@ -3132,12 +2541,7 @@
     "vote_average": 8.336,
     "popularity": 24.8159,
     "revenue": 690897910,
-    "genres": [
-      "애니메이션",
-      "액션",
-      "모험",
-      "SF"
-    ],
+    "genres": ["애니메이션", "액션", "모험", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/lMWTlGr9jVUC18T515hPRKym5QQ.jpg",
     "runtime": 140,
     "director": "켐프 파워스, 저스틴 톰슨, 조아킴 도스 샌토스",
@@ -3152,9 +2556,7 @@
     "vote_average": 8.329,
     "popularity": 3.8988,
     "revenue": 21761164,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/eSatbygYZp8ooprBHZdb6GFZxGB.jpg",
     "runtime": 125,
     "director": "Christopher Zalla",
@@ -3169,9 +2571,7 @@
     "vote_average": 8.327,
     "popularity": 9.4389,
     "revenue": 23900000,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/nm4XkYBt79ZjUQj6Rqxxzl1Wt3c.jpg",
     "runtime": 119,
     "director": "토니 케이",
@@ -3186,11 +2586,7 @@
     "vote_average": 8.326,
     "popularity": 18.1947,
     "revenue": 381109762,
-    "genres": [
-      "모험",
-      "코미디",
-      "SF"
-    ],
+    "genres": ["모험", "코미디", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/zzxvtXJ9pahjWVX3Q2ko29J0Zf6.jpg",
     "runtime": 120,
     "director": "로버트 저메키스",
@@ -3205,11 +2601,7 @@
     "vote_average": 8.321,
     "popularity": 17.937,
     "revenue": 176506186,
-    "genres": [
-      "모험",
-      "판타지",
-      "애니메이션"
-    ],
+    "genres": ["모험", "판타지", "애니메이션"],
     "poster_path": "https://image.tmdb.org/t/p/w500/lLftgg4iFyDwuodra3Isr41y2Lq.jpg",
     "runtime": 135,
     "director": "미야자키 하야오",
@@ -3224,12 +2616,7 @@
     "vote_average": 8.314,
     "popularity": 37.2546,
     "revenue": 331982078,
-    "genres": [
-      "가족",
-      "애니메이션",
-      "SF",
-      "모험"
-    ],
+    "genres": ["가족", "애니메이션", "SF", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/iA9NiygwSOBy8FjZjvdYOMxRUG0.jpg",
     "runtime": 102,
     "director": "크리스 샌더스",
@@ -3244,10 +2631,7 @@
     "vote_average": 8.3,
     "popularity": 11.4861,
     "revenue": 2743097,
-    "genres": [
-      "애니메이션",
-      "스릴러"
-    ],
+    "genres": ["애니메이션", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/cpsxJP7lUNEozPtDLIM5gPC9gJH.jpg",
     "runtime": 82,
     "director": "콘 사토시",
@@ -3262,9 +2646,7 @@
     "vote_average": 8.3,
     "popularity": 5.8625,
     "revenue": 55240,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/8aja0bziXOA0ZgspOLyt4PVZ9kF.jpg",
     "runtime": 143,
     "director": "구로사와 아키라",
@@ -3279,9 +2661,7 @@
     "vote_average": 8.3,
     "popularity": 17.158,
     "revenue": 235860116,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/41AJ4X5TRWpECsiMIKS8so4MSsD.jpg",
     "runtime": 129,
     "director": "피터 위어",
@@ -3296,12 +2676,7 @@
     "vote_average": 8.298,
     "popularity": 6.6643,
     "revenue": 20339624,
-    "genres": [
-      "애니메이션",
-      "드라마",
-      "판타지",
-      "로맨스"
-    ],
+    "genres": ["애니메이션", "드라마", "판타지", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/mBUy2lCwk6fpByQ7GBFKRApKEHb.jpg",
     "runtime": 140,
     "director": "이시다테 타이치",
@@ -3316,11 +2691,7 @@
     "vote_average": 8.3,
     "popularity": 15.623,
     "revenue": 45284974,
-    "genres": [
-      "범죄",
-      "드라마",
-      "액션"
-    ],
+    "genres": ["범죄", "드라마", "액션"],
     "poster_path": "https://image.tmdb.org/t/p/w500/cVNasmF1Egd3v3mpq747Hizxx4x.jpg",
     "runtime": 111,
     "director": "뤽 베송",
@@ -3335,10 +2706,7 @@
     "vote_average": 8.3,
     "popularity": 3.2697,
     "revenue": 1315376,
-    "genres": [
-      "드라마",
-      "코미디"
-    ],
+    "genres": ["드라마", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/xc4bTXVwYNXi10jG9dwcaYt5IpU.jpg",
     "runtime": 94,
     "director": "Jorge Ulloa",
@@ -3353,10 +2721,7 @@
     "vote_average": 8.3,
     "popularity": 3.3674,
     "revenue": 0,
-    "genres": [
-      "드라마",
-      "코미디"
-    ],
+    "genres": ["드라마", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/jsjfvG1971tCUPtvj1dNSPWNzST.jpg",
     "runtime": 125,
     "director": "에토레 스콜라",
@@ -3371,10 +2736,7 @@
     "vote_average": 8.283,
     "popularity": 4.4447,
     "revenue": 1397526,
-    "genres": [
-      "로맨스",
-      "애니메이션"
-    ],
+    "genres": ["로맨스", "애니메이션"],
     "poster_path": "https://image.tmdb.org/t/p/w500/jNJ9shLhjRavjrCGRnoTmYB18d2.jpg",
     "runtime": 61,
     "director": "나카무라 쇼코",
@@ -3389,11 +2751,7 @@
     "vote_average": 8.281,
     "popularity": 7.6889,
     "revenue": 9644124,
-    "genres": [
-      "드라마",
-      "가족",
-      "판타지"
-    ],
+    "genres": ["드라마", "가족", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/fhQfao7sFWlnV5JieOexCaGPTzS.jpg",
     "runtime": 130,
     "director": "프랭크 카프라",
@@ -3408,11 +2766,7 @@
     "vote_average": 8.28,
     "popularity": 5.8378,
     "revenue": 17288993,
-    "genres": [
-      "애니메이션",
-      "코미디",
-      "로맨스"
-    ],
+    "genres": ["애니메이션", "코미디", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/shtqSAsB8snS3iww99iksu2QaoZ.jpg",
     "runtime": 136,
     "director": "진보 마사토",
@@ -3427,11 +2781,7 @@
     "vote_average": 8.28,
     "popularity": 5.7986,
     "revenue": 1800000,
-    "genres": [
-      "코미디",
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["코미디", "드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/51tKLNNKi8fKZq9DTcGpFAJ7IPc.jpg",
     "runtime": 87,
     "director": "찰리 채플린",
@@ -3446,10 +2796,7 @@
     "vote_average": 8.279,
     "popularity": 6.0002,
     "revenue": 11000000,
-    "genres": [
-      "코미디",
-      "전쟁"
-    ],
+    "genres": ["코미디", "전쟁"],
     "poster_path": "https://image.tmdb.org/t/p/w500/uw26mSTaA10hg2yuQfNaFLSeY3h.jpg",
     "runtime": 125,
     "director": "찰리 채플린",
@@ -3464,9 +2811,7 @@
     "vote_average": 8.3,
     "popularity": 5.9714,
     "revenue": 5000000,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/zt8aQ6ksqK6p1AopC5zVTDS9pKT.jpg",
     "runtime": 110,
     "director": "빌리 와일더",
@@ -3481,11 +2826,7 @@
     "vote_average": 8.282,
     "popularity": 8.407,
     "revenue": 48045728,
-    "genres": [
-      "애니메이션",
-      "판타지",
-      "액션"
-    ],
+    "genres": ["애니메이션", "판타지", "액션"],
     "poster_path": "https://image.tmdb.org/t/p/w500/4VhlO8O5COmkz3XBwrbfnunTnzK.jpg",
     "runtime": 102,
     "director": "MTJJ",
@@ -3500,10 +2841,7 @@
     "vote_average": 8.274,
     "popularity": 12.1195,
     "revenue": 5380118,
-    "genres": [
-      "드라마",
-      "서부"
-    ],
+    "genres": ["드라마", "서부"],
     "poster_path": "https://image.tmdb.org/t/p/w500/3MPqF2iK6ZBoagnB5H1pjImHpHc.jpg",
     "runtime": 166,
     "director": "세르조 레오네",
@@ -3518,11 +2856,7 @@
     "vote_average": 8.271,
     "popularity": 6.1201,
     "revenue": 0,
-    "genres": [
-      "애니메이션",
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["애니메이션", "드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/v60S8rPRCQRYSeCtmLiuRpQqIfC.jpg",
     "runtime": 99,
     "director": "타무라 코타로",
@@ -3537,10 +2871,7 @@
     "vote_average": 8.271,
     "popularity": 23.6727,
     "revenue": 426590315,
-    "genres": [
-      "드라마",
-      "코미디"
-    ],
+    "genres": ["드라마", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/4oOf3pmDD5rMNQGgsf7zMbFKtKC.jpg",
     "runtime": 112,
     "director": "Olivier Nakache, Éric Toledano",
@@ -3555,10 +2886,7 @@
     "vote_average": 8.269,
     "popularity": 13.0384,
     "revenue": 150000000,
-    "genres": [
-      "드라마",
-      "전쟁"
-    ],
+    "genres": ["드라마", "전쟁"],
     "poster_path": "https://image.tmdb.org/t/p/w500/giP5yeJBrsqglkM05pbiTyRsoBa.jpg",
     "runtime": 147,
     "director": "프란시스 포드 코폴라",
@@ -3573,10 +2901,7 @@
     "vote_average": 8.249,
     "popularity": 14.9804,
     "revenue": 15564405,
-    "genres": [
-      "드라마",
-      "역사"
-    ],
+    "genres": ["드라마", "역사"],
     "poster_path": "https://image.tmdb.org/t/p/w500/vUwyhNWBKkSwK8ELvEeBRwV724h.jpg",
     "runtime": 121,
     "director": "Kirk Jones",
@@ -3591,11 +2916,7 @@
     "vote_average": 8.263,
     "popularity": 3.2209,
     "revenue": 0,
-    "genres": [
-      "코미디",
-      "드라마",
-      "음악"
-    ],
+    "genres": ["코미디", "드라마", "음악"],
     "poster_path": "https://image.tmdb.org/t/p/w500/o9cSEHrXzPOO4OIoT9yrdxc216w.jpg",
     "runtime": 112,
     "director": "Pepe Bojórquez",
@@ -3610,13 +2931,7 @@
     "vote_average": 8.262,
     "popularity": 5.0529,
     "revenue": 0,
-    "genres": [
-      "애니메이션",
-      "가족",
-      "판타지",
-      "드라마",
-      "코미디"
-    ],
+    "genres": ["애니메이션", "가족", "판타지", "드라마", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/qLOcYTVg5YXY7FwrGXUeYa2itaH.jpg",
     "runtime": 9,
     "director": "Trent Correy, Dan Abraham",
@@ -3631,12 +2946,7 @@
     "vote_average": 8.3,
     "popularity": 8.241,
     "revenue": 20563523,
-    "genres": [
-      "애니메이션",
-      "SF",
-      "드라마",
-      "판타지"
-    ],
+    "genres": ["애니메이션", "SF", "드라마", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/rS97sHvlsUAp8F6tkC78YjRU8wl.jpg",
     "runtime": 87,
     "director": "츠루마키 카즈야, 안노 히데아키",
@@ -3651,11 +2961,7 @@
     "vote_average": 8.257,
     "popularity": 0.0085,
     "revenue": 0,
-    "genres": [
-      "로맨스",
-      "애니메이션",
-      "판타지"
-    ],
+    "genres": ["로맨스", "애니메이션", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/ijAOOOrcLViYPkXIauhRhCj2ySf.jpg",
     "runtime": 45,
     "director": "오오모리 타카히로",
@@ -3670,11 +2976,7 @@
     "vote_average": 8.254,
     "popularity": 26.9671,
     "revenue": 763455561,
-    "genres": [
-      "애니메이션",
-      "가족",
-      "드라마"
-    ],
+    "genres": ["애니메이션", "가족", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/9Y048zYw66TWvpUtsiNK0uReiVX.jpg",
     "runtime": 89,
     "director": "Roger Allers, Rob Minkoff",
@@ -3689,10 +2991,7 @@
     "vote_average": 8.252,
     "popularity": 5.8734,
     "revenue": 1200000,
-    "genres": [
-      "전쟁",
-      "드라마"
-    ],
+    "genres": ["전쟁", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/382xZKXOfuILUQ4HsqCGPLk8fgA.jpg",
     "runtime": 88,
     "director": "스탠리 큐브릭",
@@ -3707,11 +3006,7 @@
     "vote_average": 8.252,
     "popularity": 7.1003,
     "revenue": 76000000,
-    "genres": [
-      "공포",
-      "음악",
-      "스릴러"
-    ],
+    "genres": ["공포", "음악", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/dYHGoPMkZMVuBA4EydmDQMo1EEv.jpg",
     "runtime": 14,
     "director": "존 랜디스",
@@ -3726,11 +3021,7 @@
     "vote_average": 8.253,
     "popularity": 5.8177,
     "revenue": 0,
-    "genres": [
-      "범죄",
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["범죄", "드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/xdnex58HIT1bwLIjg4ry8OdOZGO.jpg",
     "runtime": 237,
     "director": "에드워드 양",
@@ -3745,9 +3036,7 @@
     "vote_average": 8.3,
     "popularity": 6.7439,
     "revenue": 28000000,
-    "genres": [
-      "드라마"
-    ],
+    "genres": ["드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/sOfUbzu6OUL5cscGODPdpHn9C1g.jpg",
     "runtime": 132,
     "director": "Mehmet Ada Öztekin",
@@ -3762,11 +3051,7 @@
     "vote_average": 8.25,
     "popularity": 5.4545,
     "revenue": 4250000,
-    "genres": [
-      "코미디",
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["코미디", "드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/7oI6KKZDxEuxhIm5m9VpOF2Yi9N.jpg",
     "runtime": 87,
     "director": "찰리 채플린",
@@ -3781,11 +3066,7 @@
     "vote_average": 8.249,
     "popularity": 5.5777,
     "revenue": 33187,
-    "genres": [
-      "드라마",
-      "스릴러",
-      "범죄"
-    ],
+    "genres": ["드라마", "스릴러", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/e0jiNoXdEi2ilGRvhqcaoNCSglg.jpg",
     "runtime": 132,
     "director": "Jacques Becker",
@@ -3800,11 +3081,7 @@
     "vote_average": 8.247,
     "popularity": 7.1581,
     "revenue": 0,
-    "genres": [
-      "액션",
-      "모험",
-      "스릴러"
-    ],
+    "genres": ["액션", "모험", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/6wHJ0hnFx5ZGTvSUTqq3WC07DgN.jpg",
     "runtime": 85,
     "director": "Chava Cartas",
@@ -3819,11 +3096,7 @@
     "vote_average": 8.243,
     "popularity": 2.2346,
     "revenue": 0,
-    "genres": [
-      "음악",
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["음악", "드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/2XyVG0QUnPrukgV5Frpn40kkIky.jpg",
     "runtime": 121,
     "director": "Justin Baldoni",
@@ -3838,10 +3111,7 @@
     "vote_average": 8.242,
     "popularity": 5.4084,
     "revenue": 21057208,
-    "genres": [
-      "드라마",
-      "음악"
-    ],
+    "genres": ["드라마", "음악"],
     "poster_path": "https://image.tmdb.org/t/p/w500/78wbKjbdIG11hVIv55g6rwgLG3l.jpg",
     "runtime": 170,
     "director": "주세페 토르나토레",
@@ -3856,11 +3126,7 @@
     "vote_average": 8.237,
     "popularity": 34.1115,
     "revenue": 2799439100,
-    "genres": [
-      "모험",
-      "SF",
-      "액션"
-    ],
+    "genres": ["모험", "SF", "액션"],
     "poster_path": "https://image.tmdb.org/t/p/w500/z7ilT5rNN9kDo8JZmgyhM6ej2xv.jpg",
     "runtime": 181,
     "director": "안소니 루소, 조 루소",
@@ -3875,12 +3141,7 @@
     "vote_average": 8.237,
     "popularity": 11.1107,
     "revenue": 17500000,
-    "genres": [
-      "스릴러",
-      "미스터리",
-      "액션",
-      "드라마"
-    ],
+    "genres": ["스릴러", "미스터리", "액션", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/xpa9ybm6tYGna5LseqSXvKpSSJn.jpg",
     "runtime": 120,
     "director": "박찬욱",
@@ -3895,12 +3156,7 @@
     "vote_average": 8.228,
     "popularity": 3.2117,
     "revenue": 0,
-    "genres": [
-      "애니메이션",
-      "로맨스",
-      "드라마",
-      "판타지"
-    ],
+    "genres": ["애니메이션", "로맨스", "드라마", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/hqNkm15rQI6049Pg3XPSE8PMW98.jpg",
     "runtime": 89,
     "director": "마스이 소이치",
@@ -3915,11 +3171,7 @@
     "vote_average": 8.227,
     "popularity": 5.2087,
     "revenue": 33748006,
-    "genres": [
-      "애니메이션",
-      "드라마",
-      "로맨스"
-    ],
+    "genres": ["애니메이션", "드라마", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/g1ucSvfDnV3HEVt8x7YeZ0fAIs2.jpg",
     "runtime": 109,
     "director": "牛嶋新一郎",
@@ -3934,12 +3186,7 @@
     "vote_average": 8.227,
     "popularity": 2.3427,
     "revenue": 930363,
-    "genres": [
-      "애니메이션",
-      "드라마",
-      "음악",
-      "로맨스"
-    ],
+    "genres": ["애니메이션", "드라마", "음악", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/tVP1DjnljT1it6cAnn353cdVXDe.jpg",
     "runtime": 60,
     "director": "山口ひかる",
@@ -3954,10 +3201,7 @@
     "vote_average": 4.0,
     "popularity": 9.8729,
     "revenue": 0,
-    "genres": [
-      "로맨스",
-      "드라마"
-    ],
+    "genres": ["로맨스", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/nLxu237EJAisFCYKK48hN9Plobx.jpg",
     "runtime": 0,
     "director": "Dani Girdwood, Charlotte Fassler",
@@ -3972,11 +3216,7 @@
     "vote_average": 0.0,
     "popularity": 52.5645,
     "revenue": 0,
-    "genres": [
-      "SF",
-      "액션",
-      "모험"
-    ],
+    "genres": ["SF", "액션", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/78eMFkcvlPcfWCe1GNgNiBpFIDz.jpg",
     "runtime": 0,
     "director": "데스틴 대니얼 크레턴",
@@ -3991,11 +3231,7 @@
     "vote_average": 0.0,
     "popularity": 41.7665,
     "revenue": 0,
-    "genres": [
-      "모험",
-      "액션",
-      "판타지"
-    ],
+    "genres": ["모험", "액션", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/8ze9OcVuFiy94s6FFPvsn4oC2e1.jpg",
     "runtime": 172,
     "director": "크리스토퍼 놀란",
@@ -4010,10 +3246,7 @@
     "vote_average": 6.222,
     "popularity": 36.5177,
     "revenue": 21602976,
-    "genres": [
-      "공포",
-      "미스터리"
-    ],
+    "genres": ["공포", "미스터리"],
     "poster_path": "https://image.tmdb.org/t/p/w500/2PFgFMnrdCPXWiZl1PUvky7Mo9D.jpg",
     "runtime": 94,
     "director": "Ian Tuason",
@@ -4028,12 +3261,7 @@
     "vote_average": 0.0,
     "popularity": 18.1087,
     "revenue": 0,
-    "genres": [
-      "가족",
-      "판타지",
-      "코미디",
-      "모험"
-    ],
+    "genres": ["가족", "판타지", "코미디", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/etJXeoQovaAcQD8gG0vebtoIlMH.jpg",
     "runtime": 120,
     "director": "토마스 카일",
@@ -4048,13 +3276,7 @@
     "vote_average": 0.0,
     "popularity": 21.0935,
     "revenue": 0,
-    "genres": [
-      "모험",
-      "애니메이션",
-      "코미디",
-      "가족",
-      "판타지"
-    ],
+    "genres": ["모험", "애니메이션", "코미디", "가족", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/8uvgppq5obV06X9X8SogQiU79Kd.jpg",
     "runtime": 90,
     "director": "피에르 코팽",
@@ -4069,9 +3291,7 @@
     "vote_average": 9.0,
     "popularity": 5.1065,
     "revenue": 0,
-    "genres": [
-      "코미디"
-    ],
+    "genres": ["코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/qA7FX4vp2qWfkMd2R3JrbGP6vbu.jpg",
     "runtime": 83,
     "director": "Darryl Yap",
@@ -4086,12 +3306,7 @@
     "vote_average": 0.0,
     "popularity": 9.1786,
     "revenue": 0,
-    "genres": [
-      "모험",
-      "애니메이션",
-      "가족",
-      "판타지"
-    ],
+    "genres": ["모험", "애니메이션", "가족", "판타지"],
     "poster_path": "https://image.tmdb.org/t/p/w500/g0f2mzRzwbIrzpieftY98W97muf.jpg",
     "runtime": 0,
     "director": "Jason Hand, Fawn Veerasunthorn",
@@ -4106,10 +3321,7 @@
     "vote_average": 6.6,
     "popularity": 41.0103,
     "revenue": 675900000,
-    "genres": [
-      "코미디",
-      "드라마"
-    ],
+    "genres": ["코미디", "드라마"],
     "poster_path": "https://image.tmdb.org/t/p/w500/28A1VUDML1RzENYNtIU1WkBLT9V.jpg",
     "runtime": 119,
     "director": "데이비드 프랭클",
@@ -4124,10 +3336,7 @@
     "vote_average": 7.1,
     "popularity": 27.2351,
     "revenue": 0,
-    "genres": [
-      "다큐멘터리",
-      "범죄"
-    ],
+    "genres": ["다큐멘터리", "범죄"],
     "poster_path": "https://image.tmdb.org/t/p/w500/4KdmT71AGzDMp5hJbAu9vysKQKT.jpg",
     "runtime": 97,
     "director": "Jessica Dimmock",
@@ -4142,10 +3351,7 @@
     "vote_average": 10.0,
     "popularity": 8.4977,
     "revenue": 0,
-    "genres": [
-      "공포",
-      "로맨스"
-    ],
+    "genres": ["공포", "로맨스"],
     "poster_path": "https://image.tmdb.org/t/p/w500/cu0XnXLzJGPeI0msCoJKgnEecKz.jpg",
     "runtime": 88,
     "director": "아드리안 키아렐라",
@@ -4160,9 +3366,7 @@
     "vote_average": 4.3,
     "popularity": 3.8628,
     "revenue": 0,
-    "genres": [
-      "코미디"
-    ],
+    "genres": ["코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/z7aBU98usPaaFymldN6IcYRsHZr.jpg",
     "runtime": 93,
     "director": "Jonah Feingold",
@@ -4177,13 +3381,7 @@
     "vote_average": 0.0,
     "popularity": 17.0353,
     "revenue": 0,
-    "genres": [
-      "애니메이션",
-      "코미디",
-      "가족",
-      "판타지",
-      "모험"
-    ],
+    "genres": ["애니메이션", "코미디", "가족", "판타지", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/aRntI6gNBMu4B6YozI7rxXRPyQo.jpg",
     "runtime": 0,
     "director": "Walt Dohrn, 콘래드 버논",
@@ -4198,10 +3396,7 @@
     "vote_average": 0.0,
     "popularity": 12.6346,
     "revenue": 0,
-    "genres": [
-      "공포",
-      "스릴러"
-    ],
+    "genres": ["공포", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/ztadKzIIR0ERYqpHteaPFtk7inP.jpg",
     "runtime": 110,
     "director": "Sébastien Vaniček",
@@ -4216,11 +3411,7 @@
     "vote_average": 7.054,
     "popularity": 40.8447,
     "revenue": 94041481,
-    "genres": [
-      "공포",
-      "스릴러",
-      "코미디"
-    ],
+    "genres": ["공포", "스릴러", "코미디"],
     "poster_path": "https://image.tmdb.org/t/p/w500/kpOHAiCiIBa0yPtOqSp99NxhwUF.jpg",
     "runtime": 113,
     "director": "샘 레이미",
@@ -4235,10 +3426,7 @@
     "vote_average": 3.583,
     "popularity": 4.9073,
     "revenue": 0,
-    "genres": [
-      "모험",
-      "SF"
-    ],
+    "genres": ["모험", "SF"],
     "poster_path": "https://image.tmdb.org/t/p/w500/5BoP5TmqCnbjPGf7ROYm9LdxtKw.jpg",
     "runtime": 81,
     "director": "Marcel Walz",
@@ -4253,10 +3441,7 @@
     "vote_average": 7.1,
     "popularity": 16.7277,
     "revenue": 21236094,
-    "genres": [
-      "코미디",
-      "스릴러"
-    ],
+    "genres": ["코미디", "스릴러"],
     "poster_path": "https://image.tmdb.org/t/p/w500/kw7x5mSmHhoeeqwXLwXTBsofD1N.jpg",
     "runtime": 105,
     "director": "John Patton Ford",
@@ -4271,13 +3456,7 @@
     "vote_average": 8.33,
     "popularity": 16.0918,
     "revenue": 2709440,
-    "genres": [
-      "애니메이션",
-      "가족",
-      "판타지",
-      "공포",
-      "모험"
-    ],
+    "genres": ["애니메이션", "가족", "판타지", "공포", "모험"],
     "poster_path": "https://image.tmdb.org/t/p/w500/rh3HNzV7o8ouH4NnCuL76OFPFBF.jpg",
     "runtime": 113,
     "director": "Arturo Ambriz, Roy Ambriz",

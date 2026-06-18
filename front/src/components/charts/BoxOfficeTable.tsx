@@ -5,15 +5,12 @@ interface Props {
   date: string
 }
 
-function fmtAudi(n: number) {
-  if (n >= 10000) return `${(n / 10000).toFixed(1)}만`
-  return `${n.toLocaleString()}명`
+function fmt만(n: number) {
+  return `${Math.round(n / 10000).toLocaleString()}만`
 }
 
-function fmtSales(n: number) {
-  if (n >= 1e8) return `${(n / 1e8).toFixed(1)}억`
-  if (n >= 1e4) return `${Math.round(n / 1e4).toLocaleString()}만`
-  return `${n.toLocaleString()}원`
+function fmt억(n: number) {
+  return `${(n / 1e8).toFixed(1)}억`
 }
 
 export function BoxOfficeTable({ entries, date }: Props) {
@@ -42,9 +39,9 @@ export function BoxOfficeTable({ entries, date }: Props) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-            {entries.map((e, idx) => (
+            {entries.map((e) => (
               <tr
-                key={`${e.date}-${e.rank}-${idx}`}
+                key={e.rank}
                 className="bg-white dark:bg-black hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
               >
                 <td className="px-4 py-3 text-center">
@@ -60,9 +57,9 @@ export function BoxOfficeTable({ entries, date }: Props) {
                 </td>
                 <td className="px-4 py-3 font-medium text-gray-900 dark:text-white">{e.movieNm}</td>
                 <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-400">{e.openDt}</td>
-                <td className="px-4 py-3 text-right text-gray-900 dark:text-white">{fmtAudi(e.audiCnt)}</td>
-                <td className="px-4 py-3 text-right text-green-600 dark:text-green-400 font-medium">{fmtAudi(e.audiAcc)}</td>
-                <td className="px-4 py-3 text-right text-gray-900 dark:text-white">{fmtSales(e.salesAmt)}</td>
+                <td className="px-4 py-3 text-right text-gray-900 dark:text-white">{fmt만(e.audiCnt)}</td>
+                <td className="px-4 py-3 text-right text-green-600 dark:text-green-400 font-medium">{fmt만(e.audiAcc)}</td>
+                <td className="px-4 py-3 text-right text-gray-900 dark:text-white">{fmt억(e.salesAmt)}</td>
                 <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-400">{e.salesShare.toFixed(1)}%</td>
                 <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-400">{e.scrnCnt.toLocaleString()}</td>
               </tr>
