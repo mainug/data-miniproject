@@ -4,13 +4,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
+// import org.springframework.stereotype.Repository;
 import pknu26.example.movie.dto.GenreStatResponse;
 import pknu26.example.movie.entity.Movie;
 
 import java.util.List;
 
-@Repository
+// @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
     
     List<Movie> findByTitleContainingIgnoreCase(String keyword);
