@@ -4,7 +4,7 @@ import type { Movie } from '../types/movie'
 
 interface Props {
   movie: Movie
-  rank: number
+  rank?: number
 }
 
 const TMDB_IMG = 'https://image.tmdb.org/t/p/w342'
@@ -42,16 +42,20 @@ export function MovieCard({ movie, rank }: Props) {
         )}
 
         {/* 상단 배지들 */}
-        <div className="absolute top-2.5 left-2.5">
-          <span className="inline-flex w-7 h-7 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm text-white text-xs font-bold">
-            {rank}
-          </span>
-        </div>
-        <div className="absolute top-2.5 right-2.5">
-          <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-green-500/90 backdrop-blur-sm text-white text-[11px] font-bold">
-            {ratingPct}%
-          </span>
-        </div>
+        {rank !== undefined && (
+          <div className="absolute top-2.5 left-2.5">
+            <span className="inline-flex w-7 h-7 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm text-white text-xs font-bold">
+              {rank}
+            </span>
+          </div>
+        )}
+        {rank !== undefined && (
+          <div className="absolute top-2.5 right-2.5">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-green-500/90 backdrop-blur-sm text-white text-[11px] font-bold">
+              {ratingPct}%
+            </span>
+          </div>
+        )}
 
         {/* 하단 그라디언트 + 평점 오버레이 */}
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/70 to-transparent" />
