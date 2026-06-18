@@ -1,28 +1,28 @@
-import { motion } from 'motion/react'
-import { useNavigate } from 'react-router-dom'
-import type { Movie } from '../types/movie'
+import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
+import type { Movie } from "../types/movie";
 
 interface Props {
   movie: Movie
   rank?: number
 }
 
-const TMDB_IMG = 'https://image.tmdb.org/t/p/w342'
+const TMDB_IMG = "https://image.tmdb.org/t/p/w342";
 
 export function MovieCard({ movie, rank }: Props) {
-  const navigate = useNavigate()
-  const year = movie.release_date.slice(0, 4)
-  const ratingPct = Math.round((movie.vote_average / 10) * 100)
+  const navigate = useNavigate();
+  const year = movie.release_date.slice(0, 4);
+  const ratingPct = Math.round((movie.vote_average / 10) * 100);
   const posterUrl = movie.poster_path
-    ? movie.poster_path.startsWith('http')
+    ? movie.poster_path.startsWith("http")
       ? movie.poster_path
       : `${TMDB_IMG}${movie.poster_path}`
-    : null
+    : null;
 
   return (
     <motion.div
       whileHover={{ y: -6, scale: 1.02 }}
-      transition={{ duration: 0.18, ease: 'easeOut' }}
+      transition={{ duration: 0.18, ease: "easeOut" }}
       onClick={() => navigate(`/movie/${movie.id}`)}
       className="relative group rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 cursor-pointer shadow-sm hover:shadow-lg dark:hover:shadow-black/40 transition-shadow"
     >
@@ -60,7 +60,9 @@ export function MovieCard({ movie, rank }: Props) {
         {/* 하단 그라디언트 + 평점 오버레이 */}
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/70 to-transparent" />
         <div className="absolute bottom-2.5 left-3 flex items-baseline gap-1">
-          <span className="text-green-400 text-sm font-bold">★ {movie.vote_average.toFixed(1)}</span>
+          <span className="text-green-400 text-sm font-bold">
+            ★ {movie.vote_average.toFixed(1)}
+          </span>
           <span className="text-white/50 text-xs">/ 10</span>
         </div>
       </div>
@@ -71,9 +73,9 @@ export function MovieCard({ movie, rank }: Props) {
           {movie.title}
         </p>
         <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
-          {year} · {movie.genres.slice(0, 2).join(', ')}
+          {year} · {movie.genres.slice(0, 2).join(", ")}
         </p>
       </div>
     </motion.div>
-  )
+  );
 }

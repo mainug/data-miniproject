@@ -1,11 +1,11 @@
-import { AnimatePresence } from 'motion/react'
-import { Routes, Route, useLocation } from 'react-router-dom'
-import { LandingPage } from './pages/LandingPage'
-import { DashboardPage } from './pages/DashboardPage'
-import { MovieDetailPage } from './pages/MovieDetailPage'
+import { AnimatePresence } from "motion/react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { LandingPage } from "./pages/LandingPage";
+import { DashboardPage } from "./pages/DashboardPage";
+import { MovieDetailPage } from "./pages/MovieDetailPage";
 
 export default function App() {
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <AnimatePresence mode="wait">
@@ -15,5 +15,5 @@ export default function App() {
         <Route path="/movie/:id" element={<MovieDetailPage />} />
       </Routes>
     </AnimatePresence>
-  )
+  );
 }
