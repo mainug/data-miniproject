@@ -1,12 +1,7 @@
 package pknu26.example.movie.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
+import jakarta.persistence.*;
+import lombok.*;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -19,13 +14,15 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "movie")
 @Getter
-@Builder
+@Setter
+// @NoDoubleSubmit // 필요시 커스텀 어노테이션 유지
 @NoArgsConstructor
 @AllArgsConstructor
 public class Movie {
 
     @Id
-    private Long id; // TMDB ID (자동 증가 아님)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false, length = 200)
     private String title;
@@ -33,65 +30,29 @@ public class Movie {
     @Column(name = "original_title", length = 200)
     private String originalTitle;
 
-    @Column(name = "release_date")
-    private LocalDate releaseDate;
+    @JsonProperty("original_title")
+    @Column(name = "original_title")
+    private String originalTitle;
 
-    @Column(name = "vote_average", nullable = false)
-    private double voteAverage;
-
-    @Column(name = "vote_count", nullable = false)
-    private int voteCount;
-
-    @Column(nullable = false)
-    private double popularity;
-
-    @Column(nullable = false)
-    private long revenue;
-
-    @Column(nullable = false)
-    private long budget;
-
-    @Column
-    private int runtime;
-
-    @Column(name = "poster_path", length = 500)
-    private String posterPath;
-
-    @Column(columnDefinition = "TEXT") // 줄거리가 길어도 안 깨지도록 TEXT 설정
+    @Column(columnDefinition = "TEXT")
     private String overview;
 
-    @Column(length = 300)
-    private String tagline;
+    @JsonProperty("release_date")
+    @Column(name = "release_date")
+    private String releaseDate; // JSON의 release_date와 매핑
 
-    @Column(length = 20)
-    private String status;
+    @Column(name = "vote_average")
+    private Double voteAverage; // JSON의 vote_average와 매핑
 
-    @Column(length = 100)
-    private String director;
+    private Double popularity;
 
-    @Column(name = "cast_top3", length = 300)
-    private String castTop3;
+    private Long revenue;
 
-    @Column(name = "collection_name", length = 200)
-    private String collectionName;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "movie_genres", joinColumns = @JoinColumn(name = "movie_id"))
+    @Column(name = "genre")
+    private List<String> genres; // 장르 배열 처리
 
-    @Column(name = "production_countries", length = 500)
-    private String productionCountries;
-
-    @Column(nullable = false, length = 30)
-    private String source;
-
-    @Builder.Default
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MovieGenre> genres = new ArrayList<>(); // 1:N 장르 정규화 매핑
-
-    public void setId(Long id2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setId'");
-    }
-
-    public void setTitle(String movieNm) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setTitle'");
-    }
+    @Column(name = "poster_path")
+    private String posterPath; // JSON의 poster_path와 매핑
 }
