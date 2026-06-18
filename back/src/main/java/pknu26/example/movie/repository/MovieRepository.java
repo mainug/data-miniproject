@@ -4,25 +4,27 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-// import org.springframework.stereotype.Repository;
 import pknu26.example.movie.dto.GenreStatResponse;
 import pknu26.example.movie.entity.Movie;
-
 import java.util.List;
 
-// @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
-    
-    List<Movie> findByTitleContainingIgnoreCase(String keyword);
 
-    // ✅ 트렌드/분석용: 연도 범위 필터링 기능 (개봉일의 앞 4자리가 연도이므로 이를 비교)
-    @Query("SELECT m FROM Movie m WHERE SUBSTRING(m.releaseDate, 1, 4) BETWEEN :startYear AND :endYear")
-    List<Movie> findMoviesByYearRange(@Param("startYear") String startYear, @Param("endYear") String endYear, Sort sort);
+    // 1. 연도별 범위 조회 쿼리
+    @Query("SELECT m FROM Movie m WHERE YEAR(m.releaseDate) BETWEEN CAST(:startYear AS integer) AND CAST(:endYear AS integer)")
+    List<Movie> findMoviesByYearRange(
+        @Param("startYear") String startYear, 
+        @Param("endYear") String endYear, 
+        Sort sort
+    );
 
-    // ✅ 장르 대시보드용: @ElementCollection(genres)과 조인하여 장르별 통계 데이터 추출
-    @Query("SELECT new pknu26.example.movie.dto.GenreStatResponse(g, COUNT(m), ROUND(AVG(m.voteAverage), 2)) " +
-           "FROM Movie m JOIN m.genres g " +
-           "GROUP BY g " +
-           "ORDER BY COUNT(m) DESC")
+    // 2. ⚠️ MySQL 표준 및 ONLY_FULL_GROUP_BY 모드에 맞춘 안전한 장르별 통계 쿼리
+    // MovieGenre(g)를 기준으로 Movie(m)를 조인하여 그룹화 에러를 완벽히 방지합니다.
+    @Query("SELECT new pknu26.example.movie.dto.GenreStatResponse(g.genre, COUNT(g), AVG(m.voteAverage)) " +
+           "FROM MovieGenre g JOIN g.movie m " +
+           "GROUP BY g.genre")
     List<GenreStatResponse> getGenreStatistics();
+
+    // 3. 제목 키워드 검색 (JPA Query Method)
+    List<Movie> findByTitleContainingIgnoreCase(String keyword);
 }

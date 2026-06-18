@@ -1,20 +1,19 @@
 package pknu26.example.movie.config;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
-    private final DoubleSubmitInterceptor doubleSubmitInterceptor;
-
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        // 중복 제출 방지 인터셉터를 스프링 시스템에 등록합니다.
-        registry.addInterceptor(doubleSubmitInterceptor)
-                .addPathPatterns("/**"); // 모든 경로의 API 요청을 감시
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**") // 모든 API 경로에 대해
+                .allowedOrigins("http://localhost:5173") // 프론트엔드 포트 명시 (와일드카드 '*' 대신 주소를 정확히 써야 credentials 허용 가능)
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 허용할 HTTP 메서드
+                .allowedHeaders("*")
+                .allowCredentials(true) // 💡 로그인 세션/쿠키/인증 헤더를 주고받으려면 필수!
+                .maxAge(3600);
     }
 }
