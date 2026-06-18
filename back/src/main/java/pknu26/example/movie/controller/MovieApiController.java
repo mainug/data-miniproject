@@ -47,9 +47,22 @@ public class MovieApiController {
         return tmdbService.searchMovies(query);
     }
 
-    /** KOBIS 일별 박스오피스 — date 파라미터 없으면 어제 날짜 */
+    /** KOBIS 일별 박스오피스 — DB에서만 조회 */
     @GetMapping("/boxoffice")
     public List<BoxOfficeEntryDto> getBoxOffice(@RequestParam(name = "date", required = false) String date) {
         return kobisService.getDailyBoxOffice(date);
+    }
+
+    /** DB에 저장된 박스오피스 날짜 목록 */
+    @GetMapping("/boxoffice/dates")
+    public List<String> getBoxOfficeDates() {
+        return kobisService.getAvailableDates();
+    }
+
+    /** 수동 박스오피스 수집 트리거 (기본 30일) */
+    @PostMapping("/boxoffice/collect")
+    public String collectBoxOffice(@RequestParam(name = "days", defaultValue = "30") int days) {
+        int collected = kobisService.manualCollect(days);
+        return collected + "일치 데이터 수집 완료";
     }
 }
