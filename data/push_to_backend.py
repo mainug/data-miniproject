@@ -4,14 +4,11 @@ import requests
 import pandas as pd
 from dotenv import load_dotenv
 
-# 기존 데이터 수집/변환 함수들을 재사용합니다.
-from fetch_movies import fetch_tmdb, fetch_kobis
-from fetch_similar_movies import fetch_similar_movies
-
-# .env 파일에서 환경 변수 로드
 load_dotenv()
 BACKEND_URL = os.getenv("BACKEND_API_URL")  # 예: http://localhost:8080
 SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
+
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output")
 
 
 def send_slack_notification(message: str):
@@ -64,9 +61,6 @@ def push_data_to_backend(data, endpoint: str):
 
 
 if __name__ == "__main__":
-    # 1. TMDB에서 영화 데이터 수집 후 데이터프레임으로 변환
-    movie_list = fetch_tmdb()
-    movie_df = pd.DataFrame(movie_list)
-
-    # 2. 백엔드의 Bulk API로 데이터 PUSH
+    csv_path = os.path.join(OUTPUT_DIR, "movies_enriched.csv")
+    movie_df = pd.read_csv(csv_path, encoding="utf-8-sig")
     push_data_to_backend(movie_df, "/api/movies/bulk")
