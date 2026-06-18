@@ -25,7 +25,7 @@ export function GenreRankBar({ movie, allMovies }: Props) {
 
   return (
     <div>
-      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">
+      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-200 uppercase tracking-widest mb-4">
         {primaryGenre} 장르 내 평점 순위
       </h3>
       <ResponsiveContainer width="100%" height={Math.max(220, data.length * 36)}>

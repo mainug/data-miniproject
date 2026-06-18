@@ -9,7 +9,7 @@ interface Props {
 export function RankingList({ movies }: Props) {
   if (movies.length === 0) {
     return (
-      <div className="flex items-center justify-center h-64 text-gray-400 dark:text-gray-500">
+      <div className="flex items-center justify-center h-64 text-gray-400 dark:text-gray-300">
         조건에 맞는 영화가 없습니다
       </div>
     )

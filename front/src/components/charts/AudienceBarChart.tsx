@@ -23,7 +23,7 @@ export function AudienceBarChart({ movies, topN }: Props) {
 
   if (data.length === 0) {
     return (
-      <div className="flex items-center justify-center h-40 text-gray-400 dark:text-gray-500 text-sm">
+      <div className="flex items-center justify-center h-40 text-gray-400 dark:text-gray-300 text-sm">
         KOBIS 관객수 데이터가 없습니다
       </div>
     )
@@ -33,7 +33,7 @@ export function AudienceBarChart({ movies, topN }: Props) {
     <div className="space-y-3">
       <div>
         <h3 className="text-base font-semibold text-gray-900 dark:text-white">누적 관객수 Top {data.length}</h3>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">단위: 만 명 (한국 극장 기준)</p>
+        <p className="text-xs text-gray-500 dark:text-gray-200 mt-0.5">단위: 만 명 (한국 극장 기준)</p>
       </div>
       <ResponsiveContainer width="100%" height={Math.max(250, data.length * 32)}>
         <BarChart data={data} layout="vertical" margin={{ top: 5, right: 60, left: 10, bottom: 5 }}>

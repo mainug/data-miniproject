@@ -72,7 +72,7 @@ export function MovieCard({ movie, rank }: Props) {
         <p className="text-sm font-semibold text-gray-900 dark:text-white truncate leading-snug">
           {movie.title}
         </p>
-        <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+        <p className="text-xs text-gray-400 dark:text-gray-300 mt-1">
           {year} · {movie.genres.slice(0, 2).join(", ")}
         </p>
       </div>

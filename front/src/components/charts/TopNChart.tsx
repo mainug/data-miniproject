@@ -55,7 +55,7 @@ export function TopNChart({ movies, topN, sortKey }: Props) {
               className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
                 metric === o.key
                   ? 'bg-green-500 text-white'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-200'
               }`}
             >
               {o.label}

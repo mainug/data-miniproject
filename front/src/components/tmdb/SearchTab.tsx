@@ -60,13 +60,13 @@ export function SearchTab() {
       </div>
 
       {!query.trim() && (
-        <div className="flex items-center justify-center h-48 text-gray-400 dark:text-gray-500 text-sm">
+        <div className="flex items-center justify-center h-48 text-gray-400 dark:text-gray-300 text-sm">
           영화 제목을 입력하면 바로 검색됩니다
         </div>
       )}
 
       {searched && !loading && results.length === 0 && (
-        <div className="flex items-center justify-center h-48 text-gray-400 dark:text-gray-500 text-sm">
+        <div className="flex items-center justify-center h-48 text-gray-400 dark:text-gray-300 text-sm">
           "{query}"에 대한 결과가 없습니다
         </div>
       )}
