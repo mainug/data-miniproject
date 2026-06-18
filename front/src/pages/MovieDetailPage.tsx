@@ -10,12 +10,6 @@ import { useMovieData } from '../hooks/useMovieData'
 const TMDB_IMG_W500 = 'https://image.tmdb.org/t/p/w500'
 const TMDB_IMG_ORIG = 'https://image.tmdb.org/t/p/original'
 
-function fmt(n: number) {
-  if (n >= 1e8) return `$${(n / 1e8).toFixed(1)}억`
-  if (n >= 1e6) return `$${(n / 1e6).toFixed(0)}M`
-  return `$${n.toLocaleString()}`
-}
-
 function fmtKobis(n: number) {
   if (n >= 1e4) return `${(n / 1e4).toFixed(0)}만명`
   return `${n.toLocaleString()}명`
@@ -134,12 +128,6 @@ export function MovieDetailPage() {
             {/* Meta row */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-400">
               <span>{movie.release_date.slice(0, 4)}</span>
-              {movie.runtime && (
-                <>
-                  <span className="text-gray-700">·</span>
-                  <span>{movie.runtime}분</span>
-                </>
-              )}
             </div>
 
             {/* Genre badges */}
@@ -172,18 +160,6 @@ export function MovieDetailPage() {
 
             {/* Stats */}
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-              {movie.revenue > 0 && (
-                <div>
-                  <span className="text-gray-500 mr-1">💰 수익</span>
-                  <span className="text-gray-200 font-semibold">{fmt(movie.revenue)}</span>
-                </div>
-              )}
-              {movie.budget != null && movie.budget > 0 && (
-                <div>
-                  <span className="text-gray-500 mr-1">🎬 제작비</span>
-                  <span className="text-gray-200 font-semibold">{fmt(movie.budget)}</span>
-                </div>
-              )}
               <div>
                 <span className="text-gray-500 mr-1">👥 인기도</span>
                 <span className="text-gray-200 font-semibold">{movie.popularity.toFixed(1)}</span>

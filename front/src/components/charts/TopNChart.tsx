@@ -20,7 +20,6 @@ interface Props {
 const METRIC_OPTIONS: { key: SortKey; label: string }[] = [
   { key: 'vote_average', label: '평점' },
   { key: 'popularity', label: '인기도' },
-  { key: 'revenue', label: '흥행 수익' },
 ]
 
 const GRADIENT = ['#4ade80', '#34d399', '#22c55e', '#16a34a', '#15803d']
@@ -30,8 +29,7 @@ export function TopNChart({ movies, topN, sortKey }: Props) {
 
   const getValue = (m: Movie) => {
     if (metric === 'vote_average') return m.vote_average
-    if (metric === 'popularity') return m.popularity
-    return m.revenue / 1e6
+    return m.popularity
   }
 
   const data = [...movies]
@@ -43,7 +41,7 @@ export function TopNChart({ movies, topN, sortKey }: Props) {
     }))
     .reverse()
 
-  const unit = metric === 'vote_average' ? '' : metric === 'popularity' ? '' : 'M$'
+  const unit = ''
 
   return (
     <div className="space-y-4">

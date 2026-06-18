@@ -1,38 +1,70 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Header } from '../components/Header'
-import { StatBanner } from '../components/StatBanner'
 import { FilterBar } from '../components/FilterBar'
 import { RankingList } from '../components/RankingList'
 import { GenreChart } from '../components/charts/GenreChart'
 import { YearTrendChart } from '../components/charts/YearTrendChart'
 import { RatingScatter } from '../components/charts/RatingScatter'
 import { TopNChart } from '../components/charts/TopNChart'
-import { AudienceBarChart } from '../components/charts/AudienceBarChart'
-import { BoxOfficeTable } from '../components/charts/BoxOfficeTable'
-import { BoxOfficeTimeline } from '../components/charts/BoxOfficeTimeline'
+import { SearchTab } from '../components/tmdb/SearchTab'
+import { KoficDateNav, getYesterday } from '../components/kofic/KoficDateNav'
+import { KoficRankingTab } from '../components/kofic/KoficRankingTab'
+import { KoficSalesTab } from '../components/kofic/KoficSalesTab'
+import { KoficAudienceTab } from '../components/kofic/KoficAudienceTab'
 import { useMovieData } from '../hooks/useMovieData'
 import { useBoxOffice } from '../hooks/useBoxOffice'
-import type { SortKey, TabId } from '../types/movie'
+import type { SortKey, TmdbTabId, KoficTabId, SourceTab } from '../types/movie'
 
-const TABS: { id: TabId; label: string }[] = [
+const TMDB_TABS: { id: TmdbTabId; label: string }[] = [
   { id: 'ranking', label: '🏆 랭킹' },
   { id: 'genre', label: '🎭 장르' },
   { id: 'trend', label: '📈 트렌드' },
   { id: 'analysis', label: '🔬 분석' },
-  { id: 'kobis', label: '🇰🇷 한국' },
+  { id: 'search', label: '🔍 검색' },
+]
+
+const KOFIC_TABS: { id: KoficTabId; label: string }[] = [
+  { id: 'ranking', label: '📋 순위' },
+  { id: 'sales', label: '💰 매출' },
+  { id: 'audience', label: '👥 관객' },
 ]
 
 export function DashboardPage() {
-  const { movies, loading, error } = useMovieData()
-  const [tab, setTab] = useState<TabId>('ranking')
-  const [yearRange, setYearRange] = useState<[number, number]>([1957, 2023])
+  const [source, setSource] = useState<SourceTab>('tmdb')
+
+  // TMDB
+  const { movies, loading: tmdbLoading, error: tmdbError } = useMovieData()
+  const [tmdbTab, setTmdbTab] = useState<TmdbTabId>('ranking')
+  const currentYear = new Date().getFullYear()
+  const [yearRange, setYearRange] = useState<[number, number]>([currentYear, currentYear])
   const [selectedGenres, setSelectedGenres] = useState<string[]>([])
   const [sortKey, setSortKey] = useState<SortKey>('vote_average')
   const [topN, setTopN] = useState(20)
-  const [boxOfficeDate, setBoxOfficeDate] = useState('')
 
-  const { entries: boxOfficeEntries, loading: boLoading } = useBoxOffice(boxOfficeDate || undefined)
+  // topN 또는 장르가 바뀌면 yearRange[0]을 확장해서 topN개를 채움
+  useEffect(() => {
+    if (movies.length === 0) return
+    const allYears = movies.map((m) => parseInt(m.release_date.slice(0, 4))).filter(Boolean)
+    const minDataYear = Math.min(...allYears)
+    let startYear = yearRange[1]
+    while (startYear > minDataYear) {
+      const count = movies.filter((m) => {
+        const y = parseInt(m.release_date.slice(0, 4))
+        const inRange = y >= startYear && y <= yearRange[1]
+        const inGenre = selectedGenres.length === 0 || m.genres.some((g) => selectedGenres.includes(g))
+        return inRange && inGenre
+      }).length
+      if (count >= topN) break
+      startYear--
+    }
+    setYearRange([startYear, yearRange[1]])
+  }, [topN, movies, selectedGenres]) // yearRange는 deps 제외 (무한루프 방지)
+
+  // KOFIC
+  const [koficTab, setKoficTab] = useState<KoficTabId>('ranking')
+  const [koficDate, setKoficDate] = useState(getYesterday())
+  const { entries, loading: koficLoading } = useBoxOffice(koficDate)
 
   const filtered = useMemo(() => {
     let ms = movies.filter((m) => {
@@ -48,12 +80,9 @@ export function DashboardPage() {
   const sorted = useMemo(() => {
     return [...filtered].sort((a, b) => {
       if (sortKey === 'release_date') return b.release_date.localeCompare(a.release_date)
-      if (sortKey === 'audi_acc') return (b.audi_acc ?? 0) - (a.audi_acc ?? 0)
       return (b[sortKey] as number) - (a[sortKey] as number)
     })
   }, [filtered, sortKey])
-
-  const boDate = boxOfficeEntries[0]?.date ?? '(샘플)'
 
   return (
     <motion.div
@@ -65,122 +94,175 @@ export function DashboardPage() {
     >
       <Header />
 
-      {loading && (
-        <div className="flex items-center justify-center h-64">
-          <div className="text-gray-400 dark:text-gray-500 text-sm animate-pulse">
-            영화 데이터를 불러오는 중...
-          </div>
-        </div>
-      )}
-
-      {error && (
-        <div className="flex items-center justify-center h-64">
-          <div className="text-red-400 text-sm">데이터 로딩 실패: {error}</div>
-        </div>
-      )}
-
-      {!loading && !error && (
-        <>
-          <StatBanner movies={filtered} />
-
-          <FilterBar
-            movies={movies}
-            yearRange={yearRange}
-            selectedGenres={selectedGenres}
-            sortKey={sortKey}
-            topN={topN}
-            onYearRange={setYearRange}
-            onGenres={setSelectedGenres}
-            onSort={setSortKey}
-            onTopN={setTopN}
-          />
-
-          {/* Tabs */}
-          <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
-            <div className="max-w-7xl mx-auto px-6 sm:px-10 flex gap-0 overflow-x-auto">
-              {TABS.map((t) => (
-                <button
-                  key={t.id}
-                  onClick={() => setTab(t.id)}
-                  className={`relative whitespace-nowrap px-5 py-4 text-sm font-semibold transition-colors ${
-                    tab === t.id
-                      ? 'text-green-500'
-                      : 'text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-200'
-                  }`}
-                >
-                  {t.label}
-                  {tab === t.id && (
-                    <motion.div
-                      layoutId="tab-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500 rounded-full"
-                    />
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Tab content */}
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 py-10">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={tab}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.2 }}
+      {/* ── 상단 소스 탭 (TMDB / KOFIC) ── */}
+      <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10">
+          <div className="flex gap-1 py-3">
+            {(['tmdb', 'kofic'] as SourceTab[]).map((s) => (
+              <button
+                key={s}
+                onClick={() => setSource(s)}
+                className={`px-6 py-2 rounded-full text-sm font-bold tracking-wide transition-all ${
+                  source === s
+                    ? 'bg-green-500 text-white shadow-sm'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+                }`}
               >
-                {tab === 'ranking' && <RankingList movies={sorted.slice(0, topN)} />}
-                {tab === 'genre' && <GenreChart movies={filtered} />}
-                {tab === 'trend' && <YearTrendChart movies={filtered} />}
-                {tab === 'analysis' && (
-                  <div className="space-y-12">
-                    <RatingScatter movies={filtered} />
-                    <div className="border-t border-gray-200 dark:border-gray-800 pt-10">
-                      <TopNChart movies={filtered} topN={topN} sortKey={sortKey} />
-                    </div>
-                  </div>
-                )}
-                {tab === 'kobis' && (
-                  <div className="space-y-12">
-                    <div className="flex items-center gap-3">
-                      <label className="text-sm text-gray-500 dark:text-gray-400">조회 날짜</label>
-                      <input
-                        type="date"
-                        value={boxOfficeDate}
-                        onChange={(e) => setBoxOfficeDate(e.target.value)}
-                        className="px-3 py-1.5 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm"
-                      />
-                      {boxOfficeDate && (
-                        <button
-                          onClick={() => setBoxOfficeDate('')}
-                          className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
-                        >
-                          초기화
-                        </button>
-                      )}
-                    </div>
-
-                    {boLoading ? (
-                      <div className="text-gray-400 text-sm animate-pulse">박스오피스 데이터 로딩 중...</div>
-                    ) : (
-                      <>
-                        <BoxOfficeTable entries={boxOfficeEntries} date={boDate} />
-                        <div className="border-t border-gray-200 dark:border-gray-800 pt-10">
-                          <BoxOfficeTimeline entries={boxOfficeEntries} />
-                        </div>
-                        <div className="border-t border-gray-200 dark:border-gray-800 pt-10">
-                          <AudienceBarChart movies={filtered} topN={topN} />
-                        </div>
-                      </>
-                    )}
-                  </div>
-                )}
-              </motion.div>
-            </AnimatePresence>
+                {s === 'tmdb' ? 'TMDB' : 'KOFIC'}
+              </button>
+            ))}
           </div>
-        </>
-      )}
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        {/* ══════════════ TMDB 섹션 ══════════════ */}
+        {source === 'tmdb' && (
+          <motion.div
+            key="tmdb"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+          >
+            {tmdbLoading && (
+              <div className="flex items-center justify-center h-64">
+                <p className="text-gray-400 text-sm animate-pulse">영화 데이터를 불러오는 중...</p>
+              </div>
+            )}
+            {tmdbError && (
+              <div className="flex items-center justify-center h-64">
+                <p className="text-red-400 text-sm">데이터 로딩 실패: {tmdbError}</p>
+              </div>
+            )}
+            {!tmdbLoading && !tmdbError && (
+              <>
+                <FilterBar
+                  movies={movies}
+                  yearRange={yearRange}
+                  selectedGenres={selectedGenres}
+                  sortKey={sortKey}
+                  topN={topN}
+                  onYearRange={setYearRange}
+                  onGenres={setSelectedGenres}
+                  onSort={setSortKey}
+                  onTopN={setTopN}
+                />
+
+                {/* TMDB 하위 탭 */}
+                <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
+                  <div className="max-w-7xl mx-auto px-6 sm:px-10 flex gap-0 overflow-x-auto">
+                    {TMDB_TABS.map((t) => (
+                      <button
+                        key={t.id}
+                        onClick={() => setTmdbTab(t.id)}
+                        className={`relative whitespace-nowrap px-5 py-4 text-sm font-semibold transition-colors ${
+                          tmdbTab === t.id
+                            ? 'text-green-500'
+                            : 'text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-200'
+                        }`}
+                      >
+                        {t.label}
+                        {tmdbTab === t.id && (
+                          <motion.div
+                            layoutId="tmdb-tab-indicator"
+                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500 rounded-full"
+                          />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="max-w-7xl mx-auto px-6 sm:px-10 py-10">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={tmdbTab}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {tmdbTab === 'ranking' && <RankingList movies={sorted.slice(0, topN)} />}
+                      {tmdbTab === 'genre' && <GenreChart movies={filtered} />}
+                      {tmdbTab === 'trend' && <YearTrendChart movies={filtered} />}
+                      {tmdbTab === 'analysis' && (
+                        <div className="space-y-12">
+                          <RatingScatter movies={filtered} />
+                          <div className="border-t border-gray-200 dark:border-gray-800 pt-10">
+                            <TopNChart movies={filtered} topN={topN} sortKey={sortKey} />
+                          </div>
+                        </div>
+                      )}
+                      {tmdbTab === 'search' && <SearchTab />}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </>
+            )}
+          </motion.div>
+        )}
+
+        {/* ══════════════ KOFIC 섹션 ══════════════ */}
+        {source === 'kofic' && (
+          <motion.div
+            key="kofic"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+          >
+            <KoficDateNav date={koficDate} onChange={setKoficDate} />
+
+            {/* KOFIC 하위 탭 */}
+            <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
+              <div className="max-w-7xl mx-auto px-6 sm:px-10 flex gap-0 overflow-x-auto">
+                {KOFIC_TABS.map((t) => (
+                  <button
+                    key={t.id}
+                    onClick={() => setKoficTab(t.id)}
+                    className={`relative whitespace-nowrap px-5 py-4 text-sm font-semibold transition-colors ${
+                      koficTab === t.id
+                        ? 'text-green-500'
+                        : 'text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-200'
+                    }`}
+                  >
+                    {t.label}
+                    {koficTab === t.id && (
+                      <motion.div
+                        layoutId="kofic-tab-indicator"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500 rounded-full"
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="max-w-7xl mx-auto px-6 sm:px-10 py-10">
+              {koficLoading ? (
+                <div className="flex items-center justify-center h-48">
+                  <p className="text-gray-400 text-sm animate-pulse">박스오피스 데이터 로딩 중...</p>
+                </div>
+              ) : (
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={koficTab}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {koficTab === 'ranking' && <KoficRankingTab entries={entries} />}
+                    {koficTab === 'sales' && <KoficSalesTab entries={entries} />}
+                    {koficTab === 'audience' && <KoficAudienceTab entries={entries} />}
+                  </motion.div>
+                </AnimatePresence>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   )
 }

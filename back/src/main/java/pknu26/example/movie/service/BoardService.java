@@ -27,7 +27,6 @@ public class BoardService {
         String sortProperty = "id"; 
         if ("평점".equals(sortBy) || "voteAverage".equals(sortBy)) sortProperty = "voteAverage";
         else if ("인기도".equals(sortBy) || "popularity".equals(sortBy)) sortProperty = "popularity";
-        else if ("흥행 수익".equals(sortBy) || "revenue".equals(sortBy)) sortProperty = "revenue";
         else if ("최신순".equals(sortBy) || "releaseDate".equals(sortBy)) sortProperty = "releaseDate";
 
         // 내림차순 정렬 생성
