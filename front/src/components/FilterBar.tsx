@@ -47,7 +47,7 @@ export function FilterBar({
         <div className="flex flex-wrap items-end gap-4">
           {/* 연도 범위 */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[11px] font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+            <label className="text-[11px] font-medium text-gray-400 dark:text-gray-300 uppercase tracking-wide">
               연도 범위
             </label>
             <div className="flex items-center gap-2">
@@ -73,7 +73,7 @@ export function FilterBar({
 
           {/* 정렬 기준 */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[11px] font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+            <label className="text-[11px] font-medium text-gray-400 dark:text-gray-300 uppercase tracking-wide">
               정렬 기준
             </label>
             <select
@@ -91,7 +91,7 @@ export function FilterBar({
 
           {/* Top N */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[11px] font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+            <label className="text-[11px] font-medium text-gray-400 dark:text-gray-300 uppercase tracking-wide">
               Top N
             </label>
             <input
@@ -117,7 +117,7 @@ export function FilterBar({
 
         {/* 장르 필터 */}
         <div className="flex flex-col gap-2">
-          <label className="text-[11px] font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+          <label className="text-[11px] font-medium text-gray-400 dark:text-gray-300 uppercase tracking-wide">
             장르 {selectedGenres.length > 0 && <span className="text-green-500">({selectedGenres.length}개 선택)</span>}
           </label>
           <div className="flex flex-wrap gap-2">
@@ -128,7 +128,7 @@ export function FilterBar({
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
                   selectedGenres.includes(g)
                     ? 'bg-green-500 text-white shadow-sm shadow-green-500/30'
-                    : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-500'
+                    : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-200 hover:border-green-400 dark:hover:border-green-500'
                 }`}
               >
                 {g}

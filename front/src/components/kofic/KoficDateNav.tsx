@@ -26,7 +26,7 @@ export function KoficDateNav({ date, onChange }: Props) {
 
         <button
           onClick={() => onChange(addDays(date, -1))}
-          className="px-3 py-1.5 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="px-3 py-1.5 rounded-lg text-sm text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
         >
           ← 이전
         </button>
@@ -45,7 +45,7 @@ export function KoficDateNav({ date, onChange }: Props) {
           className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
             isLatest
               ? 'text-gray-300 dark:text-gray-700 cursor-not-allowed'
-              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+              : 'text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
           }`}
         >
           다음 →

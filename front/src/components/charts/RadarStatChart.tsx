@@ -27,7 +27,7 @@ export function RadarStatChart({ movie, allMovies }: Props) {
 
   return (
     <div>
-      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">
+      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-200 uppercase tracking-widest mb-4">
         종합 스탯
       </h3>
       <ResponsiveContainer width="100%" height={260}>
