@@ -1,52 +1,16 @@
-import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import { useNavigate } from 'react-router-dom'
 import { Header } from '../components/Header'
-import { useMovieData } from '../hooks/useMovieData'
-
-function useCountUp(target: number, delay = 0) {
-  const [count, setCount] = useState(0)
-  useEffect(() => {
-    if (target === 0) return
-    const timeout = setTimeout(() => {
-      let current = 0
-      const duration = 1200
-      const step = target / (duration / 16)
-      const timer = setInterval(() => {
-        current += step
-        if (current >= target) {
-          setCount(target)
-          clearInterval(timer)
-        } else {
-          setCount(Math.floor(current))
-        }
-      }, 16)
-      return () => clearInterval(timer)
-    }, delay)
-    return () => clearTimeout(timeout)
-  }, [target, delay])
-  return count
-}
 
 const FEATURES = [
-  { icon: '🏆', title: '영화 랭킹', desc: '평점·인기·수익·관객수 기준 Top N 순위 비교' },
+  { icon: '🏆', title: '영화 랭킹', desc: '평점·인기 기준 Top N 순위 비교' },
   { icon: '🎭', title: '장르 분석', desc: '장르별 영화 분포와 평균 평점 시각화' },
   { icon: '📈', title: '연도 트렌드', desc: '연도별 개봉작 수와 평점 변화 추이' },
-  { icon: '🇰🇷', title: '한국 박스오피스', desc: 'KOBIS 누적 관객 통계 및 일별 순위' },
+  { icon: '🇰🇷', title: '한국 박스오피스', desc: 'KOFIC 일별 순위·매출·관객 분석' },
 ]
 
 export function LandingPage() {
   const navigate = useNavigate()
-  const { movies } = useMovieData()
-
-  const totalMovies = movies.length
-  const avgRating = movies.length
-    ? parseFloat((movies.reduce((s, m) => s + m.vote_average, 0) / movies.length).toFixed(1))
-    : 0
-  const genreCount = new Set(movies.flatMap((m) => m.genres)).size
-
-  const countMovies = useCountUp(totalMovies, 400)
-  const countGenres = useCountUp(genreCount, 600)
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#0f0f0f] text-gray-900 dark:text-white">
@@ -54,7 +18,6 @@ export function LandingPage() {
 
       {/* ── Hero ── */}
       <section className="relative min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-gray-950 via-gray-900 to-black">
-        {/* subtle grid lines */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -63,7 +26,6 @@ export function LandingPage() {
             backgroundSize: '60px 60px',
           }}
         />
-        {/* green ambient glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-green-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
@@ -89,31 +51,10 @@ export function LandingPage() {
             영화 데이터를 한눈에 탐색하다
           </motion.p>
 
-          {/* Stat numbers */}
-          {movies.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35 }}
-              className="flex justify-center gap-10 sm:gap-16 mb-14"
-            >
-              {[
-                { value: `${countMovies}편`, label: '영화 데이터' },
-                { value: `★ ${avgRating}`, label: '평균 평점' },
-                { value: `${countGenres}개`, label: '장르' },
-              ].map((s) => (
-                <div key={s.label} className="text-center">
-                  <p className="text-3xl sm:text-4xl font-bold text-white tabular-nums">{s.value}</p>
-                  <p className="text-xs text-gray-500 mt-1.5 uppercase tracking-widest">{s.label}</p>
-                </div>
-              ))}
-            </motion.div>
-          )}
-
           <motion.button
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => navigate('/dashboard')}
@@ -124,11 +65,10 @@ export function LandingPage() {
           </motion.button>
         </div>
 
-        {/* scroll hint */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.3 }}
+          transition={{ delay: 1.0 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-600 select-none"
         >
           <span className="text-[10px] tracking-[0.2em] uppercase">Scroll</span>
@@ -173,7 +113,6 @@ export function LandingPage() {
             ))}
           </div>
 
-          {/* second CTA */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -196,12 +135,8 @@ export function LandingPage() {
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3 text-sm text-gray-400">
             <span>Data by</span>
-            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold text-xs">
-              TMDB
-            </span>
-            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold text-xs">
-              KOBIS
-            </span>
+            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold text-xs">TMDB</span>
+            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold text-xs">KOFIC</span>
           </div>
           <a
             href="https://github.com/mainug/data-miniproject"

@@ -1,0 +1,101 @@
+package pknu26.example.movie.service;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
+import pknu26.example.movie.dto.TmdbGenreListResponse;
+import pknu26.example.movie.dto.TmdbMovieItem;
+import pknu26.example.movie.dto.TmdbMovieListResponse;
+import pknu26.example.movie.entity.Movie;
+import pknu26.example.movie.repository.MovieRepository;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+@Slf4j
+@Service
+public class TmdbService {
+
+    private static final String BASE = "https://api.themoviedb.org/3";
+
+    @Value("${tmdb.api.key}")
+    private String apiKey;
+
+    private final MovieRepository movieRepository;
+    private final RestTemplate restTemplate;
+
+    public TmdbService(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+        this.restTemplate = new RestTemplate();
+    }
+
+    @Transactional
+    public int fetchAndStore() {
+        log.info("TMDB 영화 데이터 수집 시작...");
+
+        Map<Integer, String> genreMap = fetchGenreMap();
+        log.info("장르 목록 로드 완료: {}개", genreMap.size());
+
+        List<Movie> movies = new ArrayList<>();
+        for (int page = 1; page <= 5; page++) {
+            List<Movie> pageMovies = fetchTopRatedPage(page, genreMap);
+            movies.addAll(pageMovies);
+            log.info("페이지 {}/5 완료 (누적 {}편)", page, movies.size());
+        }
+
+        movieRepository.saveAll(movies);
+        log.info("영화 {}편 저장 완료", movies.size());
+        return movies.size();
+    }
+
+    private Map<Integer, String> fetchGenreMap() {
+        String url = BASE + "/genre/movie/list?api_key=" + apiKey + "&language=ko-KR";
+        TmdbGenreListResponse resp = restTemplate.getForObject(url, TmdbGenreListResponse.class);
+
+        Map<Integer, String> map = new HashMap<>();
+        if (resp != null && resp.getGenres() != null) {
+            for (TmdbGenreListResponse.Genre g : resp.getGenres()) {
+                map.put(g.getId(), g.getName());
+            }
+        }
+        return map;
+    }
+
+    private List<Movie> fetchTopRatedPage(int page, Map<Integer, String> genreMap) {
+        String url = BASE + "/movie/top_rated?api_key=" + apiKey + "&language=ko-KR&page=" + page;
+        TmdbMovieListResponse resp = restTemplate.getForObject(url, TmdbMovieListResponse.class);
+
+        if (resp == null || resp.getResults() == null) return List.of();
+
+        return resp.getResults().stream()
+                .map(item -> toMovie(item, genreMap))
+                .collect(Collectors.toList());
+    }
+
+    private Movie toMovie(TmdbMovieItem item, Map<Integer, String> genreMap) {
+        List<String> genreNames = item.getGenreIds() == null ? List.of() :
+                item.getGenreIds().stream()
+                        .map(id -> genreMap.getOrDefault(id, null))
+                        .filter(name -> name != null)
+                        .collect(Collectors.toList());
+
+        return Movie.builder()
+                .id(item.getId())
+                .title(item.getTitle())
+                .originalTitle(item.getOriginalTitle())
+                .overview(item.getOverview())
+                .releaseDate(item.getReleaseDate())
+                .voteAverage(item.getVoteAverage())
+                .voteCount(item.getVoteCount())
+                .popularity(item.getPopularity())
+                .posterPath(item.getPosterPath())
+                .backdropPath(item.getBackdropPath())
+                .genres(genreNames)
+                .build();
+    }
+}
