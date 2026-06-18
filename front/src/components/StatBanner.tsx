@@ -23,13 +23,13 @@ export function StatBanner({ movies }: Props) {
               key={s.label}
               className="rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 px-6 py-5 flex flex-col gap-2"
             >
-              <p className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-widest">
+              <p className="text-[11px] font-semibold text-gray-400 dark:text-gray-300 uppercase tracking-widest">
                 {s.label}
               </p>
               <p className={`text-3xl font-bold tracking-tight ${s.accent ? 'text-green-500' : 'text-gray-900 dark:text-white'}`}>
                 {s.value}
               </p>
-              <p className="text-xs text-gray-400 dark:text-gray-500">{s.sub}</p>
+              <p className="text-xs text-gray-400 dark:text-gray-300">{s.sub}</p>
             </div>
           ))}
         </div>

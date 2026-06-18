@@ -29,7 +29,7 @@ export function BoxOfficeTimeline({ entries }: Props) {
         <h3 className="text-base font-semibold text-gray-900 dark:text-white">
           당일 관객수 분포
         </h3>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+        <p className="text-xs text-gray-500 dark:text-gray-200 mt-0.5">
           단위: 천 명
         </p>
       </div>

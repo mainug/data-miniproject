@@ -40,7 +40,7 @@ export function YearPeerScatter({ movie, allMovies }: Props) {
 
   return (
     <div>
-      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-1">
+      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-200 uppercase tracking-widest mb-1">
         {year}년 개봉작 비교
       </h3>
       <p className="text-xs text-gray-400 dark:text-gray-600 mb-4">

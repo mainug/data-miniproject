@@ -73,10 +73,10 @@ export function KoficRankingTab({ entries }: Props) {
                   </span>
                 )}
               </td>
-              <td className="px-4 py-3 text-right tabular-nums text-gray-600 dark:text-gray-300">
+              <td className="px-4 py-3 text-right tabular-nums text-gray-600 dark:text-gray-200">
                 {fmtAudi(e.audiAcc)}
               </td>
-              <td className="px-4 py-3 text-right tabular-nums text-gray-600 dark:text-gray-300">
+              <td className="px-4 py-3 text-right tabular-nums text-gray-600 dark:text-gray-200">
                 {fmtWon(e.salesAmt)}원
               </td>
               <td className="px-4 py-3 text-right">

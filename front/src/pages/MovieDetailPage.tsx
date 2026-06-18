@@ -198,7 +198,7 @@ export function MovieDetailPage() {
             <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
               줄거리
             </h2>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm sm:text-base max-w-3xl">
+            <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-sm sm:text-base max-w-3xl">
               {movie.overview}
             </p>
           </div>

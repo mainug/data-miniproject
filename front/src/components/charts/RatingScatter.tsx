@@ -49,7 +49,7 @@ export function RatingScatter({ movies }: Props) {
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
           평점 vs 인기도
         </h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+        <p className="text-sm text-gray-500 dark:text-gray-200 mt-0.5">
           X축: 평점(0~10) · Y축: TMDB 인기도 점수
         </p>
       </div>

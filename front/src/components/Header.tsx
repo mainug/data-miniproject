@@ -5,6 +5,7 @@ export function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const isDetailPage = location.pathname.startsWith("/movie/");
+  const isGamePage = location.pathname === "/battle" || location.pathname === "/wordle";
 
   const [dark, setDark] = useState(() => {
     const saved = localStorage.getItem("theme");
@@ -25,10 +26,10 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-black/90 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between h-16">
         <div className="flex items-center gap-3">
-          {isDetailPage && (
+          {(isDetailPage || isGamePage) && (
             <button
               onClick={() => navigate("/dashboard")}
-              className="flex items-center gap-1.5 text-sm text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 transition-colors mr-1"
+              className="flex items-center gap-1.5 text-sm text-gray-400 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 transition-colors mr-1"
             >
               ← 대시보드
             </button>
@@ -39,10 +40,10 @@ export function Header() {
           >
             CineStats
           </Link>
-          {!isDetailPage && (
+          {!isDetailPage && !isGamePage && (
             <>
               <span className="hidden sm:block h-4 w-px bg-gray-300 dark:bg-gray-700" />
-              <span className="hidden sm:block text-xs text-gray-400 dark:text-gray-500">
+              <span className="hidden sm:block text-xs text-gray-400 dark:text-gray-300">
                 영화 데이터 대시보드
               </span>
             </>
@@ -50,7 +51,7 @@ export function Header() {
         </div>
         <button
           onClick={() => setDark((d) => !d)}
-          className="w-9 h-9 flex items-center justify-center rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-base"
+          className="w-9 h-9 flex items-center justify-center rounded-xl text-gray-500 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-base"
           aria-label="테마 전환"
         >
           {dark ? "☀️" : "🌙"}

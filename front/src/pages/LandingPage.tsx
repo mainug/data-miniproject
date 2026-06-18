@@ -108,7 +108,7 @@ export function LandingPage() {
               >
                 <span className="text-4xl mb-5 block">{f.icon}</span>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1.5">{f.title}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{f.desc}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-200 leading-relaxed">{f.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -135,8 +135,8 @@ export function LandingPage() {
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3 text-sm text-gray-400">
             <span>Data by</span>
-            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold text-xs">TMDB</span>
-            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold text-xs">KOFIC</span>
+            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold text-xs">TMDB</span>
+            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold text-xs">KOFIC</span>
           </div>
           <a
             href="https://github.com/mainug/data-miniproject"

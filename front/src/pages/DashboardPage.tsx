@@ -7,6 +7,7 @@ import { GenreChart } from '../components/charts/GenreChart'
 import { YearTrendChart } from '../components/charts/YearTrendChart'
 import { RatingScatter } from '../components/charts/RatingScatter'
 import { TopNChart } from '../components/charts/TopNChart'
+import { useNavigate } from 'react-router-dom'
 import { SearchTab } from '../components/tmdb/SearchTab'
 import { KoficDateNav, getYesterday } from '../components/kofic/KoficDateNav'
 import { KoficRankingTab } from '../components/kofic/KoficRankingTab'
@@ -31,6 +32,7 @@ const KOFIC_TABS: { id: KoficTabId; label: string }[] = [
 ]
 
 export function DashboardPage() {
+  const navigate = useNavigate()
   const [source, setSource] = useState<SourceTab>('tmdb')
 
   // TMDB
@@ -97,7 +99,8 @@ export function DashboardPage() {
       {/* ── 상단 소스 탭 (TMDB / KOFIC) ── */}
       <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto px-6 sm:px-10">
-          <div className="flex gap-1 py-3">
+          <div className="flex items-center justify-between py-3">
+            <div className="flex gap-1">
             {(['tmdb', 'kofic'] as SourceTab[]).map((s) => (
               <button
                 key={s}
@@ -105,12 +108,27 @@ export function DashboardPage() {
                 className={`px-6 py-2 rounded-full text-sm font-bold tracking-wide transition-all ${
                   source === s
                     ? 'bg-green-500 text-white shadow-sm'
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    : 'text-gray-500 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
                 }`}
               >
                 {s === 'tmdb' ? 'TMDB' : 'KOFIC'}
               </button>
             ))}
+            </div>
+            <div className="flex gap-1">
+              <button
+                onClick={() => navigate('/wordle')}
+                className="px-6 py-2 rounded-full text-sm font-bold tracking-wide transition-all text-gray-500 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                🎬 무비들
+              </button>
+              <button
+                onClick={() => navigate('/battle')}
+                className="px-6 py-2 rounded-full text-sm font-bold tracking-wide transition-all text-gray-500 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                ⚔️ 배틀
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -159,7 +177,7 @@ export function DashboardPage() {
                         className={`relative whitespace-nowrap px-5 py-4 text-sm font-semibold transition-colors ${
                           tmdbTab === t.id
                             ? 'text-green-500'
-                            : 'text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-200'
+                            : 'text-gray-400 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200'
                         }`}
                       >
                         {t.label}
@@ -224,7 +242,7 @@ export function DashboardPage() {
                     className={`relative whitespace-nowrap px-5 py-4 text-sm font-semibold transition-colors ${
                       koficTab === t.id
                         ? 'text-green-500'
-                        : 'text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-200'
+                        : 'text-gray-400 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200'
                     }`}
                   >
                     {t.label}

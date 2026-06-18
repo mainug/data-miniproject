@@ -21,6 +21,31 @@ body,
   -webkit-font-smoothing: antialiased;
 }
 
+/* Recharts tooltip */
+.recharts-default-tooltip {
+  background-color: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.08) !important;
+}
+.recharts-tooltip-label {
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+.recharts-tooltip-item {
+  color: #374151 !important;
+}
+.dark .recharts-default-tooltip {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+.dark .recharts-tooltip-label {
+  color: #f1f5f9 !important;
+}
+.dark .recharts-tooltip-item {
+  color: #cbd5e1 !important;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
