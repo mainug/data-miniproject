@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 import pknu26.example.movie.dto.TmdbGenreListResponse;
 import pknu26.example.movie.dto.TmdbMovieItem;
 import pknu26.example.movie.dto.TmdbMovieListResponse;
@@ -64,6 +65,20 @@ public class TmdbService {
             }
         }
         return map;
+    }
+
+    public List<Movie> searchMovies(String query) {
+        Map<Integer, String> genreMap = fetchGenreMap();
+        String url = UriComponentsBuilder.fromHttpUrl(BASE + "/search/movie")
+                .queryParam("api_key", apiKey)
+                .queryParam("language", "ko-KR")
+                .queryParam("query", query)
+                .toUriString();
+        TmdbMovieListResponse resp = restTemplate.getForObject(url, TmdbMovieListResponse.class);
+        if (resp == null || resp.getResults() == null) return List.of();
+        return resp.getResults().stream()
+                .map(item -> toMovie(item, genreMap))
+                .collect(Collectors.toList());
     }
 
     private List<Movie> fetchTopRatedPage(int page, Map<Integer, String> genreMap) {

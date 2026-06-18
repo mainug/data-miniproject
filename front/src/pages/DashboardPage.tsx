@@ -7,6 +7,7 @@ import { GenreChart } from '../components/charts/GenreChart'
 import { YearTrendChart } from '../components/charts/YearTrendChart'
 import { RatingScatter } from '../components/charts/RatingScatter'
 import { TopNChart } from '../components/charts/TopNChart'
+import { SearchTab } from '../components/tmdb/SearchTab'
 import { KoficDateNav, getYesterday } from '../components/kofic/KoficDateNav'
 import { KoficRankingTab } from '../components/kofic/KoficRankingTab'
 import { KoficSalesTab } from '../components/kofic/KoficSalesTab'
@@ -20,6 +21,7 @@ const TMDB_TABS: { id: TmdbTabId; label: string }[] = [
   { id: 'genre', label: '🎭 장르' },
   { id: 'trend', label: '📈 트렌드' },
   { id: 'analysis', label: '🔬 분석' },
+  { id: 'search', label: '🔍 검색' },
 ]
 
 const KOFIC_TABS: { id: KoficTabId; label: string }[] = [
@@ -192,6 +194,7 @@ export function DashboardPage() {
                           </div>
                         </div>
                       )}
+                      {tmdbTab === 'search' && <SearchTab />}
                     </motion.div>
                   </AnimatePresence>
                 </div>

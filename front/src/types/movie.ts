@@ -35,6 +35,6 @@ export interface BoxOfficeEntry {
 }
 
 export type SortKey = 'vote_average' | 'popularity' | 'release_date'
-export type TmdbTabId = 'ranking' | 'genre' | 'trend' | 'analysis'
+export type TmdbTabId = 'ranking' | 'genre' | 'trend' | 'analysis' | 'search'
 export type KoficTabId = 'ranking' | 'sales' | 'audience'
 export type SourceTab = 'tmdb' | 'kofic'

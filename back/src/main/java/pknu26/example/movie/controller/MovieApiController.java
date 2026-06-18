@@ -41,6 +41,12 @@ public class MovieApiController {
         return count + "편 갱신 완료";
     }
 
+    /** TMDB 영화 검색 */
+    @GetMapping("/movies/search")
+    public List<Movie> searchMovies(@RequestParam(name = "query") String query) {
+        return tmdbService.searchMovies(query);
+    }
+
     /** KOBIS 일별 박스오피스 — date 파라미터 없으면 어제 날짜 */
     @GetMapping("/boxoffice")
     public List<BoxOfficeEntryDto> getBoxOffice(@RequestParam(name = "date", required = false) String date) {
