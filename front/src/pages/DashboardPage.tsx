@@ -14,7 +14,7 @@ import { KoficRankingTab } from '../components/kofic/KoficRankingTab'
 import { KoficSalesTab } from '../components/kofic/KoficSalesTab'
 import { KoficAudienceTab } from '../components/kofic/KoficAudienceTab'
 import { KoficTrendTab } from '../components/kofic/KoficTrendTab'
-import { KoficWeeklyNav, buildShowRange, getLastMonday } from '../components/kofic/KoficWeeklyNav'
+import { KoficWeeklyNav, buildShowRange, buildWeekendRange, getLastMonday } from '../components/kofic/KoficWeeklyNav'
 import { KoficWeeklyRankingTab } from '../components/kofic/KoficWeeklyRankingTab'
 import { KoficWeeklySalesTab } from '../components/kofic/KoficWeeklySalesTab'
 import { KoficWeeklyAudienceTab } from '../components/kofic/KoficWeeklyAudienceTab'
@@ -77,8 +77,10 @@ export function DashboardPage() {
   const [koficDate, setKoficDate] = useState(getYesterday())
   const { entries, loading: koficLoading } = useBoxOffice(koficDate)
   const { data: trendData, loading: trendLoading } = useWeeklyTrends()
-  const [weeklyShowRange, setWeeklyShowRange] = useState(() => buildShowRange(getLastMonday()))
+  const [weeklyMonday, setWeeklyMonday] = useState(getLastMonday)
   const weeklyGb = koficPeriod === 'weekend' ? '1' : '0'
+  // 주간: 월~일, 주말: 금~일 — weekGb에 따라 올바른 showRange 파생
+  const weeklyShowRange = weeklyGb === '0' ? buildShowRange(weeklyMonday) : buildWeekendRange(weeklyMonday)
   const { entries: weeklyEntries, loading: weeklyLoading, error: weeklyError } = useWeeklyBoxOffice(weeklyShowRange, weeklyGb)
   const isWeekly = koficPeriod !== 'daily'
   const periodLabel = koficPeriod === 'weekly' ? '주간' : '주말'
@@ -267,7 +269,7 @@ export function DashboardPage() {
             {/* 날짜 / 기간 선택 */}
             {!isWeekly
               ? <KoficDateNav date={koficDate} onChange={setKoficDate} />
-              : <KoficWeeklyNav showRange={weeklyShowRange} onChange={setWeeklyShowRange} />
+              : <KoficWeeklyNav monday={weeklyMonday} weekGb={weeklyGb} onChange={setWeeklyMonday} />
             }
 
             {/* KOFIC 하위 탭 */}

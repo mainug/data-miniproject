@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-// 날짜 문자열 → 해당 주 월요일 Date
 function getMonday(dateStr: string): Date {
   const d = new Date(dateStr)
   const day = d.getDay() // 0=일
@@ -17,6 +16,7 @@ function toCompact(d: Date): string {
   return toIso(d).replace(/-/g, '')
 }
 
+// 주간: 월~일
 export function buildShowRange(dateStr: string): string {
   const monday = getMonday(dateStr)
   const sunday = new Date(monday)
@@ -24,10 +24,19 @@ export function buildShowRange(dateStr: string): string {
   return `${toCompact(monday)}~${toCompact(sunday)}`
 }
 
+// 주말: 금~일 (KOBIS weekGb=1 형식)
+export function buildWeekendRange(dateStr: string): string {
+  const monday = getMonday(dateStr)
+  const friday = new Date(monday)
+  friday.setDate(monday.getDate() + 4)
+  const sunday = new Date(monday)
+  sunday.setDate(monday.getDate() + 6)
+  return `${toCompact(friday)}~${toCompact(sunday)}`
+}
+
 export function getLastMonday(): string {
   const today = new Date()
   const monday = getMonday(toIso(today))
-  // 오늘이 월요일이면 지난주 월요일로
   if (toIso(monday) >= toIso(today)) monday.setDate(monday.getDate() - 7)
   return toIso(monday)
 }
@@ -38,40 +47,44 @@ function addWeeks(dateStr: string, n: number): string {
   return toIso(d)
 }
 
-function formatWeekLabel(showRange: string): string {
-  const [s, e] = showRange.split('~')
-  if (!s || !e) return showRange
-  const fmt = (c: string) => `${c.slice(0, 4)}.${c.slice(4, 6)}.${c.slice(6, 8)}`
-  return `${fmt(s)}(월) ~ ${fmt(e)}(일)`
+function formatRangeLabel(monday: string, weekGb: '0' | '1'): string {
+  const mondayDate = getMonday(monday)
+  const fmt = (d: Date) => {
+    const s = toCompact(d)
+    return `${s.slice(0, 4)}.${s.slice(4, 6)}.${s.slice(6, 8)}`
+  }
+  const sunday = new Date(mondayDate)
+  sunday.setDate(mondayDate.getDate() + 6)
+
+  if (weekGb === '0') {
+    return `${fmt(mondayDate)}(월) ~ ${fmt(sunday)}(일)`
+  } else {
+    const friday = new Date(mondayDate)
+    friday.setDate(mondayDate.getDate() + 4)
+    return `${fmt(friday)}(금) ~ ${fmt(sunday)}(일)`
+  }
 }
 
 interface Props {
-  showRange: string
-  onChange: (showRange: string) => void
+  monday: string       // ISO 날짜 (월요일, e.g., "2026-03-30")
+  weekGb: '0' | '1'
+  onChange: (monday: string) => void
 }
 
 const MIN_DATE = '2004-01-01'
 
-export function KoficWeeklyNav({ showRange, onChange }: Props) {
+export function KoficWeeklyNav({ monday, weekGb, onChange }: Props) {
   const lastMonday = getLastMonday()
+  const [pickerDate, setPickerDate] = useState(monday)
 
-  // pickerDate = 현재 showRange의 월요일 ISO 날짜
-  const [pickerDate, setPickerDate] = useState<string>(() => {
-    const s = showRange.split('~')[0]
-    if (!s) return lastMonday
-    return `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}`
-  })
-
-  // showRange가 외부에서 바뀌면 pickerDate 동기화
   useEffect(() => {
-    const s = showRange.split('~')[0]
-    if (!s) return
-    setPickerDate(`${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}`)
-  }, [showRange])
+    setPickerDate(monday)
+  }, [monday])
 
   const handleDateChange = (dateStr: string) => {
-    setPickerDate(dateStr)
-    onChange(buildShowRange(dateStr))
+    const newMonday = toIso(getMonday(dateStr))
+    setPickerDate(newMonday)
+    onChange(newMonday)
   }
 
   const movePrev = () => handleDateChange(addWeeks(pickerDate, -1))
@@ -108,7 +121,7 @@ export function KoficWeeklyNav({ showRange, onChange }: Props) {
         />
 
         <span className="text-xs text-gray-500 dark:text-gray-300 whitespace-nowrap">
-          → {formatWeekLabel(showRange)}
+          → {formatRangeLabel(monday, weekGb)}
         </span>
 
         <button
