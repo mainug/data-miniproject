@@ -15,9 +15,12 @@ export function getYesterday(): string {
   return d.toISOString().slice(0, 10)
 }
 
+const DATA_MIN_DATE = '2026-04-01'
+
 export function KoficDateNav({ date, onChange }: Props) {
   const yesterday = getYesterday()
   const isLatest = date >= yesterday
+  const isEarliest = date <= DATA_MIN_DATE
 
   return (
     <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
@@ -26,7 +29,12 @@ export function KoficDateNav({ date, onChange }: Props) {
 
         <button
           onClick={() => onChange(addDays(date, -1))}
-          className="px-3 py-1.5 rounded-lg text-sm text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          disabled={isEarliest}
+          className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
+            isEarliest
+              ? 'text-gray-300 dark:text-gray-700 cursor-not-allowed'
+              : 'text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+          }`}
         >
           ← 이전
         </button>
@@ -34,6 +42,7 @@ export function KoficDateNav({ date, onChange }: Props) {
         <input
           type="date"
           value={date}
+          min={DATA_MIN_DATE}
           max={yesterday}
           onChange={(e) => e.target.value && onChange(e.target.value)}
           className="px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm font-semibold text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/50 cursor-pointer"
