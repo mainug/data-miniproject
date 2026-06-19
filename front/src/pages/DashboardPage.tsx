@@ -18,10 +18,14 @@ import { KoficWeeklyNav, buildShowRange, getLastMonday } from '../components/kof
 import { KoficWeeklyRankingTab } from '../components/kofic/KoficWeeklyRankingTab'
 import { KoficWeeklySalesTab } from '../components/kofic/KoficWeeklySalesTab'
 import { KoficWeeklyAudienceTab } from '../components/kofic/KoficWeeklyAudienceTab'
+import { KoficStatsTab } from '../components/kofic/KoficStatsTab'
+import { KoficTrackingTab } from '../components/kofic/KoficTrackingTab'
+import { KoficAllTimeTab } from '../components/kofic/KoficAllTimeTab'
 import { useMovieData } from '../hooks/useMovieData'
 import { useBoxOffice } from '../hooks/useBoxOffice'
 import { useWeeklyBoxOffice } from '../hooks/useWeeklyBoxOffice'
 import { useWeeklyTrends } from '../hooks/useWeeklyTrends'
+import { useDerivedStats } from '../hooks/useDerivedStats'
 import type { SortKey, TmdbTabId, KoficTabId, KoficPeriod, SourceTab } from '../types/movie'
 
 const TMDB_TABS: { id: TmdbTabId; label: string }[] = [
@@ -37,6 +41,9 @@ const KOFIC_TABS: { id: KoficTabId; label: string }[] = [
   { id: 'sales', label: '💰 매출' },
   { id: 'audience', label: '👥 관객' },
   { id: 'trend', label: '📊 트렌드' },
+  { id: 'stats', label: '📐 파생통계' },
+  { id: 'tracking', label: '🔍 추적' },
+  { id: 'alltime', label: '🏆 역대순위' },
 ]
 
 export function DashboardPage() {
@@ -76,6 +83,7 @@ export function DashboardPage() {
   const [koficTab, setKoficTab] = useState<KoficTabId>('ranking')
   const [koficDate, setKoficDate] = useState(getYesterday())
   const { entries, loading: koficLoading } = useBoxOffice(koficDate)
+  const { data: derivedData, loading: derivedLoading } = useDerivedStats(koficDate)
   const { data: trendData, loading: trendLoading } = useWeeklyTrends()
   const [weeklyShowRange, setWeeklyShowRange] = useState(() => buildShowRange(getLastMonday()))
   const weeklyGb = koficPeriod === 'weekend' ? '1' : '0'
@@ -322,6 +330,13 @@ export function DashboardPage() {
                           ? <KoficTrendTab data={trendData} />
                           : <div className="text-center py-20 text-gray-400 text-sm">트렌드 데이터가 없습니다</div>
                     )}
+                    {koficTab === 'stats' && (
+                      derivedLoading
+                        ? <div className="flex items-center justify-center h-48"><p className="text-gray-400 text-sm animate-pulse">파생통계 로딩 중...</p></div>
+                        : <KoficStatsTab data={derivedData} />
+                    )}
+                    {koficTab === 'tracking' && <KoficTrackingTab />}
+                    {koficTab === 'alltime' && <KoficAllTimeTab />}
                   </motion.div>
                 </AnimatePresence>
               )}
