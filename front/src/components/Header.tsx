@@ -5,7 +5,7 @@ export function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const isDetailPage = location.pathname.startsWith("/movie/");
-  const isGamePage = location.pathname === "/battle" || location.pathname === "/wordle";
+  const isGamePage = location.pathname === "/battle";
 
   const [dark, setDark] = useState(() => {
     const saved = localStorage.getItem("theme");
