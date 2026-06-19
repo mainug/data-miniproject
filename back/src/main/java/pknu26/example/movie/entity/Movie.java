@@ -51,6 +51,10 @@ public class Movie {
     @Column(name = "backdrop_path")
     private String backdropPath;
 
+    @JsonProperty("movie_cd")
+    @Column(name = "movie_cd")
+    private String movieCd;
+
     @Builder.Default
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "movie_genres", joinColumns = @JoinColumn(name = "movie_id"))
