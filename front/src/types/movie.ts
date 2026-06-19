@@ -65,8 +65,44 @@ export interface TrendAnalysis {
   seasonal: WeeklyTrend[]
 }
 
+export interface DerivedStats {
+  rank: number
+  movieNm: string
+  openDt: string
+  daysSinceRelease: number
+  audiCnt: number
+  scrnCnt: number
+  showCnt: number
+  audiPerScreen: number
+  audiPerShow: number
+  screenShare: number
+  salesShare: number
+}
+
+export interface MovieTracking {
+  date: string
+  daysSinceRelease: number
+  weekNumber: number
+  audiCnt: number
+  audiAcc: number
+  salesAmt: number
+  salesAcc: number
+  scrnCnt: number
+  showCnt: number
+  audiPerScreen: number
+  audiPerShow: number
+}
+
+export interface AllTimeRanking {
+  rank: number
+  movieNm: string
+  openDt: string
+  maxAudiAcc: number
+  maxSalesAcc: number
+}
+
 export type SortKey = 'vote_average' | 'popularity' | 'release_date'
 export type TmdbTabId = 'ranking' | 'genre' | 'trend' | 'analysis' | 'search'
-export type KoficTabId = 'ranking' | 'sales' | 'audience' | 'trend'
+export type KoficTabId = 'ranking' | 'sales' | 'audience' | 'trend' | 'stats' | 'tracking' | 'alltime'
 export type SourceTab = 'tmdb' | 'kofic'
 export type KoficPeriod = 'daily' | 'weekly' | 'weekend'

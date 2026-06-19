@@ -176,6 +176,131 @@ public class KobisService {
     }
 
     // ══════════════════════════════════════════════
+    // 파생 통계 (스크린당 관객수, 상영회차당 관객수, 점유율)
+    // ══════════════════════════════════════════════
+
+    @Transactional
+    public List<DerivedStatsDto> getDerivedStats(String date) {
+        String targetDate = resolveDate(date);
+        if (!dailyRepo.existsByDate(targetDate)) {
+            collectDailySingle(targetDate);
+        }
+        List<DailyBoxOffice> entries = dailyRepo.findByDateOrderByRankAsc(targetDate);
+        long totalScreens = entries.stream().mapToLong(DailyBoxOffice::getScrnCnt).sum();
+
+        return entries.stream().map(e -> {
+            int days = calcDaysSinceRelease(targetDate, e.getOpenDt());
+            double audiPerScreen = e.getScrnCnt() > 0 ? (double) e.getAudiCnt() / e.getScrnCnt() : 0;
+            double audiPerShow = e.getShowCnt() > 0 ? (double) e.getAudiCnt() / e.getShowCnt() : 0;
+            double screenShare = totalScreens > 0 ? (double) e.getScrnCnt() / totalScreens * 100 : 0;
+
+            return DerivedStatsDto.builder()
+                    .rank(e.getRank())
+                    .movieNm(e.getMovieNm())
+                    .openDt(e.getOpenDt())
+                    .daysSinceRelease(days)
+                    .audiCnt(e.getAudiCnt())
+                    .scrnCnt(e.getScrnCnt())
+                    .showCnt(e.getShowCnt())
+                    .audiPerScreen(Math.round(audiPerScreen * 10.0) / 10.0)
+                    .audiPerShow(Math.round(audiPerShow * 10.0) / 10.0)
+                    .screenShare(Math.round(screenShare * 100.0) / 100.0)
+                    .salesShare(e.getSalesShare())
+                    .build();
+        }).collect(Collectors.toList());
+    }
+
+    // ══════════════════════════════════════════════
+    // 영화 추적 (개봉 주차별 누적 관객 추이)
+    // ══════════════════════════════════════════════
+
+    @Transactional(readOnly = true)
+    public List<MovieTrackingDto> getMovieTracking(String movieNm) {
+        List<DailyBoxOffice> entries = dailyRepo.findByMovieNmOrderByDateAsc(movieNm);
+        if (entries.isEmpty()) return Collections.emptyList();
+
+        String openDt = entries.get(0).getOpenDt();
+
+        return entries.stream().map(e -> {
+            int days = calcDaysSinceRelease(e.getDate(), openDt);
+            int week = days / 7 + 1;
+            double audiPerScreen = e.getScrnCnt() > 0 ? (double) e.getAudiCnt() / e.getScrnCnt() : 0;
+            double audiPerShow = e.getShowCnt() > 0 ? (double) e.getAudiCnt() / e.getShowCnt() : 0;
+
+            return MovieTrackingDto.builder()
+                    .date(e.getDate())
+                    .daysSinceRelease(days)
+                    .weekNumber(week)
+                    .audiCnt(e.getAudiCnt())
+                    .audiAcc(e.getAudiAcc())
+                    .salesAmt(e.getSalesAmt())
+                    .salesAcc(e.getSalesAcc())
+                    .scrnCnt(e.getScrnCnt())
+                    .showCnt(e.getShowCnt())
+                    .audiPerScreen(Math.round(audiPerScreen * 10.0) / 10.0)
+                    .audiPerShow(Math.round(audiPerShow * 10.0) / 10.0)
+                    .build();
+        }).collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<String> getTrackableMovieNames() {
+        return dailyRepo.findDistinctMovieNames();
+    }
+
+    // ══════════════════════════════════════════════
+    // 역대 흥행 순위
+    // ══════════════════════════════════════════════
+
+    @Transactional(readOnly = true)
+    public List<AllTimeRankingDto> getAllTimeRankings(String sortBy, int limit) {
+        List<DailyBoxOffice> all = dailyRepo.findAll();
+
+        Map<String, List<DailyBoxOffice>> grouped = all.stream()
+                .collect(Collectors.groupingBy(DailyBoxOffice::getMovieNm));
+
+        List<AllTimeRankingDto> rankings = grouped.entrySet().stream()
+                .map(entry -> {
+                    List<DailyBoxOffice> items = entry.getValue();
+                    long maxAudi = items.stream().mapToLong(DailyBoxOffice::getAudiAcc).max().orElse(0);
+                    long maxSales = items.stream().mapToLong(DailyBoxOffice::getSalesAcc).max().orElse(0);
+                    String openDt = items.get(0).getOpenDt();
+                    return AllTimeRankingDto.builder()
+                            .movieNm(entry.getKey())
+                            .openDt(openDt)
+                            .maxAudiAcc(maxAudi)
+                            .maxSalesAcc(maxSales)
+                            .build();
+                })
+                .sorted((a, b) -> "sales".equals(sortBy)
+                        ? Long.compare(b.getMaxSalesAcc(), a.getMaxSalesAcc())
+                        : Long.compare(b.getMaxAudiAcc(), a.getMaxAudiAcc()))
+                .limit(limit)
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < rankings.size(); i++) {
+            rankings.get(i).setRank(i + 1);
+        }
+        return rankings;
+    }
+
+    // ── 날짜 차이 계산 ──
+
+    private int calcDaysSinceRelease(String currentDate, String openDt) {
+        try {
+            LocalDate current = LocalDate.parse(currentDate, FMT);
+            String normalizedOpenDt = openDt;
+            if (openDt != null && openDt.length() == 8 && !openDt.contains("-")) {
+                normalizedOpenDt = openDt.substring(0, 4) + "-" + openDt.substring(4, 6) + "-" + openDt.substring(6, 8);
+            }
+            LocalDate open = LocalDate.parse(normalizedOpenDt, FMT);
+            return (int) java.time.temporal.ChronoUnit.DAYS.between(open, current);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    // ══════════════════════════════════════════════
     // 공통코드 조회
     // ══════════════════════════════════════════════
 
