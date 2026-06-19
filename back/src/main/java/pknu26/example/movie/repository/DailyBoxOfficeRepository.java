@@ -18,4 +18,9 @@ public interface DailyBoxOfficeRepository extends JpaRepository<DailyBoxOffice, 
 
     @Query("SELECT DISTINCT d.date FROM DailyBoxOffice d ORDER BY d.date DESC")
     List<String> findDistinctDatesDesc();
+
+    List<DailyBoxOffice> findByMovieNmOrderByDateAsc(String movieNm);
+
+    @Query("SELECT DISTINCT d.movieNm FROM DailyBoxOffice d ORDER BY d.movieNm")
+    List<String> findDistinctMovieNames();
 }

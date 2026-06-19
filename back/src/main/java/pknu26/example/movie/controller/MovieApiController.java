@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-import pknu26.example.movie.dto.BoxOfficeEntryDto;
-import pknu26.example.movie.dto.TrendAnalysisDto;
+import pknu26.example.movie.dto.*;
+
 import pknu26.example.movie.entity.*;
 import pknu26.example.movie.repository.TmdbMovieRepository;
 import pknu26.example.movie.service.KobisService;
@@ -79,6 +79,32 @@ public class MovieApiController {
     @GetMapping("/boxoffice/weekly/trends")
     public TrendAnalysisDto getWeeklyTrends() {
         return kobisService.getWeeklyTrends();
+    }
+
+    /** 파생 통계 (스크린당 관객수, 점유율 등) */
+    @GetMapping("/boxoffice/derived")
+    public List<DerivedStatsDto> getDerivedStats(@RequestParam(name = "date", required = false) String date) {
+        return kobisService.getDerivedStats(date);
+    }
+
+    /** 영화 추적 (개봉 주차별 추이) */
+    @GetMapping("/boxoffice/tracking")
+    public List<MovieTrackingDto> getMovieTracking(@RequestParam(name = "movieNm") String movieNm) {
+        return kobisService.getMovieTracking(movieNm);
+    }
+
+    /** 추적 가능 영화 목록 */
+    @GetMapping("/boxoffice/tracking/movies")
+    public List<String> getTrackableMovies() {
+        return kobisService.getTrackableMovieNames();
+    }
+
+    /** 역대 흥행 순위 */
+    @GetMapping("/boxoffice/alltime")
+    public List<AllTimeRankingDto> getAllTimeRankings(
+            @RequestParam(name = "sortBy", defaultValue = "audience") String sortBy,
+            @RequestParam(name = "limit", defaultValue = "20") int limit) {
+        return kobisService.getAllTimeRankings(sortBy, limit);
     }
 
     /** KOFIC 공통코드 조회 */
