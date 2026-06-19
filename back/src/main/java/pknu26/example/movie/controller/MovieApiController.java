@@ -5,12 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import pknu26.example.movie.dto.BoxOfficeEntryDto;
-import pknu26.example.movie.entity.Movie;
+import pknu26.example.movie.entity.*;
 import pknu26.example.movie.repository.MovieRepository;
 import pknu26.example.movie.service.KobisService;
 import pknu26.example.movie.service.TmdbService;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -59,10 +60,41 @@ public class MovieApiController {
         return kobisService.getAvailableDates();
     }
 
-    /** 수동 박스오피스 수집 트리거 (기본 30일) */
-    @PostMapping("/boxoffice/collect")
-    public String collectBoxOffice(@RequestParam(name = "days", defaultValue = "30") int days) {
-        int collected = kobisService.manualCollect(days);
-        return collected + "일치 데이터 수집 완료";
+    /** 주간/주말 박스오피스 조회 (weekGb: 0=주간, 1=주말) */
+    @GetMapping("/boxoffice/weekly")
+    public List<WeeklyBoxOffice> getWeeklyBoxOffice(
+            @RequestParam(name = "range") String range,
+            @RequestParam(name = "weekGb", defaultValue = "0") String weekGb) {
+        return kobisService.getWeeklyBoxOffice(range, weekGb);
+    }
+
+    /** 주간/주말 박스오피스 조회 가능 기간 목록 */
+    @GetMapping("/boxoffice/weekly/ranges")
+    public List<String> getWeeklyRanges(@RequestParam(name = "weekGb", defaultValue = "0") String weekGb) {
+        return kobisService.getWeeklyRanges(weekGb);
+    }
+
+    /** KOFIC 공통코드 조회 */
+    @GetMapping("/kobis/codes")
+    public List<KobisCode> getCodes(@RequestParam(name = "comCode") String comCode) {
+        return kobisService.getCodes(comCode);
+    }
+
+    /** KOFIC 영화목록 전체 조회 */
+    @GetMapping("/kobis/movies")
+    public List<KobisMovie> getKobisMovies() {
+        return kobisService.getKobisMovies();
+    }
+
+    /** KOFIC 영화 상세정보 조회 */
+    @GetMapping("/kobis/movies/{movieCd}")
+    public KobisMovie getKobisMovie(@PathVariable String movieCd) {
+        return kobisService.getKobisMovie(movieCd).orElse(null);
+    }
+
+    /** 전체 KOFIC 데이터 수동 수집 트리거 */
+    @PostMapping("/kobis/collect")
+    public Map<String, Integer> collectAll() {
+        return kobisService.manualCollectAll();
     }
 }
