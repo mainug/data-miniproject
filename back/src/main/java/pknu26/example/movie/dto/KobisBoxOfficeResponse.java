@@ -8,6 +8,14 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class KobisBoxOfficeResponse {
     private BoxOfficeResult boxOfficeResult;
+    private FaultInfo faultInfo;
+
+    @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class FaultInfo {
+        private String errorCode;
+        private String message;
+    }
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)

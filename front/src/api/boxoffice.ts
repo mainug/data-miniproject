@@ -20,6 +20,9 @@ export async function fetchWeeklyRanges(weekGb: '0' | '1'): Promise<string[]> {
 export async function fetchWeeklyBoxOffice(range: string, weekGb: '0' | '1'): Promise<WeeklyEntry[]> {
   if (!BASE_URL) throw new Error('VITE_API_BASE_URL이 설정되지 않았습니다')
   const res = await fetch(`${BASE_URL}/api/boxoffice/weekly?range=${encodeURIComponent(range)}&weekGb=${weekGb}`)
-  if (!res.ok) throw new Error(`API error: ${res.status}`)
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.message || `API error: ${res.status}`)
+  }
   return res.json()
 }

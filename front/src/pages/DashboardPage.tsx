@@ -75,7 +75,7 @@ export function DashboardPage() {
   const { entries, loading: koficLoading } = useBoxOffice(koficDate)
   const [weeklyShowRange, setWeeklyShowRange] = useState(() => buildShowRange(getLastMonday()))
   const weeklyGb = koficPeriod === 'weekend' ? '1' : '0'
-  const { entries: weeklyEntries, loading: weeklyLoading } = useWeeklyBoxOffice(weeklyShowRange, weeklyGb)
+  const { entries: weeklyEntries, loading: weeklyLoading, error: weeklyError } = useWeeklyBoxOffice(weeklyShowRange, weeklyGb)
   const isWeekly = koficPeriod !== 'daily'
   const periodLabel = koficPeriod === 'weekly' ? '주간' : '주말'
 
@@ -295,6 +295,13 @@ export function DashboardPage() {
               {(isWeekly ? weeklyLoading : koficLoading) ? (
                 <div className="flex items-center justify-center h-48">
                   <p className="text-gray-400 text-sm animate-pulse">박스오피스 데이터 로딩 중...</p>
+                </div>
+              ) : (isWeekly && weeklyError) ? (
+                <div className="flex items-center justify-center h-48">
+                  <div className="text-center">
+                    <p className="text-red-500 dark:text-red-400 text-sm font-medium mb-1">데이터를 불러올 수 없습니다</p>
+                    <p className="text-gray-400 text-xs">{weeklyError}</p>
+                  </div>
                 </div>
               ) : (
                 <AnimatePresence mode="wait">

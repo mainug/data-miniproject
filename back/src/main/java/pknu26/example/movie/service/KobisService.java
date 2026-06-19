@@ -8,7 +8,9 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 import pknu26.example.movie.dto.*;
 import pknu26.example.movie.entity.*;
 import pknu26.example.movie.repository.*;
@@ -80,8 +82,9 @@ public class KobisService {
     public List<WeeklyBoxOffice> getWeeklyBoxOffice(String showRange, String weekGb) {
         if (!weeklyRepo.existsByShowRangeAndWeekGb(showRange, weekGb)) {
             log.info("주간 박스오피스 DB 미존재, API 수집: {} weekGb={}", showRange, weekGb);
-            String targetDt = showRange.contains("~") ? showRange.split("~")[1] : showRange;
-            collectWeeklySingle(targetDt, weekGb, showRange);
+            // showRange = "YYYYMMDD~YYYYMMDD" → [0] 이 월요일(시작일), KOBIS는 월요일을 targetDt로 기대함
+            String targetDt = showRange.contains("~") ? showRange.split("~")[0] : showRange;
+            collectWeeklySingleForced(targetDt, weekGb, showRange);
         }
         return weeklyRepo.findByShowRangeAndWeekGbOrderByRankAsc(showRange, weekGb);
     }
@@ -270,6 +273,52 @@ public class KobisService {
         } catch (Exception e) {
             log.warn("  주간 {} (weekGb={}) 실패: {}", targetDt, weekGb, e.getMessage());
             return 0;
+        }
+    }
+
+    // on-demand 조회용: actualRange 무시하고 요청한 showRange 그대로 저장. KOBIS 에러 시 예외 전파.
+    private void collectWeeklySingleForced(String targetDt, String weekGb, String showRange) {
+        try {
+            String url = WEEKLY_URL + "?key=" + apiKey + "&targetDt=" + targetDt + "&weekGb=" + weekGb;
+            KobisWeeklyResponse resp = restTemplate.getForObject(url, KobisWeeklyResponse.class);
+
+            if (resp != null && resp.getFaultInfo() != null) {
+                String msg = resp.getFaultInfo().getMessage();
+                log.warn("  KOBIS API 오류 (weekGb={}): {}", weekGb, msg);
+                throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "KOBIS API 오류: " + msg);
+            }
+
+            if (resp == null || resp.getBoxOfficeResult() == null
+                    || resp.getBoxOfficeResult().getWeeklyBoxOfficeList() == null) return;
+
+            List<WeeklyBoxOffice> entities = resp.getBoxOfficeResult().getWeeklyBoxOfficeList().stream()
+                    .map(item -> WeeklyBoxOffice.builder()
+                            .showRange(showRange)
+                            .weekGb(weekGb)
+                            .rank(parsInt(item.getRank()))
+                            .movieCd(item.getMovieCd())
+                            .movieNm(item.getMovieNm())
+                            .openDt(item.getOpenDt())
+                            .salesAmt(parsLong(item.getSalesAmt()))
+                            .salesShare(parsDouble(item.getSalesShare()))
+                            .salesAcc(parsLong(item.getSalesAcc()))
+                            .audiCnt(parsLong(item.getAudiCnt()))
+                            .audiAcc(parsLong(item.getAudiAcc()))
+                            .scrnCnt(parsLong(item.getScrnCnt()))
+                            .showCnt(parsLong(item.getShowCnt()))
+                            .build())
+                    .collect(Collectors.toList());
+
+            if (!entities.isEmpty()) {
+                weeklyRepo.saveAll(entities);
+                String label = weekGb.equals("0") ? "주간" : "주말";
+                log.info("  {} {} — {}편 (on-demand)", label, showRange, entities.size());
+            }
+            Thread.sleep(300);
+        } catch (ResponseStatusException e) {
+            throw e;  // KOBIS 에러는 그대로 전파
+        } catch (Exception e) {
+            log.warn("  주간 {} (weekGb={}) 실패: {}", targetDt, weekGb, e.getMessage());
         }
     }
 
