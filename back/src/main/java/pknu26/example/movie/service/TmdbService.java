@@ -9,8 +9,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import pknu26.example.movie.dto.TmdbGenreListResponse;
 import pknu26.example.movie.dto.TmdbMovieItem;
 import pknu26.example.movie.dto.TmdbMovieListResponse;
-import pknu26.example.movie.entity.Movie;
-import pknu26.example.movie.repository.MovieRepository;
+import pknu26.example.movie.entity.TmdbMovie;
+import pknu26.example.movie.repository.TmdbMovieRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,10 +27,10 @@ public class TmdbService {
     @Value("${tmdb.api.key}")
     private String apiKey;
 
-    private final MovieRepository movieRepository;
+    private final TmdbMovieRepository movieRepository;
     private final RestTemplate restTemplate;
 
-    public TmdbService(MovieRepository movieRepository) {
+    public TmdbService(TmdbMovieRepository movieRepository) {
         this.movieRepository = movieRepository;
         this.restTemplate = new RestTemplate();
     }
@@ -42,9 +42,9 @@ public class TmdbService {
         Map<Integer, String> genreMap = fetchGenreMap();
         log.info("장르 목록 로드 완료: {}개", genreMap.size());
 
-        List<Movie> movies = new ArrayList<>();
+        List<TmdbMovie> movies = new ArrayList<>();
         for (int page = 1; page <= 5; page++) {
-            List<Movie> pageMovies = fetchTopRatedPage(page, genreMap);
+            List<TmdbMovie> pageMovies = fetchTopRatedPage(page, genreMap);
             movies.addAll(pageMovies);
             log.info("페이지 {}/5 완료 (누적 {}편)", page, movies.size());
         }
@@ -67,7 +67,7 @@ public class TmdbService {
         return map;
     }
 
-    public List<Movie> searchMovies(String query) {
+    public List<TmdbMovie> searchMovies(String query) {
         Map<Integer, String> genreMap = fetchGenreMap();
         String url = UriComponentsBuilder.fromHttpUrl(BASE + "/search/movie")
                 .queryParam("api_key", apiKey)
@@ -81,7 +81,7 @@ public class TmdbService {
                 .collect(Collectors.toList());
     }
 
-    private List<Movie> fetchTopRatedPage(int page, Map<Integer, String> genreMap) {
+    private List<TmdbMovie> fetchTopRatedPage(int page, Map<Integer, String> genreMap) {
         String url = BASE + "/movie/top_rated?api_key=" + apiKey + "&language=ko-KR&page=" + page;
         TmdbMovieListResponse resp = restTemplate.getForObject(url, TmdbMovieListResponse.class);
 
@@ -92,14 +92,14 @@ public class TmdbService {
                 .collect(Collectors.toList());
     }
 
-    private Movie toMovie(TmdbMovieItem item, Map<Integer, String> genreMap) {
+    private TmdbMovie toMovie(TmdbMovieItem item, Map<Integer, String> genreMap) {
         List<String> genreNames = item.getGenreIds() == null ? List.of() :
                 item.getGenreIds().stream()
                         .map(id -> genreMap.getOrDefault(id, null))
                         .filter(name -> name != null)
                         .collect(Collectors.toList());
 
-        return Movie.builder()
+        return TmdbMovie.builder()
                 .id(item.getId())
                 .title(item.getTitle())
                 .originalTitle(item.getOriginalTitle())
