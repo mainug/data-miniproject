@@ -1,7 +1,10 @@
 import type { BoxOfficeEntry } from '../../types/movie'
+import type { AiCommentaryPayload } from '../../api/ai'
+import { ChartAiWrapper } from '../ChartAiWrapper'
 
 interface Props {
   entries: BoxOfficeEntry[]
+  aiPayload?: AiCommentaryPayload | null
 }
 
 function RankBadge({ rank }: { rank: number }) {
@@ -32,12 +35,13 @@ function fmtAudi(n: number) {
   return n.toLocaleString()
 }
 
-export function KoficRankingTab({ entries }: Props) {
+export function KoficRankingTab({ entries, aiPayload }: Props) {
   if (entries.length === 0) return (
     <div className="text-center py-20 text-gray-400 text-sm">데이터가 없습니다</div>
   )
 
   return (
+    <ChartAiWrapper payload={aiPayload ?? null} chartFocus="ranking">
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
         <thead>
@@ -91,5 +95,6 @@ export function KoficRankingTab({ entries }: Props) {
         </tbody>
       </table>
     </div>
+    </ChartAiWrapper>
   )
 }

@@ -3,10 +3,13 @@ import {
   ResponsiveContainer, Cell,
 } from 'recharts'
 import type { WeeklyEntry } from '../../types/movie'
+import type { AiCommentaryPayload } from '../../api/ai'
+import { ChartAiWrapper } from '../ChartAiWrapper'
 
 interface Props {
   entries: WeeklyEntry[]
   periodLabel: string
+  aiPayload?: AiCommentaryPayload | null
 }
 
 const COLORS = ['#22c55e', '#16a34a', '#4ade80', '#86efac', '#bbf7d0', '#dcfce7', '#f0fdf4', '#6ee7b7', '#34d399', '#10b981']
@@ -16,7 +19,7 @@ function fmtAudi(n: number) {
   return n.toLocaleString()
 }
 
-export function KoficWeeklyAudienceTab({ entries, periodLabel }: Props) {
+export function KoficWeeklyAudienceTab({ entries, periodLabel, aiPayload }: Props) {
   if (entries.length === 0) return (
     <div className="text-center py-20 text-gray-400 text-sm">데이터가 없습니다</div>
   )
@@ -44,6 +47,7 @@ export function KoficWeeklyAudienceTab({ entries, periodLabel }: Props) {
 
   return (
     <div className="space-y-12">
+      <ChartAiWrapper payload={aiPayload ?? null} chartFocus="audience">
       <div>
         <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-6">{periodLabel} 관객수</h3>
         <ResponsiveContainer width="100%" height={Math.max(280, entries.length * 28)}>
@@ -58,7 +62,9 @@ export function KoficWeeklyAudienceTab({ entries, periodLabel }: Props) {
           </BarChart>
         </ResponsiveContainer>
       </div>
+      </ChartAiWrapper>
 
+      <ChartAiWrapper payload={aiPayload ?? null} chartFocus="audience">
       <div>
         <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-6">누적 관객수 (만명)</h3>
         <ResponsiveContainer width="100%" height={Math.max(280, entries.length * 28)}>
@@ -71,6 +77,7 @@ export function KoficWeeklyAudienceTab({ entries, periodLabel }: Props) {
           </BarChart>
         </ResponsiveContainer>
       </div>
+      </ChartAiWrapper>
     </div>
   )
 }
