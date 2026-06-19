@@ -15,7 +15,7 @@ export function getYesterday(): string {
   return d.toISOString().slice(0, 10)
 }
 
-const DATA_MIN_DATE = '2026-04-01'
+const DATA_MIN_DATE = '2004-01-01'
 
 export function KoficDateNav({ date, onChange }: Props) {
   const yesterday = getYesterday()

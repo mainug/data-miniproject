@@ -13,9 +13,14 @@ import { KoficDateNav, getYesterday } from '../components/kofic/KoficDateNav'
 import { KoficRankingTab } from '../components/kofic/KoficRankingTab'
 import { KoficSalesTab } from '../components/kofic/KoficSalesTab'
 import { KoficAudienceTab } from '../components/kofic/KoficAudienceTab'
+import { KoficWeeklyNav, buildShowRange, getLastMonday } from '../components/kofic/KoficWeeklyNav'
+import { KoficWeeklyRankingTab } from '../components/kofic/KoficWeeklyRankingTab'
+import { KoficWeeklySalesTab } from '../components/kofic/KoficWeeklySalesTab'
+import { KoficWeeklyAudienceTab } from '../components/kofic/KoficWeeklyAudienceTab'
 import { useMovieData } from '../hooks/useMovieData'
 import { useBoxOffice } from '../hooks/useBoxOffice'
-import type { SortKey, TmdbTabId, KoficTabId, SourceTab } from '../types/movie'
+import { useWeeklyBoxOffice } from '../hooks/useWeeklyBoxOffice'
+import type { SortKey, TmdbTabId, KoficTabId, KoficPeriod, SourceTab } from '../types/movie'
 
 const TMDB_TABS: { id: TmdbTabId; label: string }[] = [
   { id: 'ranking', label: '🏆 랭킹' },
@@ -64,9 +69,15 @@ export function DashboardPage() {
   }, [topN, movies, selectedGenres]) // yearRange는 deps 제외 (무한루프 방지)
 
   // KOFIC
+  const [koficPeriod, setKoficPeriod] = useState<KoficPeriod>('daily')
   const [koficTab, setKoficTab] = useState<KoficTabId>('ranking')
   const [koficDate, setKoficDate] = useState(getYesterday())
   const { entries, loading: koficLoading } = useBoxOffice(koficDate)
+  const [weeklyShowRange, setWeeklyShowRange] = useState(() => buildShowRange(getLastMonday()))
+  const weeklyGb = koficPeriod === 'weekend' ? '1' : '0'
+  const { entries: weeklyEntries, loading: weeklyLoading } = useWeeklyBoxOffice(weeklyShowRange, weeklyGb)
+  const isWeekly = koficPeriod !== 'daily'
+  const periodLabel = koficPeriod === 'weekly' ? '주간' : '주말'
 
   const filtered = useMemo(() => {
     let ms = movies.filter((m) => {
@@ -230,7 +241,30 @@ export function DashboardPage() {
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2 }}
           >
-            <KoficDateNav date={koficDate} onChange={setKoficDate} />
+            {/* 기간 선택기 (일별 / 주간 / 주말) */}
+            <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
+              <div className="max-w-7xl mx-auto px-6 sm:px-10 py-3 flex gap-1">
+                {(['daily', 'weekly', 'weekend'] as KoficPeriod[]).map((p) => (
+                  <button
+                    key={p}
+                    onClick={() => setKoficPeriod(p)}
+                    className={`px-5 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                      koficPeriod === p
+                        ? 'bg-green-500 text-white shadow-sm'
+                        : 'text-gray-500 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    }`}
+                  >
+                    {p === 'daily' ? '일별' : p === 'weekly' ? '주간' : '주말'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* 날짜 / 기간 선택 */}
+            {!isWeekly
+              ? <KoficDateNav date={koficDate} onChange={setKoficDate} />
+              : <KoficWeeklyNav showRange={weeklyShowRange} onChange={setWeeklyShowRange} />
+            }
 
             {/* KOFIC 하위 탭 */}
             <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
@@ -258,22 +292,25 @@ export function DashboardPage() {
             </div>
 
             <div className="max-w-7xl mx-auto px-6 sm:px-10 py-10">
-              {koficLoading ? (
+              {(isWeekly ? weeklyLoading : koficLoading) ? (
                 <div className="flex items-center justify-center h-48">
                   <p className="text-gray-400 text-sm animate-pulse">박스오피스 데이터 로딩 중...</p>
                 </div>
               ) : (
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={koficTab}
+                    key={`${koficPeriod}-${koficTab}`}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {koficTab === 'ranking' && <KoficRankingTab entries={entries} />}
-                    {koficTab === 'sales' && <KoficSalesTab entries={entries} />}
-                    {koficTab === 'audience' && <KoficAudienceTab entries={entries} />}
+                    {!isWeekly && koficTab === 'ranking' && <KoficRankingTab entries={entries} />}
+                    {!isWeekly && koficTab === 'sales' && <KoficSalesTab entries={entries} />}
+                    {!isWeekly && koficTab === 'audience' && <KoficAudienceTab entries={entries} />}
+                    {isWeekly && koficTab === 'ranking' && <KoficWeeklyRankingTab entries={weeklyEntries} periodLabel={periodLabel} />}
+                    {isWeekly && koficTab === 'sales' && <KoficWeeklySalesTab entries={weeklyEntries} periodLabel={periodLabel} />}
+                    {isWeekly && koficTab === 'audience' && <KoficWeeklyAudienceTab entries={weeklyEntries} periodLabel={periodLabel} />}
                   </motion.div>
                 </AnimatePresence>
               )}

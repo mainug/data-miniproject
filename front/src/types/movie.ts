@@ -34,7 +34,25 @@ export interface BoxOfficeEntry {
   date: string
 }
 
+export interface WeeklyEntry {
+  id: number
+  showRange: string   // "20260526~20260601"
+  weekGb: string      // "0"=주간, "1"=주말
+  rank: number
+  movieCd: string
+  movieNm: string
+  openDt: string
+  salesAmt: number
+  salesShare: number
+  salesAcc: number
+  audiCnt: number
+  audiAcc: number
+  scrnCnt: number
+  showCnt: number
+}
+
 export type SortKey = 'vote_average' | 'popularity' | 'release_date'
 export type TmdbTabId = 'ranking' | 'genre' | 'trend' | 'analysis' | 'search'
 export type KoficTabId = 'ranking' | 'sales' | 'audience'
 export type SourceTab = 'tmdb' | 'kofic'
+export type KoficPeriod = 'daily' | 'weekly' | 'weekend'
