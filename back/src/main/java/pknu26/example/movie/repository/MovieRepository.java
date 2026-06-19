@@ -11,7 +11,7 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     // 1. 연도별 범위 조회 쿼리
-    @Query("SELECT m FROM Movie m WHERE YEAR(m.releaseDate) BETWEEN CAST(:startYear AS integer) AND CAST(:endYear AS integer)")
+    @Query("SELECT m FROM Movie m WHERE SUBSTRING(m.releaseDate, 1, 4) BETWEEN :startYear AND :endYear")
     List<Movie> findMoviesByYearRange(
         @Param("startYear") String startYear, 
         @Param("endYear") String endYear, 

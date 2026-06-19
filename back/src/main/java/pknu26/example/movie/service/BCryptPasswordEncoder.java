@@ -2,14 +2,15 @@ package pknu26.example.movie.service;
 
 public class BCryptPasswordEncoder {
 
+    private final org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder delegate =
+            new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();
+
     public String encode(String password) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'encode'");
+        return delegate.encode(password);
     }
 
-    public boolean matches(String password, String password2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'matches'");
+    public boolean matches(String password, String encodedPassword) {
+        return delegate.matches(password, encodedPassword);
     }
 
 }
