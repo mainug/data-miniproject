@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import pknu26.example.movie.dto.BoxOfficeEntryDto;
+import pknu26.example.movie.dto.TrendAnalysisDto;
 import pknu26.example.movie.entity.*;
 import pknu26.example.movie.repository.TmdbMovieRepository;
 import pknu26.example.movie.service.KobisService;
@@ -72,6 +73,12 @@ public class MovieApiController {
     @GetMapping("/boxoffice/weekly/ranges")
     public List<String> getWeeklyRanges(@RequestParam(name = "weekGb", defaultValue = "0") String weekGb) {
         return kobisService.getWeeklyRanges(weekGb);
+    }
+
+    /** 주간 박스오피스 계절별/월별 트렌드 분석 */
+    @GetMapping("/boxoffice/weekly/trends")
+    public TrendAnalysisDto getWeeklyTrends() {
+        return kobisService.getWeeklyTrends();
     }
 
     /** KOFIC 공통코드 조회 */

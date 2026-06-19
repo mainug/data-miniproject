@@ -55,7 +55,8 @@ export function BattlePage() {
   const [flashKey, setFlashKey] = useState(0)
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/battle/pool')
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL
+    fetch(`${BASE_URL}/api/battle/pool`)
       .then((r) => r.json())
       .then((data: BattleMovie[]) => {
         setPool(data)
