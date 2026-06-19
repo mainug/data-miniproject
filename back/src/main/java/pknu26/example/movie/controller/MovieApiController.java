@@ -43,6 +43,12 @@ public class MovieApiController {
         return count + "편 갱신 완료";
     }
 
+    /** TMDB 영화 개별 조회 (DB 우선, 없으면 TMDB API fallback) */
+    @GetMapping("/movies/{id}")
+    public TmdbMovie getMovieById(@PathVariable Long id) {
+        return tmdbService.getMovieById(id);
+    }
+
     /** TMDB 영화 검색 */
     @GetMapping("/movies/search")
     public List<TmdbMovie> searchMovies(@RequestParam(name = "query") String query) {
