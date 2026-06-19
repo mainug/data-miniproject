@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Value; // 👈 추가 임포
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-import pknu26.example.movie.entity.Movie;
-import pknu26.example.movie.repository.MovieRepository;
+import pknu26.example.movie.entity.TmdbMovie;
+import pknu26.example.movie.repository.TmdbMovieRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +18,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MovieApiService {
 
-    private final MovieRepository movieRepository;
+    private final TmdbMovieRepository movieRepository;
     private final RestTemplate restTemplate = new RestTemplate(); 
 
     // ⚠️ [중요] 여기에 영진위 오픈 API 홈페이지에서 발급받은 실제 키(발급번호 문자열)를 넣으셔야 합니다!
@@ -69,7 +69,7 @@ public class MovieApiService {
                     
                     // 중복 체크 후 저장
                     if (movieRepository.findByTitleContainingIgnoreCase(movieNm).isEmpty()) {
-                        Movie movie = new Movie();
+                        TmdbMovie movie = new TmdbMovie();
                         movie.setTitle(movieNm);
                         
                         // 💡 프로젝트 요구사항 및 Entity 구조에 맞게 필요한 데이터 매핑 (예시)

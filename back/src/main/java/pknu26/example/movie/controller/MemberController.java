@@ -11,6 +11,7 @@ import pknu26.example.movie.entity.Member;
 import pknu26.example.movie.entity.NoDoubleSubmit;
 import pknu26.example.movie.service.MemberService;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,6 +23,11 @@ public class MemberController {
     private static final String LOGIN_MEMBER_ID = "LOGIN_MEMBER_ID";
 
     private final MemberService memberService;
+
+    @GetMapping
+    public List<MemberResponse> list() {
+        return memberService.getAllMembers();
+    }
 
     @PostMapping("/signup")
     @NoDoubleSubmit

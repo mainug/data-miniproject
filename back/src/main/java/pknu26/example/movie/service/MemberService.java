@@ -7,6 +7,8 @@ import pknu26.example.movie.dto.MemberDto.*;
 import pknu26.example.movie.entity.Member;
 import pknu26.example.movie.repository.MemberRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -44,5 +46,11 @@ public class MemberService {
     public Member getMember(Long id) {
         return memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+    }
+
+    public List<MemberResponse> getAllMembers() {
+        return memberRepository.findAll().stream()
+                .map(MemberResponse::from)
+                .toList();
     }
 }
