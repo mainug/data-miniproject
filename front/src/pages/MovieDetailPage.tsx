@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { Header } from '../components/Header'
@@ -6,6 +7,8 @@ import { RadarStatChart } from '../components/charts/RadarStatChart'
 import { GenreRankBar } from '../components/charts/GenreRankBar'
 import { YearPeerScatter } from '../components/charts/YearPeerScatter'
 import { useMovieData } from '../hooks/useMovieData'
+import { fetchMovieById } from '../api/movies'
+import type { Movie } from '../types/movie'
 
 const TMDB_IMG_W500 = 'https://image.tmdb.org/t/p/w500'
 const TMDB_IMG_ORIG = 'https://image.tmdb.org/t/p/original'
@@ -23,9 +26,23 @@ function fmtSales(n: number) {
 export function MovieDetailPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { movies, loading } = useMovieData()
+  const { movies, loading: listLoading } = useMovieData()
+  const [fallbackMovie, setFallbackMovie] = useState<Movie | null>(null)
+  const [fallbackLoading, setFallbackLoading] = useState(false)
 
-  const movie = movies.find((m) => m.id === Number(id))
+  const cachedMovie = movies.find((m) => m.id === Number(id))
+
+  useEffect(() => {
+    if (!listLoading && !cachedMovie && id) {
+      setFallbackLoading(true)
+      fetchMovieById(Number(id))
+        .then(setFallbackMovie)
+        .finally(() => setFallbackLoading(false))
+    }
+  }, [listLoading, cachedMovie, id])
+
+  const movie = cachedMovie || fallbackMovie
+  const loading = listLoading || fallbackLoading
   const ratingPct = movie ? Math.round((movie.vote_average / 10) * 100) : 0
 
   const posterUrl = movie?.poster_path
