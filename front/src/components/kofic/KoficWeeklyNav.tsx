@@ -35,10 +35,13 @@ export function buildWeekendRange(dateStr: string): string {
 }
 
 export function getLastMonday(): string {
-  const today = new Date()
-  const monday = getMonday(toIso(today))
-  if (toIso(monday) >= toIso(today)) monday.setDate(monday.getDate() - 7)
-  return toIso(monday)
+  // 가장 최근에 완전히 끝난 주(일요일이 지난 주)의 월요일을 반환
+  const yesterday = new Date()
+  yesterday.setDate(yesterday.getDate() - 1)
+  const day = yesterday.getDay() // 0=일
+  const lastSunday = new Date(yesterday)
+  if (day !== 0) lastSunday.setDate(yesterday.getDate() - day)
+  return toIso(getMonday(toIso(lastSunday)))
 }
 
 function addWeeks(dateStr: string, n: number): string {
