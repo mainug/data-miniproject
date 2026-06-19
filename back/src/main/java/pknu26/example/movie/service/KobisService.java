@@ -56,9 +56,13 @@ public class KobisService {
     // 일별 박스오피스 (기존)
     // ══════════════════════════════════════════════
 
-    @Transactional(readOnly = true)
+    @Transactional
     public List<BoxOfficeEntryDto> getDailyBoxOffice(String date) {
         String targetDate = resolveDate(date);
+        if (!dailyRepo.existsByDate(targetDate)) {
+            log.info("일별 박스오피스 DB 미존재, API 수집: {}", targetDate);
+            collectDailySingle(targetDate);
+        }
         return dailyRepo.findByDateOrderByRankAsc(targetDate)
                 .stream().map(this::toDto).collect(Collectors.toList());
     }
@@ -72,8 +76,13 @@ public class KobisService {
     // 주간/주말 박스오피스 조회
     // ══════════════════════════════════════════════
 
-    @Transactional(readOnly = true)
+    @Transactional
     public List<WeeklyBoxOffice> getWeeklyBoxOffice(String showRange, String weekGb) {
+        if (!weeklyRepo.existsByShowRangeAndWeekGb(showRange, weekGb)) {
+            log.info("주간 박스오피스 DB 미존재, API 수집: {} weekGb={}", showRange, weekGb);
+            String targetDt = showRange.contains("~") ? showRange.split("~")[1] : showRange;
+            collectWeeklySingle(targetDt, weekGb, showRange);
+        }
         return weeklyRepo.findByShowRangeAndWeekGbOrderByRankAsc(showRange, weekGb);
     }
 
