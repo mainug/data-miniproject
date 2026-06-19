@@ -299,18 +299,26 @@ public class KobisService {
     // ── 영화목록 + 상세정보 수집 ──
 
     private int collectMovieList() {
-        String openStartDt = DATA_START_DATE.format(COMPACT);
-        String openEndDt = LocalDate.now().minusDays(1).format(COMPACT);
+        int prdtStartYear = DATA_START_DATE.getYear() - 1;
+        int prdtEndYear = LocalDate.now().getYear();
         int totalCollected = 0;
 
         try {
-            for (int page = 1; page <= 10; page++) {
+            int totalPages = Integer.MAX_VALUE;
+            for (int page = 1; page <= totalPages; page++) {
                 String url = MOVIE_LIST_URL + "?key=" + apiKey
-                        + "&openStartDt=" + openStartDt + "&openEndDt=" + openEndDt
+                        + "&prdtStartYear=" + prdtStartYear + "&prdtEndYear=" + prdtEndYear
                         + "&curPage=" + page + "&itemPerPage=100";
                 KobisMovieListResponse resp = restTemplate.getForObject(url, KobisMovieListResponse.class);
                 if (resp == null || resp.getMovieListResult() == null
                         || resp.getMovieListResult().getMovieList() == null) break;
+
+                if (page == 1) {
+                    int totCnt = resp.getMovieListResult().getTotCnt();
+                    totalPages = (totCnt + 99) / 100;
+                    log.info("[영화목록] 총 {}편, {}페이지 수집 시작 ({}~{}년)",
+                            totCnt, totalPages, prdtStartYear, prdtEndYear);
+                }
 
                 List<KobisMovieListResponse.MovieItem> items = resp.getMovieListResult().getMovieList();
                 if (items.isEmpty()) break;
@@ -336,8 +344,7 @@ public class KobisService {
                     Thread.sleep(300);
                 }
 
-                log.info("  영화목록 페이지 {}/{} — 누적 {}편", page,
-                        (resp.getMovieListResult().getTotCnt() + 99) / 100, totalCollected);
+                log.info("  영화목록 페이지 {}/{} — 누적 {}편", page, totalPages, totalCollected);
 
                 if (items.size() < 100) break;
                 Thread.sleep(300);

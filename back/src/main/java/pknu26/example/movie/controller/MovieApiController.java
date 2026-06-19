@@ -6,7 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import pknu26.example.movie.dto.BoxOfficeEntryDto;
 import pknu26.example.movie.entity.*;
-import pknu26.example.movie.repository.MovieRepository;
+import pknu26.example.movie.repository.TmdbMovieRepository;
 import pknu26.example.movie.service.KobisService;
 import pknu26.example.movie.service.TmdbService;
 
@@ -22,11 +22,11 @@ public class MovieApiController {
 
     private final TmdbService tmdbService;
     private final KobisService kobisService;
-    private final MovieRepository movieRepository;
+    private final TmdbMovieRepository movieRepository;
 
     /** 전체 영화 목록 — DB가 비어있으면 TMDB에서 자동 수집 */
     @GetMapping("/movies")
-    public List<Movie> getMovies() {
+    public List<TmdbMovie> getMovies() {
         if (movieRepository.count() == 0) {
             log.info("DB가 비어있어 TMDB에서 영화 데이터를 수집합니다.");
             tmdbService.fetchAndStore();
@@ -44,7 +44,7 @@ public class MovieApiController {
 
     /** TMDB 영화 검색 */
     @GetMapping("/movies/search")
-    public List<Movie> searchMovies(@RequestParam(name = "query") String query) {
+    public List<TmdbMovie> searchMovies(@RequestParam(name = "query") String query) {
         return tmdbService.searchMovies(query);
     }
 
