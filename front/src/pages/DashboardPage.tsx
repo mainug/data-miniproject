@@ -13,8 +13,10 @@ import { KoficDateNav, getYesterday } from '../components/kofic/KoficDateNav'
 import { KoficRankingTab } from '../components/kofic/KoficRankingTab'
 import { KoficSalesTab } from '../components/kofic/KoficSalesTab'
 import { KoficAudienceTab } from '../components/kofic/KoficAudienceTab'
+import { KoficTrendTab } from '../components/kofic/KoficTrendTab'
 import { useMovieData } from '../hooks/useMovieData'
 import { useBoxOffice } from '../hooks/useBoxOffice'
+import { useWeeklyTrends } from '../hooks/useWeeklyTrends'
 import type { SortKey, TmdbTabId, KoficTabId, SourceTab } from '../types/movie'
 
 const TMDB_TABS: { id: TmdbTabId; label: string }[] = [
@@ -29,6 +31,7 @@ const KOFIC_TABS: { id: KoficTabId; label: string }[] = [
   { id: 'ranking', label: '📋 순위' },
   { id: 'sales', label: '💰 매출' },
   { id: 'audience', label: '👥 관객' },
+  { id: 'trend', label: '📊 트렌드' },
 ]
 
 export function DashboardPage() {
@@ -67,6 +70,7 @@ export function DashboardPage() {
   const [koficTab, setKoficTab] = useState<KoficTabId>('ranking')
   const [koficDate, setKoficDate] = useState(getYesterday())
   const { entries, loading: koficLoading } = useBoxOffice(koficDate)
+  const { data: trendData, loading: trendLoading } = useWeeklyTrends()
 
   const filtered = useMemo(() => {
     let ms = movies.filter((m) => {
@@ -274,6 +278,13 @@ export function DashboardPage() {
                     {koficTab === 'ranking' && <KoficRankingTab entries={entries} />}
                     {koficTab === 'sales' && <KoficSalesTab entries={entries} />}
                     {koficTab === 'audience' && <KoficAudienceTab entries={entries} />}
+                    {koficTab === 'trend' && (
+                      trendLoading
+                        ? <div className="flex items-center justify-center h-48"><p className="text-gray-400 text-sm animate-pulse">트렌드 데이터 로딩 중...</p></div>
+                        : trendData
+                          ? <KoficTrendTab data={trendData} />
+                          : <div className="text-center py-20 text-gray-400 text-sm">트렌드 데이터가 없습니다</div>
+                    )}
                   </motion.div>
                 </AnimatePresence>
               )}

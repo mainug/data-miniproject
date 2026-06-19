@@ -34,7 +34,21 @@ export interface BoxOfficeEntry {
   date: string
 }
 
+export interface WeeklyTrend {
+  period: string
+  totalSales: number
+  totalAudience: number
+  movieCount: number
+  topMovie: string
+  avgScreens: number
+}
+
+export interface TrendAnalysis {
+  monthly: WeeklyTrend[]
+  seasonal: WeeklyTrend[]
+}
+
 export type SortKey = 'vote_average' | 'popularity' | 'release_date'
 export type TmdbTabId = 'ranking' | 'genre' | 'trend' | 'analysis' | 'search'
-export type KoficTabId = 'ranking' | 'sales' | 'audience'
+export type KoficTabId = 'ranking' | 'sales' | 'audience' | 'trend'
 export type SourceTab = 'tmdb' | 'kofic'

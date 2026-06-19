@@ -36,8 +36,8 @@ public class KobisService {
     private static final String MOVIE_INFO_URL =
             "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json";
 
-    private static final int RETENTION_DAYS = 90;
-    private static final LocalDate DATA_START_DATE = LocalDate.of(2026, 4, 1);
+    private static final int RETENTION_DAYS = 365;
+    private static final LocalDate DATA_START_DATE = LocalDate.of(2025, 6, 19);
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter COMPACT = DateTimeFormatter.ofPattern("yyyyMMdd");
 
@@ -80,6 +80,87 @@ public class KobisService {
     @Transactional(readOnly = true)
     public List<String> getWeeklyRanges(String weekGb) {
         return weeklyRepo.findDistinctShowRangesByWeekGb(weekGb);
+    }
+
+    // ══════════════════════════════════════════════
+    // 주간 박스오피스 트렌드 분석
+    // ══════════════════════════════════════════════
+
+    @Transactional(readOnly = true)
+    public TrendAnalysisDto getWeeklyTrends() {
+        List<WeeklyBoxOffice> all = weeklyRepo.findAll().stream()
+                .filter(w -> "0".equals(w.getWeekGb()))
+                .collect(Collectors.toList());
+
+        return TrendAnalysisDto.builder()
+                .monthly(aggregateByMonth(all))
+                .seasonal(aggregateBySeason(all))
+                .build();
+    }
+
+    private List<WeeklyTrendDto> aggregateByMonth(List<WeeklyBoxOffice> data) {
+        Map<String, List<WeeklyBoxOffice>> grouped = new TreeMap<>();
+        for (WeeklyBoxOffice w : data) {
+            String month = extractMonth(w.getShowRange());
+            if (month != null) {
+                grouped.computeIfAbsent(month, k -> new ArrayList<>()).add(w);
+            }
+        }
+        return grouped.entrySet().stream()
+                .map(e -> buildTrend(e.getKey(), e.getValue()))
+                .collect(Collectors.toList());
+    }
+
+    private List<WeeklyTrendDto> aggregateBySeason(List<WeeklyBoxOffice> data) {
+        Map<String, List<WeeklyBoxOffice>> grouped = new TreeMap<>();
+        for (WeeklyBoxOffice w : data) {
+            String season = extractSeason(w.getShowRange());
+            if (season != null) {
+                grouped.computeIfAbsent(season, k -> new ArrayList<>()).add(w);
+            }
+        }
+        return grouped.entrySet().stream()
+                .map(e -> buildTrend(e.getKey(), e.getValue()))
+                .collect(Collectors.toList());
+    }
+
+    private WeeklyTrendDto buildTrend(String period, List<WeeklyBoxOffice> items) {
+        long totalSales = items.stream().mapToLong(WeeklyBoxOffice::getSalesAmt).sum();
+        long totalAudi = items.stream().mapToLong(WeeklyBoxOffice::getAudiCnt).sum();
+        long avgScreens = items.isEmpty() ? 0 : items.stream().mapToLong(WeeklyBoxOffice::getScrnCnt).sum() / items.size();
+        long movieCount = items.stream().map(WeeklyBoxOffice::getMovieNm).distinct().count();
+
+        String topMovie = items.stream()
+                .collect(Collectors.groupingBy(WeeklyBoxOffice::getMovieNm, Collectors.summingLong(WeeklyBoxOffice::getAudiCnt)))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey).orElse("");
+
+        return WeeklyTrendDto.builder()
+                .period(period)
+                .totalSales(totalSales)
+                .totalAudience(totalAudi)
+                .movieCount((int) movieCount)
+                .topMovie(topMovie)
+                .avgScreens(avgScreens)
+                .build();
+    }
+
+    private String extractMonth(String showRange) {
+        if (showRange == null || showRange.length() < 8) return null;
+        String start = showRange.substring(0, 8);
+        return start.substring(0, 4) + "-" + start.substring(4, 6);
+    }
+
+    private String extractSeason(String showRange) {
+        if (showRange == null || showRange.length() < 8) return null;
+        String start = showRange.substring(0, 8);
+        String year = start.substring(0, 4);
+        int month = Integer.parseInt(start.substring(4, 6));
+        if (month >= 3 && month <= 5) return year + " 봄";
+        if (month >= 6 && month <= 8) return year + " 여름";
+        if (month >= 9 && month <= 11) return year + " 가을";
+        return year + " 겨울";
     }
 
     // ══════════════════════════════════════════════
