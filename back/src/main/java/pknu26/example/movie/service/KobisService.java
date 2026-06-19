@@ -3,6 +3,9 @@ package pknu26.example.movie.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -23,6 +26,8 @@ public class KobisService {
 
     private static final String BASE =
             "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
+    private static final int RETENTION_DAYS = 30;
+    private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Value("${kobis.api.key}")
     private String apiKey;
@@ -30,24 +35,93 @@ public class KobisService {
     private final DailyBoxOfficeRepository boxOfficeRepository;
     private final RestTemplate restTemplate = new RestTemplate();
 
-    @Transactional
+    /** API 조회: DB에서만 읽기 (KOBIS API 호출 없음) */
+    @Transactional(readOnly = true)
     public List<BoxOfficeEntryDto> getDailyBoxOffice(String date) {
         String targetDate = resolveDate(date);
+        return boxOfficeRepository.findByDateOrderByRankAsc(targetDate)
+                .stream().map(this::toDto).collect(Collectors.toList());
+    }
 
-        // DB 캐시 확인 — 같은 날짜가 이미 있으면 API 호출 생략
+    /** DB에 저장된 날짜 목록 조회 */
+    @Transactional(readOnly = true)
+    public List<String> getAvailableDates() {
+        return boxOfficeRepository.findDistinctDatesDesc();
+    }
+
+    /** 매일 새벽 2시 실행: 어제 데이터 수집 + 30일 초과 삭제 */
+    @Scheduled(cron = "0 0 2 * * *")
+    @Transactional
+    public void scheduledCollect() {
+        log.info("[스케줄러] 일별 박스오피스 수집 시작");
+        String yesterday = LocalDate.now().minusDays(1).format(FMT);
+        collectSingleDay(yesterday);
+        purgeOldData();
+        log.info("[스케줄러] 수집 완료");
+    }
+
+    /** 서버 최초 기동 시 30일 백필 */
+    @EventListener(ApplicationReadyEvent.class)
+    @Transactional
+    public void backfillOnStartup() {
+        long count = boxOfficeRepository.count();
+        if (count > 0) {
+            log.info("[백필] DB에 이미 {}건 존재 — 빈 날짜만 보충", count);
+        }
+        int collected = 0;
+        LocalDate today = LocalDate.now();
+        for (int i = 1; i <= RETENTION_DAYS; i++) {
+            String date = today.minusDays(i).format(FMT);
+            if (!boxOfficeRepository.existsByDate(date)) {
+                collectSingleDay(date);
+                collected++;
+            }
+        }
+        if (collected > 0) {
+            log.info("[백필] {}일치 데이터 수집 완료", collected);
+        }
+    }
+
+    /** 수동 트리거용: 지정 일수만큼 백필 */
+    @Transactional
+    public int manualCollect(int days) {
+        int collected = 0;
+        LocalDate today = LocalDate.now();
+        for (int i = 1; i <= days; i++) {
+            String date = today.minusDays(i).format(FMT);
+            if (!boxOfficeRepository.existsByDate(date)) {
+                collectSingleDay(date);
+                collected++;
+            }
+        }
+        purgeOldData();
+        return collected;
+    }
+
+    // ── 내부 메서드 ──
+
+    private void collectSingleDay(String targetDate) {
         if (boxOfficeRepository.existsByDate(targetDate)) {
-            log.info("KOBIS 캐시 사용: {}", targetDate);
-            return boxOfficeRepository.findByDateOrderByRankAsc(targetDate)
-                    .stream().map(this::toDto).collect(Collectors.toList());
+            return;
         }
+        try {
+            List<DailyBoxOffice> entities = fetchFromApi(targetDate);
+            if (!entities.isEmpty()) {
+                boxOfficeRepository.saveAll(entities);
+                log.info("  {} — {}편 저장", targetDate, entities.size());
+            }
+            Thread.sleep(300);
+        } catch (Exception e) {
+            log.warn("  {} 수집 실패: {}", targetDate, e.getMessage());
+        }
+    }
 
-        // API 호출 후 DB 저장
-        log.info("KOBIS API 호출: {}", targetDate);
-        List<DailyBoxOffice> entities = fetchFromApi(targetDate);
-        if (!entities.isEmpty()) {
-            boxOfficeRepository.saveAll(entities);
+    private void purgeOldData() {
+        String cutoff = LocalDate.now().minusDays(RETENTION_DAYS + 1).format(FMT);
+        int deleted = boxOfficeRepository.deleteByDateBefore(cutoff);
+        if (deleted > 0) {
+            log.info("  {}일 이전 데이터 {}건 삭제", RETENTION_DAYS, deleted);
         }
-        return entities.stream().map(this::toDto).collect(Collectors.toList());
     }
 
     private List<DailyBoxOffice> fetchFromApi(String targetDate) {
@@ -109,7 +183,7 @@ public class KobisService {
     private String resolveDate(String date) {
         return (date != null && !date.isEmpty())
                 ? date
-                : LocalDate.now().minusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                : LocalDate.now().minusDays(1).format(FMT);
     }
 
     private int parsInt(String s) {

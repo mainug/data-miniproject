@@ -16,10 +16,13 @@ public class DailyBoxOffice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "`date`", nullable = false)
     private String date;  // YYYY-MM-DD
 
+    @Column(name = "`rank`")
     private int rank;
+
+    @Column(name = "rank_inten")
     private int rankInten;
 
     @Column(name = "rank_old_and_new")

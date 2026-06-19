@@ -20,7 +20,8 @@ export function SearchTab() {
     const timer = setTimeout(async () => {
       setLoading(true)
       try {
-        const res = await fetch(`http://localhost:8080/api/movies/search?query=${encodeURIComponent(q)}`)
+        const BASE_URL = import.meta.env.VITE_API_BASE_URL
+        const res = await fetch(`${BASE_URL}/api/movies/search?query=${encodeURIComponent(q)}`)
         const data: Movie[] = await res.json()
         setResults(data)
         setSearched(true)
