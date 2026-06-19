@@ -36,5 +36,75 @@ export interface BoxOfficeEntry {
   date: string        // 조회 날짜 'YYYY-MM-DD'
 }
 
-export type SortKey = 'vote_average' | 'popularity' | 'revenue' | 'release_date' | 'audi_acc'
-export type TabId = 'ranking' | 'genre' | 'trend' | 'analysis' | 'kobis'
+export interface WeeklyEntry {
+  id: number
+  showRange: string   // "20260526~20260601"
+  weekGb: string      // "0"=주간, "1"=주말
+  rank: number
+  movieCd: string
+  movieNm: string
+  openDt: string
+  salesAmt: number
+  salesShare: number
+  salesAcc: number
+  audiCnt: number
+  audiAcc: number
+  scrnCnt: number
+  showCnt: number
+}
+
+export interface WeeklyTrend {
+  period: string
+  totalSales: number
+  totalAudience: number
+  movieCount: number
+  topMovie: string
+  avgScreens: number
+}
+
+export interface TrendAnalysis {
+  monthly: WeeklyTrend[]
+  seasonal: WeeklyTrend[]
+}
+
+export interface DerivedStats {
+  rank: number
+  movieNm: string
+  openDt: string
+  daysSinceRelease: number
+  audiCnt: number
+  scrnCnt: number
+  showCnt: number
+  audiPerScreen: number
+  audiPerShow: number
+  screenShare: number
+  salesShare: number
+}
+
+export interface MovieTracking {
+  date: string
+  daysSinceRelease: number
+  weekNumber: number
+  audiCnt: number
+  audiAcc: number
+  salesAmt: number
+  salesAcc: number
+  scrnCnt: number
+  showCnt: number
+  audiPerScreen: number
+  audiPerShow: number
+}
+
+export interface AllTimeRanking {
+  rank: number
+  movieNm: string
+  openDt: string
+  maxAudiAcc: number
+  maxSalesAcc: number
+}
+
+export type SortKey = 'vote_average' | 'popularity' | 'release_date'
+export type TmdbTabId = 'ranking' | 'genre' | 'trend' | 'analysis' | 'search'
+export type KoficTabId = 'ranking' | 'sales' | 'audience' | 'trend' | 'stats' | 'tracking' | 'alltime'
+export type SourceTab = 'tmdb' | 'kofic'
+export type KoficPeriod = 'daily' | 'weekly' | 'weekend'

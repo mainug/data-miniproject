@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Movie {
+public class TmdbMovie {
 
     @Id
     private Long id; // TMDB movie ID (자동 생성 아님)

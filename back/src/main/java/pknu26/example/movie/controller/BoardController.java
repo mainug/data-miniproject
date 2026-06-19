@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import pknu26.example.movie.entity.Movie;
-import pknu26.example.movie.entity.NoDoubleSubmit; // 👈 우리가 만든 어노테이션 임포트!
+import pknu26.example.movie.entity.TmdbMovie;
+import pknu26.example.movie.entity.NoDoubleSubmit;
 import pknu26.example.movie.service.BoardService;
 import pknu26.example.movie.service.MovieApiService; // 👈 1. 데이터 수집 서비스 임포트!
 
@@ -36,10 +36,10 @@ public class BoardController {
             return "❌ 데이터 적재 중 에러 발생: " + e.getMessage();
         }
     }
-    
+
     // ✅ 목록 및 검색 조회
     @GetMapping
-    public List<Movie> list(@RequestParam(name = "keyword", required = false) String keyword) {
+    public List<TmdbMovie> list(@RequestParam(name = "keyword", required = false) String keyword) {
         if (keyword != null && !keyword.isEmpty()) {
             return boardService.searchMovies(keyword);
         } else {
@@ -47,30 +47,26 @@ public class BoardController {
         }
     }
 
-    // ✅ 상세 조회
     @GetMapping("/{id}")
-    public Movie detail(@PathVariable("id") Long id) {
+    public TmdbMovie detail(@PathVariable("id") Long id) {
         return boardService.getMovie(id);
     }
 
-    // ✅ 등록 처리 (⭐️중복 제출 방지 적용!)
     @PostMapping("/add")
-    @NoDoubleSubmit // 👈 여기에 추가되었습니다! 프론트 연타 및 중복 등록을 자동으로 차단합니다.
-    public String add(@RequestBody Movie movie) {
+    @NoDoubleSubmit
+    public String add(@RequestBody TmdbMovie movie) {
         boardService.saveMovie(movie);
         return "Success";
     }
 
-    // ✅ 수정 처리 (⭐️수정할 때도 연타를 막고 싶다면 추가 가능)
     @PostMapping("/edit/{id}")
-    @NoDoubleSubmit 
-    public String edit(@PathVariable("id") Long id, @RequestBody Movie movie) {
+    @NoDoubleSubmit
+    public String edit(@PathVariable("id") Long id, @RequestBody TmdbMovie movie) {
         movie.setId(id);
         boardService.saveMovie(movie);
         return "Success";
     }
 
-    // ✅ 삭제 처리
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id) {
         boardService.deleteMovie(id);

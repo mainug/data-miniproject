@@ -4,9 +4,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-import pknu26.example.movie.dto.BoxOfficeEntryDto;
+import pknu26.example.movie.dto.*;
+
 import pknu26.example.movie.entity.*;
-import pknu26.example.movie.repository.MovieRepository;
+import pknu26.example.movie.repository.TmdbMovieRepository;
 import pknu26.example.movie.service.KobisService;
 import pknu26.example.movie.service.TmdbService;
 
@@ -22,11 +23,11 @@ public class MovieApiController {
 
     private final TmdbService tmdbService;
     private final KobisService kobisService;
-    private final MovieRepository movieRepository;
+    private final TmdbMovieRepository movieRepository;
 
     /** 전체 영화 목록 — DB가 비어있으면 TMDB에서 자동 수집 */
     @GetMapping("/movies")
-    public List<Movie> getMovies() {
+    public List<TmdbMovie> getMovies() {
         if (movieRepository.count() == 0) {
             log.info("DB가 비어있어 TMDB에서 영화 데이터를 수집합니다.");
             tmdbService.fetchAndStore();
@@ -44,7 +45,7 @@ public class MovieApiController {
 
     /** TMDB 영화 검색 */
     @GetMapping("/movies/search")
-    public List<Movie> searchMovies(@RequestParam(name = "query") String query) {
+    public List<TmdbMovie> searchMovies(@RequestParam(name = "query") String query) {
         return tmdbService.searchMovies(query);
     }
 
@@ -72,6 +73,38 @@ public class MovieApiController {
     @GetMapping("/boxoffice/weekly/ranges")
     public List<String> getWeeklyRanges(@RequestParam(name = "weekGb", defaultValue = "0") String weekGb) {
         return kobisService.getWeeklyRanges(weekGb);
+    }
+
+    /** 주간 박스오피스 계절별/월별 트렌드 분석 */
+    @GetMapping("/boxoffice/weekly/trends")
+    public TrendAnalysisDto getWeeklyTrends() {
+        return kobisService.getWeeklyTrends();
+    }
+
+    /** 파생 통계 (스크린당 관객수, 점유율 등) */
+    @GetMapping("/boxoffice/derived")
+    public List<DerivedStatsDto> getDerivedStats(@RequestParam(name = "date", required = false) String date) {
+        return kobisService.getDerivedStats(date);
+    }
+
+    /** 영화 추적 (개봉 주차별 추이) */
+    @GetMapping("/boxoffice/tracking")
+    public List<MovieTrackingDto> getMovieTracking(@RequestParam(name = "movieNm") String movieNm) {
+        return kobisService.getMovieTracking(movieNm);
+    }
+
+    /** 추적 가능 영화 목록 */
+    @GetMapping("/boxoffice/tracking/movies")
+    public List<String> getTrackableMovies() {
+        return kobisService.getTrackableMovieNames();
+    }
+
+    /** 역대 흥행 순위 */
+    @GetMapping("/boxoffice/alltime")
+    public List<AllTimeRankingDto> getAllTimeRankings(
+            @RequestParam(name = "sortBy", defaultValue = "audience") String sortBy,
+            @RequestParam(name = "limit", defaultValue = "20") int limit) {
+        return kobisService.getAllTimeRankings(sortBy, limit);
     }
 
     /** KOFIC 공통코드 조회 */

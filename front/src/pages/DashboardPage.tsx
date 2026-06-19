@@ -13,9 +13,20 @@ import { KoficDateNav, getYesterday } from '../components/kofic/KoficDateNav'
 import { KoficRankingTab } from '../components/kofic/KoficRankingTab'
 import { KoficSalesTab } from '../components/kofic/KoficSalesTab'
 import { KoficAudienceTab } from '../components/kofic/KoficAudienceTab'
+import { KoficTrendTab } from '../components/kofic/KoficTrendTab'
+import { KoficWeeklyNav, buildShowRange, buildWeekendRange, getLastMonday } from '../components/kofic/KoficWeeklyNav'
+import { KoficWeeklyRankingTab } from '../components/kofic/KoficWeeklyRankingTab'
+import { KoficWeeklySalesTab } from '../components/kofic/KoficWeeklySalesTab'
+import { KoficWeeklyAudienceTab } from '../components/kofic/KoficWeeklyAudienceTab'
+import { KoficStatsTab } from '../components/kofic/KoficStatsTab'
+import { KoficTrackingTab } from '../components/kofic/KoficTrackingTab'
+import { KoficAllTimeTab } from '../components/kofic/KoficAllTimeTab'
 import { useMovieData } from '../hooks/useMovieData'
 import { useBoxOffice } from '../hooks/useBoxOffice'
-import type { SortKey, TmdbTabId, KoficTabId, SourceTab } from '../types/movie'
+import { useWeeklyBoxOffice } from '../hooks/useWeeklyBoxOffice'
+import { useWeeklyTrends } from '../hooks/useWeeklyTrends'
+import { useDerivedStats } from '../hooks/useDerivedStats'
+import type { SortKey, TmdbTabId, KoficTabId, KoficPeriod, SourceTab } from '../types/movie'
 
 const TMDB_TABS: { id: TmdbTabId; label: string }[] = [
   { id: 'ranking', label: '🏆 랭킹' },
@@ -29,6 +40,10 @@ const KOFIC_TABS: { id: KoficTabId; label: string }[] = [
   { id: 'ranking', label: '📋 순위' },
   { id: 'sales', label: '💰 매출' },
   { id: 'audience', label: '👥 관객' },
+  { id: 'trend', label: '📊 트렌드' },
+  { id: 'stats', label: '📐 파생통계' },
+  { id: 'tracking', label: '🔍 추적' },
+  { id: 'alltime', label: '🏆 역대순위' },
 ]
 
 export function DashboardPage() {
@@ -64,9 +79,19 @@ export function DashboardPage() {
   }, [topN, movies, selectedGenres]) // yearRange는 deps 제외 (무한루프 방지)
 
   // KOFIC
+  const [koficPeriod, setKoficPeriod] = useState<KoficPeriod>('daily')
   const [koficTab, setKoficTab] = useState<KoficTabId>('ranking')
   const [koficDate, setKoficDate] = useState(getYesterday())
   const { entries, loading: koficLoading } = useBoxOffice(koficDate)
+  const { data: derivedData, loading: derivedLoading } = useDerivedStats(koficDate)
+  const { data: trendData, loading: trendLoading } = useWeeklyTrends()
+  const [weeklyMonday, setWeeklyMonday] = useState(getLastMonday)
+  const weeklyGb = koficPeriod === 'weekend' ? '1' : '0'
+  // 주간: 월~일, 주말: 금~일 — weekGb에 따라 올바른 showRange 파생
+  const weeklyShowRange = weeklyGb === '0' ? buildShowRange(weeklyMonday) : buildWeekendRange(weeklyMonday)
+  const { entries: weeklyEntries, loading: weeklyLoading, error: weeklyError } = useWeeklyBoxOffice(weeklyShowRange, weeklyGb)
+  const isWeekly = koficPeriod !== 'daily'
+  const periodLabel = koficPeriod === 'weekly' ? '주간' : '주말'
 
   const filtered = useMemo(() => {
     let ms = movies.filter((m) => {
@@ -230,7 +255,30 @@ export function DashboardPage() {
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2 }}
           >
-            <KoficDateNav date={koficDate} onChange={setKoficDate} />
+            {/* 기간 선택기 (일별 / 주간 / 주말) */}
+            <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
+              <div className="max-w-7xl mx-auto px-6 sm:px-10 py-3 flex gap-1">
+                {(['daily', 'weekly', 'weekend'] as KoficPeriod[]).map((p) => (
+                  <button
+                    key={p}
+                    onClick={() => setKoficPeriod(p)}
+                    className={`px-5 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                      koficPeriod === p
+                        ? 'bg-green-500 text-white shadow-sm'
+                        : 'text-gray-500 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    }`}
+                  >
+                    {p === 'daily' ? '일별' : p === 'weekly' ? '주간' : '주말'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* 날짜 / 기간 선택 */}
+            {!isWeekly
+              ? <KoficDateNav date={koficDate} onChange={setKoficDate} />
+              : <KoficWeeklyNav monday={weeklyMonday} weekGb={weeklyGb} onChange={setWeeklyMonday} />
+            }
 
             {/* KOFIC 하위 탭 */}
             <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
@@ -258,22 +306,46 @@ export function DashboardPage() {
             </div>
 
             <div className="max-w-7xl mx-auto px-6 sm:px-10 py-10">
-              {koficLoading ? (
+              {(isWeekly ? weeklyLoading : koficLoading) ? (
                 <div className="flex items-center justify-center h-48">
                   <p className="text-gray-400 text-sm animate-pulse">박스오피스 데이터 로딩 중...</p>
+                </div>
+              ) : (isWeekly && weeklyError) ? (
+                <div className="flex items-center justify-center h-48">
+                  <div className="text-center">
+                    <p className="text-red-500 dark:text-red-400 text-sm font-medium mb-1">데이터를 불러올 수 없습니다</p>
+                    <p className="text-gray-400 text-xs">{weeklyError}</p>
+                  </div>
                 </div>
               ) : (
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={koficTab}
+                    key={`${koficPeriod}-${koficTab}`}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {koficTab === 'ranking' && <KoficRankingTab entries={entries} />}
-                    {koficTab === 'sales' && <KoficSalesTab entries={entries} />}
-                    {koficTab === 'audience' && <KoficAudienceTab entries={entries} />}
+                    {!isWeekly && koficTab === 'ranking' && <KoficRankingTab entries={entries} />}
+                    {!isWeekly && koficTab === 'sales' && <KoficSalesTab entries={entries} />}
+                    {!isWeekly && koficTab === 'audience' && <KoficAudienceTab entries={entries} />}
+                    {isWeekly && koficTab === 'ranking' && <KoficWeeklyRankingTab entries={weeklyEntries} periodLabel={periodLabel} />}
+                    {isWeekly && koficTab === 'sales' && <KoficWeeklySalesTab entries={weeklyEntries} periodLabel={periodLabel} />}
+                    {isWeekly && koficTab === 'audience' && <KoficWeeklyAudienceTab entries={weeklyEntries} periodLabel={periodLabel} />}
+                    {koficTab === 'trend' && (
+                      trendLoading
+                        ? <div className="flex items-center justify-center h-48"><p className="text-gray-400 text-sm animate-pulse">트렌드 데이터 로딩 중...</p></div>
+                        : trendData
+                          ? <KoficTrendTab data={trendData} />
+                          : <div className="text-center py-20 text-gray-400 text-sm">트렌드 데이터가 없습니다</div>
+                    )}
+                    {koficTab === 'stats' && (
+                      derivedLoading
+                        ? <div className="flex items-center justify-center h-48"><p className="text-gray-400 text-sm animate-pulse">파생통계 로딩 중...</p></div>
+                        : <KoficStatsTab data={derivedData} />
+                    )}
+                    {koficTab === 'tracking' && <KoficTrackingTab />}
+                    {koficTab === 'alltime' && <KoficAllTimeTab />}
                   </motion.div>
                 </AnimatePresence>
               )}
