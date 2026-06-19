@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import pknu26.example.movie.dto.TmdbGenreListResponse;
+import pknu26.example.movie.dto.TmdbMovieDetailResponse;
 import pknu26.example.movie.dto.TmdbMovieItem;
 import pknu26.example.movie.dto.TmdbMovieListResponse;
 import pknu26.example.movie.entity.TmdbMovie;
@@ -65,6 +66,40 @@ public class TmdbService {
             }
         }
         return map;
+    }
+
+    public TmdbMovie getMovieById(Long id) {
+        return movieRepository.findById(id).orElseGet(() -> fetchMovieFromTmdb(id));
+    }
+
+    private TmdbMovie fetchMovieFromTmdb(Long id) {
+        try {
+            String url = BASE + "/movie/" + id + "?api_key=" + apiKey + "&language=ko-KR";
+            TmdbMovieDetailResponse resp = restTemplate.getForObject(url, TmdbMovieDetailResponse.class);
+            if (resp == null) return null;
+
+            List<String> genreNames = resp.getGenres() == null ? List.of() :
+                    resp.getGenres().stream()
+                            .map(TmdbMovieDetailResponse.Genre::getName)
+                            .collect(Collectors.toList());
+
+            return TmdbMovie.builder()
+                    .id(resp.getId())
+                    .title(resp.getTitle())
+                    .originalTitle(resp.getOriginalTitle())
+                    .overview(resp.getOverview())
+                    .releaseDate(resp.getReleaseDate())
+                    .voteAverage(resp.getVoteAverage())
+                    .voteCount(resp.getVoteCount())
+                    .popularity(resp.getPopularity())
+                    .posterPath(resp.getPosterPath())
+                    .backdropPath(resp.getBackdropPath())
+                    .genres(genreNames)
+                    .build();
+        } catch (Exception e) {
+            log.warn("TMDB 영화 상세 조회 실패 (id={}): {}", id, e.getMessage());
+            return null;
+        }
     }
 
     public List<TmdbMovie> searchMovies(String query) {

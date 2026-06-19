@@ -142,12 +142,6 @@ export function DashboardPage() {
             </div>
             <div className="flex gap-1">
               <button
-                onClick={() => navigate('/wordle')}
-                className="px-6 py-2 rounded-full text-sm font-bold tracking-wide transition-all text-gray-500 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                🎬 무비들
-              </button>
-              <button
                 onClick={() => navigate('/battle')}
                 className="px-6 py-2 rounded-full text-sm font-bold tracking-wide transition-all text-gray-500 dark:text-gray-200 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
