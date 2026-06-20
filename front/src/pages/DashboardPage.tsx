@@ -26,6 +26,9 @@ import { useBoxOffice } from '../hooks/useBoxOffice'
 import { useWeeklyBoxOffice } from '../hooks/useWeeklyBoxOffice'
 import { useWeeklyTrends } from '../hooks/useWeeklyTrends'
 import { useDerivedStats } from '../hooks/useDerivedStats'
+import { useAiCommentary } from '../hooks/useAiCommentary'
+import { AiCommentaryCard } from '../components/AiCommentaryCard'
+import type { AiCommentaryPayload } from '../api/ai'
 import type { SortKey, TmdbTabId, KoficTabId, KoficPeriod, SourceTab } from '../types/movie'
 
 const TMDB_TABS: { id: TmdbTabId; label: string }[] = [
@@ -92,6 +95,37 @@ export function DashboardPage() {
   const { entries: weeklyEntries, loading: weeklyLoading, error: weeklyError } = useWeeklyBoxOffice(weeklyShowRange, weeklyGb)
   const isWeekly = koficPeriod !== 'daily'
   const periodLabel = koficPeriod === 'weekly' ? '주간' : '주말'
+
+  // AI 코멘터리 페이로드 — 데이터가 존재할 때만 null이 아닌 값
+  const dailyAiPayload = useMemo<AiCommentaryPayload | null>(
+    () => (entries.length > 0 ? { type: 'daily', date: koficDate, entries: entries.slice(0, 5) } : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [koficDate, entries.length],
+  )
+  const weeklyAiPayload = useMemo<AiCommentaryPayload | null>(
+    () =>
+      weeklyEntries.length > 0
+        ? { type: koficPeriod as 'weekly' | 'weekend', showRange: weeklyShowRange, entries: weeklyEntries.slice(0, 5) }
+        : null,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [weeklyShowRange, koficPeriod, weeklyEntries.length],
+  )
+  const trendAiPayload = useMemo<AiCommentaryPayload | null>(
+    () =>
+      trendData
+        ? { type: 'trend', monthly: trendData.monthly as object[], seasonal: trendData.seasonal as object[] }
+        : null,
+    [trendData],
+  )
+  const { commentary: dailyCommentary, loading: dailyAiLoading } = useAiCommentary(
+    source === 'kofic' && !isWeekly ? dailyAiPayload : null,
+  )
+  const { commentary: weeklyCommentary, loading: weeklyAiLoading } = useAiCommentary(
+    source === 'kofic' && isWeekly ? weeklyAiPayload : null,
+  )
+  const { commentary: trendCommentary, loading: trendAiLoading } = useAiCommentary(
+    source === 'kofic' && koficTab === 'trend' && !isWeekly ? trendAiPayload : null,
+  )
 
   const filtered = useMemo(() => {
     let ms = movies.filter((m) => {
@@ -312,6 +346,16 @@ export function DashboardPage() {
                   </div>
                 </div>
               ) : (
+                <>
+                  {!isWeekly && ['ranking', 'sales', 'audience'].includes(koficTab) && (
+                    <AiCommentaryCard commentary={dailyCommentary} loading={dailyAiLoading} />
+                  )}
+                  {isWeekly && ['ranking', 'sales', 'audience'].includes(koficTab) && (
+                    <AiCommentaryCard commentary={weeklyCommentary} loading={weeklyAiLoading} />
+                  )}
+                  {koficTab === 'trend' && (
+                    <AiCommentaryCard commentary={trendCommentary} loading={trendAiLoading} />
+                  )}
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`${koficPeriod}-${koficTab}`}
@@ -320,12 +364,12 @@ export function DashboardPage() {
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {!isWeekly && koficTab === 'ranking' && <KoficRankingTab entries={entries} />}
-                    {!isWeekly && koficTab === 'sales' && <KoficSalesTab entries={entries} />}
-                    {!isWeekly && koficTab === 'audience' && <KoficAudienceTab entries={entries} />}
-                    {isWeekly && koficTab === 'ranking' && <KoficWeeklyRankingTab entries={weeklyEntries} periodLabel={periodLabel} />}
-                    {isWeekly && koficTab === 'sales' && <KoficWeeklySalesTab entries={weeklyEntries} periodLabel={periodLabel} />}
-                    {isWeekly && koficTab === 'audience' && <KoficWeeklyAudienceTab entries={weeklyEntries} periodLabel={periodLabel} />}
+                    {!isWeekly && koficTab === 'ranking' && <KoficRankingTab entries={entries} aiPayload={dailyAiPayload} />}
+                    {!isWeekly && koficTab === 'sales' && <KoficSalesTab entries={entries} aiPayload={dailyAiPayload} />}
+                    {!isWeekly && koficTab === 'audience' && <KoficAudienceTab entries={entries} aiPayload={dailyAiPayload} />}
+                    {isWeekly && koficTab === 'ranking' && <KoficWeeklyRankingTab entries={weeklyEntries} periodLabel={periodLabel} aiPayload={weeklyAiPayload} />}
+                    {isWeekly && koficTab === 'sales' && <KoficWeeklySalesTab entries={weeklyEntries} periodLabel={periodLabel} aiPayload={weeklyAiPayload} />}
+                    {isWeekly && koficTab === 'audience' && <KoficWeeklyAudienceTab entries={weeklyEntries} periodLabel={periodLabel} aiPayload={weeklyAiPayload} />}
                     {koficTab === 'trend' && (
                       trendLoading
                         ? <div className="flex items-center justify-center h-48"><p className="text-gray-400 text-sm animate-pulse">트렌드 데이터 로딩 중...</p></div>
@@ -342,6 +386,7 @@ export function DashboardPage() {
                     {koficTab === 'alltime' && <KoficAllTimeTab />}
                   </motion.div>
                 </AnimatePresence>
+                </>
               )}
             </div>
           </motion.div>

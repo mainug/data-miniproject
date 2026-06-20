@@ -3,6 +3,7 @@ import {
   Tooltip, ResponsiveContainer, Cell, Legend,
 } from 'recharts'
 import type { TrendAnalysis } from '../../types/movie'
+import { ChartAiWrapper } from '../ChartAiWrapper'
 
 interface Props {
   data: TrendAnalysis
@@ -47,6 +48,13 @@ export function KoficTrendTab({ data }: Props) {
     return <div className="text-center py-20 text-gray-400 text-sm">트렌드 데이터가 없습니다</div>
   }
 
+  const monthlyPayload = monthly.length > 0
+    ? { type: 'trend' as const, monthly: monthly as object[], seasonal: [] }
+    : null
+  const seasonalPayload = seasonal.length > 0
+    ? { type: 'trend' as const, monthly: [], seasonal: seasonal as object[] }
+    : null
+
   const monthlyChart = monthly.map((m) => ({
     name: m.period.substring(2),
     sales: Math.round(m.totalSales / 1e8),
@@ -72,6 +80,7 @@ export function KoficTrendTab({ data }: Props) {
   return (
     <div className="space-y-14">
       {/* 월별 매출 추이 */}
+      <ChartAiWrapper payload={monthlyPayload}>
       <div>
         <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">월별 매출 추이</h3>
         <p className="text-xs text-gray-400 mb-6">주간 박스오피스 기준 월별 총 매출액 (억원)</p>
@@ -99,8 +108,10 @@ export function KoficTrendTab({ data }: Props) {
           </BarChart>
         </ResponsiveContainer>
       </div>
+      </ChartAiWrapper>
 
       {/* 월별 관객수 추이 */}
+      <ChartAiWrapper payload={monthlyPayload}>
       <div>
         <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">월별 관객수 추이</h3>
         <p className="text-xs text-gray-400 mb-6">주간 박스오피스 기준 월별 총 관객수 (만명)</p>
@@ -124,9 +135,11 @@ export function KoficTrendTab({ data }: Props) {
           </LineChart>
         </ResponsiveContainer>
       </div>
+      </ChartAiWrapper>
 
       {/* 계절별 비교 */}
       {seasonalChart.length > 0 && (
+        <ChartAiWrapper payload={seasonalPayload}>
         <div>
           <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">계절별 매출 비교</h3>
           <p className="text-xs text-gray-400 mb-6">
@@ -156,10 +169,12 @@ export function KoficTrendTab({ data }: Props) {
             </BarChart>
           </ResponsiveContainer>
         </div>
+        </ChartAiWrapper>
       )}
 
       {/* 계절별 관객수 비교 */}
       {seasonalChart.length > 0 && (
+        <ChartAiWrapper payload={seasonalPayload}>
         <div>
           <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">계절별 관객수 비교</h3>
           <p className="text-xs text-gray-400 mb-6">주간 박스오피스 기준 계절별 총 관객수 (만명)</p>
@@ -180,6 +195,7 @@ export function KoficTrendTab({ data }: Props) {
             </BarChart>
           </ResponsiveContainer>
         </div>
+        </ChartAiWrapper>
       )}
 
       {/* 계절별 요약 테이블 */}
