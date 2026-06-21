@@ -13,10 +13,10 @@ public class WeeklyBoxOffice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "show_range", nullable = false)
+    @Column(name = "show_range", nullable = false, length = 30)
     private String showRange;
 
-    @Column(name = "week_gb", nullable = false)
+    @Column(name = "week_gb", nullable = false, length = 10)
     private String weekGb;
 
     @Column(name = "`rank`")
