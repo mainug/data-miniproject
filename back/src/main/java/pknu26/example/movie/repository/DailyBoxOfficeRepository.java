@@ -23,4 +23,12 @@ public interface DailyBoxOfficeRepository extends JpaRepository<DailyBoxOffice, 
 
     @Query("SELECT DISTINCT d.movieNm FROM DailyBoxOffice d ORDER BY d.movieNm")
     List<String> findDistinctMovieNames();
+
+    boolean existsByDateAndRank(String date, int rank);
+
+    @Modifying
+    @Query(value = "DELETE FROM daily_box_office WHERE id NOT IN (" +
+            "SELECT min_id FROM (SELECT MIN(id) AS min_id FROM daily_box_office GROUP BY `date`, `rank`) AS t" +
+            ")", nativeQuery = true)
+    int deleteDuplicates();
 }

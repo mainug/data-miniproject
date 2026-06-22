@@ -5,7 +5,8 @@ import lombok.*;
 
 @Entity
 @Table(name = "weekly_box_office",
-       indexes = @Index(columnList = "show_range, week_gb"))
+       indexes = @Index(columnList = "show_range, week_gb"),
+       uniqueConstraints = @UniqueConstraint(columnNames = {"show_range", "week_gb", "`rank`"}))
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class WeeklyBoxOffice {
 

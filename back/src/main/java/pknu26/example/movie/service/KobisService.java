@@ -340,6 +340,13 @@ public class KobisService {
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
     public void backfillOnStartup() {
+        log.info("[백필] 기존 중복 데이터 정리 시작");
+        int dailyDups = dailyRepo.deleteDuplicates();
+        int weeklyDups = weeklyRepo.deleteDuplicates();
+        if (dailyDups > 0 || weeklyDups > 0) {
+            log.info("[백필] 중복 제거 — 일별 {}건, 주간 {}건", dailyDups, weeklyDups);
+        }
+
         log.info("[백필] 전체 데이터 수집 시작 ({}~)", DATA_START_DATE);
         backfillDaily();
         backfillWeekly();
@@ -377,7 +384,7 @@ public class KobisService {
         return collected;
     }
 
-    private void collectDailySingle(String targetDate) {
+    private synchronized void collectDailySingle(String targetDate) {
         if (dailyRepo.existsByDate(targetDate)) return;
         try {
             String url = DAILY_URL + "?key=" + apiKey + "&targetDt=" + targetDate.replace("-", "");
@@ -386,6 +393,7 @@ public class KobisService {
                     || resp.getBoxOfficeResult().getDailyBoxOfficeList() == null) return;
 
             List<DailyBoxOffice> entities = resp.getBoxOfficeResult().getDailyBoxOfficeList().stream()
+                    .filter(item -> !dailyRepo.existsByDateAndRank(targetDate, parsInt(item.getRank())))
                     .map(item -> DailyBoxOffice.builder()
                             .date(targetDate)
                             .rank(parsInt(item.getRank()))
