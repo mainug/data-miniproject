@@ -38,7 +38,7 @@ export function GenreChart({ movies }: Props) {
 
   const genreMap = new Map<string, { count: number; ratingSum: number }>();
   movies.forEach((m) => {
-    m.genres.forEach((g) => {
+    (m.genres ?? []).forEach((g) => {
       const prev = genreMap.get(g) || { count: 0, ratingSum: 0 };
       genreMap.set(g, {
         count: prev.count + 1,
@@ -56,6 +56,18 @@ export function GenreChart({ movies }: Props) {
     .sort((a, b) =>
       metric === "count" ? b.count - a.count : b.rating - a.rating,
     );
+
+  if (data.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-64 gap-3 text-gray-400 dark:text-gray-500">
+        <p className="text-sm">장르 데이터가 없습니다.</p>
+        <p className="text-xs">영화 데이터를 새로 수집하면 장르 정보가 채워집니다.</p>
+        <code className="text-xs bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded">
+          POST /api/movies/refresh
+        </code>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-4">
