@@ -1,18 +1,22 @@
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from "motion/react";
 
 interface Props {
-  commentary: string | null
-  loading: boolean
+  commentary: string | null;
+  loading: boolean;
 }
 
 export function AiCommentaryCard({ commentary, loading }: Props) {
-  if (!loading && !commentary) return null
+  if (!loading && !commentary) return null;
 
   return (
     <div className="mb-8 rounded-2xl border border-green-200 dark:border-green-900 bg-green-50/60 dark:bg-green-950/30 px-5 py-4">
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-green-600 dark:text-green-400 text-sm font-bold">✦ AI 분석</span>
-        <span className="text-xs text-green-500/60 dark:text-green-600/60">Qwen3.5 4B</span>
+        <span className="text-green-600 dark:text-green-400 text-sm font-bold">
+          ✦ AI 분석
+        </span>
+        <span className="text-xs text-green-500/60 dark:text-green-600/60">
+          Qwen3.5 4B
+        </span>
       </div>
 
       <AnimatePresence mode="wait">
@@ -34,7 +38,9 @@ export function AiCommentaryCard({ commentary, loading }: Props) {
                 />
               ))}
             </span>
-            <span className="text-xs text-green-600/70 dark:text-green-500/70">분석 중...</span>
+            <span className="text-xs text-green-600/70 dark:text-green-500/70">
+              분석 중...
+            </span>
           </motion.div>
         ) : (
           <motion.p
@@ -49,5 +55,5 @@ export function AiCommentaryCard({ commentary, loading }: Props) {
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }

@@ -27,7 +27,7 @@ public class GeminiService {
                     "prompt", prompt,
                     "stream", false,
                     "think", false,
-                    "options", Map.of("num_predict", 300, "temperature", 0.85)
+                    "options", Map.of("num_predict", 300, "temperature", 0.6)
             );
 
             HttpHeaders headers = new HttpHeaders();
@@ -47,7 +47,8 @@ public class GeminiService {
             }
             String raw = respBody.getResponse();
             // Qwen thinking 모델의 <think>...</think> 태그 제거
-            String text = raw.replaceAll("(?s)<think>.*?</think>", "").trim();
+            String text = raw.replaceAll("(?s)<think>.*?</think>", "");
+            text = stripHanja(text).trim();
             if (text.isEmpty()) {
                 log.warn("Ollama 응답에서 실제 텍스트 없음 (원본 {}자)", raw.length());
                 return null;
@@ -60,7 +61,20 @@ public class GeminiService {
     }
 
     private static final String COMMON_SUFFIX =
-            "\n반드시 한국어로만 답하고, 마크다운·기호·영어 없이 자연스러운 구어체 문장으로만 작성해주세요.";
+            "\n\n작성 규칙: 반드시 순수 한글로만 작성하세요. 한자(漢字)와 중국어 글자는 절대 사용하지 말고, "
+            + "'관객', '매출', '증가', '감소' 처럼 모두 한글로 풀어 쓰세요. "
+            + "영어 단어는 철자 그대로 쓰지 말고 반드시 한글 발음으로 표기하세요. "
+            + "예: momentum → 모멘텀, box office → 박스오피스, genre → 장르, trend → 트렌드, content → 콘텐츠, ranking → 랭킹, share → 점유율(또는 쉐어). "
+            + "마크다운·특수기호 없이 자연스러운 한국어 구어체 문장으로만 작성해주세요.";
+
+    // CJK 한자(漢字) 영역 문자 제거 — Qwen이 간혹 한자를 섞어 출력하는 것을 방지
+    // 한글(가-힣)은 유지, 한자 통합/확장A/호환 영역만 제거
+    private static final java.util.regex.Pattern HANJA =
+            java.util.regex.Pattern.compile("[\\u4E00-\\u9FFF\\u3400-\\u4DBF\\uF900-\\uFAFF]");
+
+    private String stripHanja(String s) {
+        return HANJA.matcher(s).replaceAll("");
+    }
 
     private String buildPrompt(AiCommentaryRequest req) {
         return switch (req.getType()) {

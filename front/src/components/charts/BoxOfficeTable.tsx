@@ -1,20 +1,20 @@
-import type { BoxOfficeEntry } from '../../types/movie'
+import type { BoxOfficeEntry } from "../../types/movie";
 
 interface Props {
-  entries: BoxOfficeEntry[]
-  date: string
+  entries: BoxOfficeEntry[];
+  date: string;
 }
 
 function fmt만(n: number) {
-  return `${Math.round(n / 10000).toLocaleString()}만`
+  return `${Math.round(n / 10000).toLocaleString()}만`;
 }
 
 function fmt억(n: number) {
-  return `${(n / 1e8).toFixed(1)}억`
+  return `${(n / 1e8).toFixed(1)}억`;
 }
 
 export function BoxOfficeTable({ entries, date }: Props) {
-  if (entries.length === 0) return null
+  if (entries.length === 0) return null;
 
   return (
     <div className="space-y-3">
@@ -22,7 +22,9 @@ export function BoxOfficeTable({ entries, date }: Props) {
         <h3 className="text-base font-semibold text-gray-900 dark:text-white">
           일별 박스오피스
         </h3>
-        <span className="text-xs text-gray-400 dark:text-gray-300">{date} 기준</span>
+        <span className="text-xs text-gray-400 dark:text-gray-300">
+          {date} 기준
+        </span>
       </div>
       <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-800">
         <table className="w-full text-sm">
@@ -48,25 +50,39 @@ export function BoxOfficeTable({ entries, date }: Props) {
                   <span
                     className={`inline-flex w-6 h-6 items-center justify-center rounded-full text-xs font-bold ${
                       e.rank <= 3
-                        ? 'bg-green-500 text-white'
-                        : 'text-gray-500 dark:text-gray-200'
+                        ? "bg-green-500 text-white"
+                        : "text-gray-500 dark:text-gray-200"
                     }`}
                   >
                     {e.rank}
                   </span>
                 </td>
-                <td className="px-4 py-3 font-medium text-gray-900 dark:text-white">{e.movieNm}</td>
-                <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-200">{e.openDt}</td>
-                <td className="px-4 py-3 text-right text-gray-900 dark:text-white">{fmt만(e.audiCnt)}</td>
-                <td className="px-4 py-3 text-right text-green-600 dark:text-green-400 font-medium">{fmt만(e.audiAcc)}</td>
-                <td className="px-4 py-3 text-right text-gray-900 dark:text-white">{fmt억(e.salesAmt)}</td>
-                <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-200">{e.salesShare.toFixed(1)}%</td>
-                <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-200">{e.scrnCnt.toLocaleString()}</td>
+                <td className="px-4 py-3 font-medium text-gray-900 dark:text-white">
+                  {e.movieNm}
+                </td>
+                <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-200">
+                  {e.openDt}
+                </td>
+                <td className="px-4 py-3 text-right text-gray-900 dark:text-white">
+                  {fmt만(e.audiCnt)}
+                </td>
+                <td className="px-4 py-3 text-right text-green-600 dark:text-green-400 font-medium">
+                  {fmt만(e.audiAcc)}
+                </td>
+                <td className="px-4 py-3 text-right text-gray-900 dark:text-white">
+                  {fmt억(e.salesAmt)}
+                </td>
+                <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-200">
+                  {e.salesShare.toFixed(1)}%
+                </td>
+                <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-200">
+                  {e.scrnCnt.toLocaleString()}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
     </div>
-  )
+  );
 }

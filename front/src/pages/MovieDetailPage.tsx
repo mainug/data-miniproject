@@ -1,68 +1,80 @@
-import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { motion } from 'motion/react'
-import { Header } from '../components/Header'
-import { MovieCard } from '../components/MovieCard'
-import { RadarStatChart } from '../components/charts/RadarStatChart'
-import { GenreRankBar } from '../components/charts/GenreRankBar'
-import { YearPeerScatter } from '../components/charts/YearPeerScatter'
-import { useMovieData } from '../hooks/useMovieData'
-import { fetchMovieById } from '../api/movies'
-import type { Movie } from '../types/movie'
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { motion } from "motion/react";
+import { Header } from "../components/Header";
+import { MovieCard } from "../components/MovieCard";
+import { RadarStatChart } from "../components/charts/RadarStatChart";
+import { GenreRankBar } from "../components/charts/GenreRankBar";
+import { YearPeerScatter } from "../components/charts/YearPeerScatter";
+import { useMovieData } from "../hooks/useMovieData";
+import { fetchMovieById } from "../api/movies";
+import type { Movie } from "../types/movie";
 
-const TMDB_IMG_W500 = 'https://image.tmdb.org/t/p/w500'
-const TMDB_IMG_ORIG = 'https://image.tmdb.org/t/p/original'
+const TMDB_IMG_W500 = "https://image.tmdb.org/t/p/w500";
+const TMDB_IMG_ORIG = "https://image.tmdb.org/t/p/original";
 
 function fmtKobis(n: number) {
-  if (n >= 1e4) return `${(n / 1e4).toFixed(0)}만명`
-  return `${n.toLocaleString()}명`
+  if (n >= 1e4) return `${(n / 1e4).toFixed(0)}만명`;
+  return `${n.toLocaleString()}명`;
 }
 
 function fmtSales(n: number) {
-  if (n >= 1e8) return `${(n / 1e8).toFixed(0)}억원`
-  return `${n.toLocaleString()}원`
+  if (n >= 1e8) return `${(n / 1e8).toFixed(0)}억원`;
+  return `${n.toLocaleString()}원`;
 }
 
 export function MovieDetailPage() {
-  const { id } = useParams<{ id: string }>()
-  const navigate = useNavigate()
-  const { movies, loading: listLoading } = useMovieData()
-  const [fallbackMovie, setFallbackMovie] = useState<Movie | null>(null)
-  const [fallbackLoading, setFallbackLoading] = useState(false)
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const { movies, loading: listLoading } = useMovieData();
+  const [fallbackMovie, setFallbackMovie] = useState<Movie | null>(null);
+  const [fallbackLoading, setFallbackLoading] = useState(false);
 
-  const cachedMovie = movies.find((m) => m.id === Number(id))
+  const cachedMovie = movies.find((m) => m.id === Number(id));
 
   useEffect(() => {
-    if (!listLoading && !cachedMovie && id) {
-      setFallbackLoading(true)
-      fetchMovieById(Number(id))
-        .then(setFallbackMovie)
-        .finally(() => setFallbackLoading(false))
-    }
-  }, [listLoading, cachedMovie, id])
+    if (listLoading || cachedMovie || !id) return;
+    let cancelled = false;
+    const load = async () => {
+      setFallbackLoading(true);
+      try {
+        const result = await fetchMovieById(Number(id));
+        if (!cancelled) setFallbackMovie(result);
+      } finally {
+        if (!cancelled) setFallbackLoading(false);
+      }
+    };
+    void load();
+    return () => {
+      cancelled = true;
+    };
+  }, [listLoading, cachedMovie, id]);
 
-  const movie = cachedMovie || fallbackMovie
-  const loading = listLoading || fallbackLoading
-  const ratingPct = movie ? Math.round((movie.vote_average / 10) * 100) : 0
+  const movie = cachedMovie || fallbackMovie;
+  const loading = listLoading || fallbackLoading;
+  const ratingPct = movie ? Math.round((movie.vote_average / 10) * 100) : 0;
 
   const posterUrl = movie?.poster_path
-    ? movie.poster_path.startsWith('http')
+    ? movie.poster_path.startsWith("http")
       ? movie.poster_path
       : `${TMDB_IMG_W500}${movie.poster_path}`
-    : null
+    : null;
 
   const backdropUrl = movie?.backdrop_path
-    ? movie.backdrop_path.startsWith('http')
+    ? movie.backdrop_path.startsWith("http")
       ? movie.backdrop_path
       : `${TMDB_IMG_ORIG}${movie.backdrop_path}`
-    : null
+    : null;
 
   const related = movie
     ? movies
-        .filter((m) => m.id !== movie.id && m.genres.some((g) => movie.genres.includes(g)))
+        .filter(
+          (m) =>
+            m.id !== movie.id && m.genres.some((g) => movie.genres.includes(g)),
+        )
         .sort((a, b) => b.vote_average - a.vote_average)
         .slice(0, 6)
-    : []
+    : [];
 
   if (loading) {
     return (
@@ -72,7 +84,7 @@ export function MovieDetailPage() {
           불러오는 중...
         </div>
       </div>
-    )
+    );
   }
 
   if (!movie) {
@@ -82,14 +94,14 @@ export function MovieDetailPage() {
         <div className="flex flex-col items-center justify-center h-64 gap-3">
           <p className="text-gray-400 text-sm">영화를 찾을 수 없습니다.</p>
           <button
-            onClick={() => navigate('/dashboard')}
+            onClick={() => navigate("/dashboard")}
             className="text-green-500 hover:text-green-400 text-sm font-semibold"
           >
             ← 대시보드로 돌아가기
           </button>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -162,15 +174,23 @@ export function MovieDetailPage() {
             {/* Rating */}
             <div className="flex items-center gap-4">
               <div>
-                <span className="text-4xl font-extrabold text-white">{ratingPct}%</span>
-                <span className="text-gray-500 text-sm ml-1.5">관람객 지수</span>
+                <span className="text-4xl font-extrabold text-white">
+                  {ratingPct}%
+                </span>
+                <span className="text-gray-500 text-sm ml-1.5">
+                  관람객 지수
+                </span>
               </div>
               <div className="h-8 w-px bg-white/10" />
               <div>
-                <span className="text-2xl font-bold text-green-400">★ {movie.vote_average.toFixed(1)}</span>
+                <span className="text-2xl font-bold text-green-400">
+                  ★ {movie.vote_average.toFixed(1)}
+                </span>
                 <span className="text-gray-500 text-sm ml-1">/ 10</span>
                 {movie.vote_count && (
-                  <span className="text-xs text-gray-600 ml-1.5">({movie.vote_count.toLocaleString()}표)</span>
+                  <span className="text-xs text-gray-600 ml-1.5">
+                    ({movie.vote_count.toLocaleString()}표)
+                  </span>
                 )}
               </div>
             </div>
@@ -179,7 +199,9 @@ export function MovieDetailPage() {
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
               <div>
                 <span className="text-gray-500 mr-1">👥 인기도</span>
-                <span className="text-gray-200 font-semibold">{movie.popularity.toFixed(1)}</span>
+                <span className="text-gray-200 font-semibold">
+                  {movie.popularity.toFixed(1)}
+                </span>
               </div>
             </div>
 
@@ -188,18 +210,24 @@ export function MovieDetailPage() {
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm border-t border-white/10 pt-3">
                 <div>
                   <span className="text-gray-500 mr-1">🇰🇷 누적 관객</span>
-                  <span className="text-green-400 font-bold">{fmtKobis(movie.audi_acc)}</span>
+                  <span className="text-green-400 font-bold">
+                    {fmtKobis(movie.audi_acc)}
+                  </span>
                 </div>
                 {movie.sales_acc != null && (
                   <div>
                     <span className="text-gray-500 mr-1">매출</span>
-                    <span className="text-gray-200 font-semibold">{fmtSales(movie.sales_acc)}</span>
+                    <span className="text-gray-200 font-semibold">
+                      {fmtSales(movie.sales_acc)}
+                    </span>
                   </div>
                 )}
                 {movie.scrn_cnt != null && (
                   <div>
                     <span className="text-gray-500 mr-1">최대 스크린</span>
-                    <span className="text-gray-200 font-semibold">{movie.scrn_cnt.toLocaleString()}개</span>
+                    <span className="text-gray-200 font-semibold">
+                      {movie.scrn_cnt.toLocaleString()}개
+                    </span>
                   </div>
                 )}
               </div>
@@ -254,5 +282,5 @@ export function MovieDetailPage() {
         </section>
       )}
     </motion.div>
-  )
+  );
 }

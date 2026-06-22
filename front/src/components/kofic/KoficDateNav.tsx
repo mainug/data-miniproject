@@ -1,39 +1,37 @@
+import { getYesterday } from "./koficDate";
+
 interface Props {
-  date: string
-  onChange: (date: string) => void
+  date: string;
+  onChange: (date: string) => void;
 }
 
 function addDays(dateStr: string, n: number): string {
-  const d = new Date(dateStr)
-  d.setDate(d.getDate() + n)
-  return d.toISOString().slice(0, 10)
+  const d = new Date(dateStr);
+  d.setDate(d.getDate() + n);
+  return d.toISOString().slice(0, 10);
 }
 
-export function getYesterday(): string {
-  const d = new Date()
-  d.setDate(d.getDate() - 1)
-  return d.toISOString().slice(0, 10)
-}
-
-const DATA_MIN_DATE = '2004-01-01'
+const DATA_MIN_DATE = "2004-01-01";
 
 export function KoficDateNav({ date, onChange }: Props) {
-  const yesterday = getYesterday()
-  const isLatest = date >= yesterday
-  const isEarliest = date <= DATA_MIN_DATE
+  const yesterday = getYesterday();
+  const isLatest = date >= yesterday;
+  const isEarliest = date <= DATA_MIN_DATE;
 
   return (
     <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 py-4 flex items-center gap-2">
-        <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest mr-2">조회일</span>
+        <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest mr-2">
+          조회일
+        </span>
 
         <button
           onClick={() => onChange(addDays(date, -1))}
           disabled={isEarliest}
           className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
             isEarliest
-              ? 'text-gray-300 dark:text-gray-700 cursor-not-allowed'
-              : 'text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+              ? "text-gray-300 dark:text-gray-700 cursor-not-allowed"
+              : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
           }`}
         >
           ← 이전
@@ -53,8 +51,8 @@ export function KoficDateNav({ date, onChange }: Props) {
           disabled={isLatest}
           className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
             isLatest
-              ? 'text-gray-300 dark:text-gray-700 cursor-not-allowed'
-              : 'text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+              ? "text-gray-300 dark:text-gray-700 cursor-not-allowed"
+              : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
           }`}
         >
           다음 →
@@ -70,5 +68,5 @@ export function KoficDateNav({ date, onChange }: Props) {
         )}
       </div>
     </div>
-  )
+  );
 }
