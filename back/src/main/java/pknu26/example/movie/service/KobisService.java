@@ -338,7 +338,6 @@ public class KobisService {
     }
 
     @EventListener(ApplicationReadyEvent.class)
-    @Transactional
     public void backfillOnStartup() {
         log.info("[백필] 전체 데이터 수집 시작 ({}~)", DATA_START_DATE);
         backfillDaily();
@@ -563,6 +562,10 @@ public class KobisService {
     // ── 영화목록 + 상세정보 수집 ──
 
     private int collectMovieList() {
+        if (movieRepo.count() > 0) {
+            log.info("[영화목록] 이미 존재 — 건너뜀");
+            return 0;
+        }
         int prdtStartYear = DATA_START_DATE.getYear() - 1;
         int prdtEndYear = LocalDate.now().getYear();
         int totalCollected = 0;
