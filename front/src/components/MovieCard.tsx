@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import type { Movie } from "../types/movie";
 
 interface Props {
-  movie: Movie
-  rank?: number
+  movie: Movie;
+  rank?: number;
 }
 
 const TMDB_IMG = "https://image.tmdb.org/t/p/w342";

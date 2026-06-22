@@ -1,9 +1,9 @@
-import { motion } from 'motion/react'
-import { MovieCard } from './MovieCard'
-import type { Movie } from '../types/movie'
+import { motion } from "motion/react";
+import { MovieCard } from "./MovieCard";
+import type { Movie } from "../types/movie";
 
 interface Props {
-  movies: Movie[]
+  movies: Movie[];
 }
 
 export function RankingList({ movies }: Props) {
@@ -12,7 +12,7 @@ export function RankingList({ movies }: Props) {
       <div className="flex items-center justify-center h-64 text-gray-400 dark:text-gray-300">
         조건에 맞는 영화가 없습니다
       </div>
-    )
+    );
   }
 
   return (
@@ -28,5 +28,5 @@ export function RankingList({ movies }: Props) {
         </motion.div>
       ))}
     </div>
-  )
+  );
 }

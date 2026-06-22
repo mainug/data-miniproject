@@ -4,7 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "daily_box_office", indexes = @Index(columnList = "date"))
+@Table(
+        name = "daily_box_office",
+        indexes = @Index(columnList = "date"),
+        uniqueConstraints = @UniqueConstraint(
+                name = "uk_daily_date_rank",
+                columnNames = {"date", "rank"}
+        )
+)
 @Getter
 @Setter
 @NoArgsConstructor

@@ -1,16 +1,28 @@
-import { motion } from 'motion/react'
-import { useNavigate } from 'react-router-dom'
-import { Header } from '../components/Header'
+import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
+import { Header } from "../components/Header";
 
 const FEATURES = [
-  { icon: '🏆', title: '영화 랭킹', desc: '평점·인기 기준 Top N 순위 비교' },
-  { icon: '🎭', title: '장르 분석', desc: '장르별 영화 분포와 평균 평점 시각화' },
-  { icon: '📈', title: '연도 트렌드', desc: '연도별 개봉작 수와 평점 변화 추이' },
-  { icon: '🇰🇷', title: '한국 박스오피스', desc: 'KOFIC 일별 순위·매출·관객 분석' },
-]
+  { icon: "🏆", title: "영화 랭킹", desc: "평점·인기 기준 Top N 순위 비교" },
+  {
+    icon: "🎭",
+    title: "장르 분석",
+    desc: "장르별 영화 분포와 평균 평점 시각화",
+  },
+  {
+    icon: "📈",
+    title: "연도 트렌드",
+    desc: "연도별 개봉작 수와 평점 변화 추이",
+  },
+  {
+    icon: "🇰🇷",
+    title: "한국 박스오피스",
+    desc: "KOFIC 일별 순위·매출·관객 분석",
+  },
+];
 
 export function LandingPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#0f0f0f] text-gray-900 dark:text-white">
@@ -22,8 +34,8 @@ export function LandingPage() {
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
+              "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
           }}
         />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-green-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -32,7 +44,7 @@ export function LandingPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: 'easeOut' }}
+            transition={{ duration: 0.65, ease: "easeOut" }}
           >
             <span className="inline-block text-green-400 text-xs font-bold tracking-[0.25em] uppercase mb-5">
               Movie Data Dashboard
@@ -45,7 +57,7 @@ export function LandingPage() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="text-lg sm:text-xl text-gray-400 mb-12 leading-relaxed"
           >
             영화 데이터를 한눈에 탐색하다
@@ -57,7 +69,7 @@ export function LandingPage() {
             transition={{ duration: 0.5, delay: 0.35 }}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => navigate('/dashboard')}
+            onClick={() => navigate("/dashboard")}
             className="inline-flex items-center gap-2.5 px-9 py-4 rounded-2xl bg-green-500 hover:bg-green-400 text-white font-bold text-base transition-colors shadow-lg shadow-green-500/25"
           >
             대시보드 탐색하기
@@ -74,7 +86,7 @@ export function LandingPage() {
           <span className="text-[10px] tracking-[0.2em] uppercase">Scroll</span>
           <motion.span
             animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             className="text-sm"
           >
             ↓
@@ -107,8 +119,12 @@ export function LandingPage() {
                 className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-6 cursor-default hover:border-green-400 dark:hover:border-green-600 transition-colors"
               >
                 <span className="text-4xl mb-5 block">{f.icon}</span>
-                <h3 className="font-bold text-gray-900 dark:text-white mb-1.5">{f.title}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-200 leading-relaxed">{f.desc}</p>
+                <h3 className="font-bold text-gray-900 dark:text-white mb-1.5">
+                  {f.title}
+                </h3>
+                <p className="text-sm text-gray-500 dark:text-gray-200 leading-relaxed">
+                  {f.desc}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -121,7 +137,7 @@ export function LandingPage() {
             className="text-center mt-14"
           >
             <button
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate("/dashboard")}
               className="text-sm text-green-500 hover:text-green-400 font-semibold transition-colors"
             >
               지금 바로 탐색하기 →
@@ -135,8 +151,12 @@ export function LandingPage() {
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3 text-sm text-gray-400">
             <span>Data by</span>
-            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold text-xs">TMDB</span>
-            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold text-xs">KOFIC</span>
+            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold text-xs">
+              TMDB
+            </span>
+            <span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold text-xs">
+              KOFIC
+            </span>
           </div>
           <a
             href="https://github.com/mainug/data-miniproject"
@@ -149,5 +169,5 @@ export function LandingPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

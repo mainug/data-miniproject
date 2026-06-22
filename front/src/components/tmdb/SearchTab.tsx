@@ -1,37 +1,39 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'motion/react'
-import { MovieCard } from '../MovieCard'
-import type { Movie } from '../../types/movie'
+import { useState, useEffect } from "react";
+import { motion } from "motion/react";
+import { MovieCard } from "../MovieCard";
+import type { Movie } from "../../types/movie";
 
 export function SearchTab() {
-  const [query, setQuery] = useState('')
-  const [results, setResults] = useState<Movie[]>([])
-  const [loading, setLoading] = useState(false)
-  const [searched, setSearched] = useState(false)
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [searched, setSearched] = useState(false);
 
   useEffect(() => {
-    const q = query.trim()
-    if (!q) {
-      setResults([])
-      setSearched(false)
-      return
-    }
+    const q = query.trim();
 
     const timer = setTimeout(async () => {
-      setLoading(true)
-      try {
-        const BASE_URL = import.meta.env.VITE_API_BASE_URL
-        const res = await fetch(`${BASE_URL}/api/movies/search?query=${encodeURIComponent(q)}`)
-        const data: Movie[] = await res.json()
-        setResults(data)
-        setSearched(true)
-      } finally {
-        setLoading(false)
+      if (!q) {
+        setResults([]);
+        setSearched(false);
+        return;
       }
-    }, 400)
+      setLoading(true);
+      try {
+        const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+        const res = await fetch(
+          `${BASE_URL}/api/movies/search?query=${encodeURIComponent(q)}`,
+        );
+        const data: Movie[] = await res.json();
+        setResults(data);
+        setSearched(true);
+      } finally {
+        setLoading(false);
+      }
+    }, q ? 400 : 0);
 
-    return () => clearTimeout(timer)
-  }, [query])
+    return () => clearTimeout(timer);
+  }, [query]);
 
   return (
     <div>
@@ -47,13 +49,38 @@ export function SearchTab() {
         />
         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
           {loading ? (
-            <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+            <svg
+              className="w-4 h-4 animate-spin"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8z"
+              />
             </svg>
           ) : (
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"
+              />
             </svg>
           )}
         </span>
@@ -86,5 +113,5 @@ export function SearchTab() {
         </div>
       )}
     </div>
-  )
+  );
 }
