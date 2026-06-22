@@ -19,12 +19,6 @@ public class DoubleSubmitInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         
-        // 💡 [수정 포인트 1] CORS 프리플라이트(OPTIONS) 요청은 인터셉터를 무조건 통과시킵니다.
-        // 이 코드가 없으면 프론트엔드(5173)에서 보내는 POST, PUT, DELETE 요청이 전부 CORS 에러로 차단됩니다.
-        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
-            return true;
-        }
-        
         // 실행하려는 컨트롤러의 메서드에 @NoDoubleSubmit 어노테이션이 붙어있는지 확인
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -38,10 +32,6 @@ public class DoubleSubmitInterceptor implements HandlerInterceptor {
                 // 식별 키 생성 (세션ID + 요청 경로)
                 String key = sessionId + ":" + requestURI;
                 long currentTime = System.currentTimeMillis();
-
-                // 💡 [수정 포인트 2] 메모리 누수 방지
-                // 만약 기존 기록이 제한 시간보다 훨씬 지났다면(예: 5초 이상), 미리 제거하여 맵 크기를 유지합니다.
-                requestMap.entrySet().removeIf(entry -> (currentTime - entry.getValue()) > 5000);
 
                 if (requestMap.containsKey(key)) {
                     long lastRequestTime = requestMap.get(key);
