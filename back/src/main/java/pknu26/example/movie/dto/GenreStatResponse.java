@@ -1,20 +1,12 @@
 package pknu26.example.movie.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
+@AllArgsConstructor
 public class GenreStatResponse {
-
-    private String genre;     
-    private Long movieCount;  
-    private Double averageVote; 
-
-    // 직접 생성자를 선언하는 경우 아래와 같이 타입을 일치시켜 줍니다.
-    public GenreStatResponse(String genre, Long movieCount, Double averageVote) {
-        this.genre = genre;
-        this.movieCount = movieCount;
-        this.averageVote = averageVote;
-    }
+    private String genre;       // 장르 이름 (예: Drama, Action)
+    private Long movieCount;    // 해당 장르의 영화 수
+    private Double avgVote;     // 해당 장르의 평균 평점
 }
