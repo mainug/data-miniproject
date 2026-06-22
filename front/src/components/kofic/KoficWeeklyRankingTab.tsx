@@ -1,11 +1,8 @@
 import type { WeeklyEntry } from "../../types/movie";
-import type { AiCommentaryPayload } from "../../api/ai";
-import { ChartAiWrapper } from "../ChartAiWrapper";
 
 interface Props {
   entries: WeeklyEntry[];
   periodLabel: string;
-  aiPayload?: AiCommentaryPayload | null;
 }
 
 function RankBadge({ rank }: { rank: number }) {
@@ -38,7 +35,6 @@ function fmtAudi(n: number) {
 export function KoficWeeklyRankingTab({
   entries,
   periodLabel,
-  aiPayload,
 }: Props) {
   if (entries.length === 0)
     return (
@@ -48,7 +44,6 @@ export function KoficWeeklyRankingTab({
     );
 
   return (
-    <ChartAiWrapper payload={aiPayload ?? null} chartFocus="ranking">
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
@@ -113,6 +108,5 @@ export function KoficWeeklyRankingTab({
           </tbody>
         </table>
       </div>
-    </ChartAiWrapper>
   );
 }

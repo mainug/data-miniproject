@@ -65,11 +65,10 @@ export function BattlePage() {
   }, []);
 
   useEffect(() => {
-    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
     let cancelled = false;
     const load = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/battle/pool`);
+        const res = await fetch(`/api/battle/pool`);
         const data: BattleMovie[] = await res.json();
         if (cancelled) return;
         setPool(data);

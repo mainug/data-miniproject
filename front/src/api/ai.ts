@@ -1,5 +1,3 @@
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 export type ChartFocus = "ranking" | "sales" | "audience";
 
 export type AiCommentaryPayload =
@@ -15,7 +13,7 @@ export type AiCommentaryPayload =
 export async function fetchCommentary(
   payload: AiCommentaryPayload,
 ): Promise<string> {
-  const res = await fetch(`${BASE_URL}/api/ai/commentary`, {
+  const res = await fetch(`/api/ai/commentary`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),

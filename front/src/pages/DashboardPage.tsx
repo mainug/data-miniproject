@@ -442,10 +442,7 @@ export function DashboardPage() {
                       transition={{ duration: 0.2 }}
                     >
                       {!isWeekly && koficTab === "ranking" && (
-                        <KoficRankingTab
-                          entries={entries}
-                          aiPayload={dailyAiPayload}
-                        />
+                        <KoficRankingTab entries={entries} />
                       )}
                       {!isWeekly && koficTab === "sales" && (
                         <KoficSalesTab
@@ -463,7 +460,6 @@ export function DashboardPage() {
                         <KoficWeeklyRankingTab
                           entries={weeklyEntries}
                           periodLabel={periodLabel}
-                          aiPayload={weeklyAiPayload}
                         />
                       )}
                       {isWeekly && koficTab === "sales" && (

@@ -20,9 +20,8 @@ export function SearchTab() {
       }
       setLoading(true);
       try {
-        const BASE_URL = import.meta.env.VITE_API_BASE_URL;
         const res = await fetch(
-          `${BASE_URL}/api/movies/search?query=${encodeURIComponent(q)}`,
+          `/api/movies/search?query=${encodeURIComponent(q)}`,
         );
         const data: Movie[] = await res.json();
         setResults(data);
