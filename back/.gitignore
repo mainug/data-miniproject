@@ -36,5 +36,7 @@ out/
 ### VS Code ###
 .vscode/
 
-### Secrets ###
+# .gitignore 파일 내부
 application-secret.properties
+
+front/

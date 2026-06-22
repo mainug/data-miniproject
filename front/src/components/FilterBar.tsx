@@ -56,10 +56,7 @@ export function FilterBar({
                 min={minYear}
                 max={yearRange[1]}
                 value={yearRange[0]}
-                onChange={(e) => {
-                  const v = parseInt(e.target.value)
-                  if (!isNaN(v)) onYearRange([Math.min(v, yearRange[1]), yearRange[1]])
-                }}
+                onChange={(e) => onYearRange([parseInt(e.target.value) || minYear, yearRange[1]])}
                 className={`${inputCls} w-20 text-center`}
               />
               <span className="text-gray-300 dark:text-gray-600">—</span>
@@ -68,10 +65,7 @@ export function FilterBar({
                 min={yearRange[0]}
                 max={maxYear}
                 value={yearRange[1]}
-                onChange={(e) => {
-                  const v = parseInt(e.target.value)
-                  if (!isNaN(v)) onYearRange([yearRange[0], Math.max(v, yearRange[0])])
-                }}
+                onChange={(e) => onYearRange([yearRange[0], parseInt(e.target.value) || maxYear])}
                 className={`${inputCls} w-20 text-center`}
               />
             </div>
@@ -89,6 +83,8 @@ export function FilterBar({
             >
               <option value="vote_average">평점</option>
               <option value="popularity">인기도</option>
+              <option value="revenue">흥행 수익</option>
+              <option value="audi_acc">누적 관객수</option>
               <option value="release_date">최신순</option>
             </select>
           </div>

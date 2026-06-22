@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "movies")
+@Table(name = "movie")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,13 +17,13 @@ import java.util.List;
 public class TmdbMovie {
 
     @Id
-    private Long id;  // TMDB movie ID (자동 생성 아님)
+    private Long id; // TMDB movie ID (자동 생성 아님)
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 200)
     private String title;
 
     @JsonProperty("original_title")
-    @Column(name = "original_title")
+    @Column(name = "original_title", length = 200)
     private String originalTitle;
 
     @Column(columnDefinition = "TEXT")
@@ -43,6 +43,8 @@ public class TmdbMovie {
 
     private Double popularity;
 
+    private Long revenue;
+
     @JsonProperty("poster_path")
     @Column(name = "poster_path")
     private String posterPath;
@@ -60,5 +62,4 @@ public class TmdbMovie {
     @CollectionTable(name = "movie_genres", joinColumns = @JoinColumn(name = "movie_id"))
     @Column(name = "genre")
     private List<String> genres = new ArrayList<>();
-
 }

@@ -11,6 +11,7 @@ interface Props {
 
 export function RadarStatChart({ movie, allMovies }: Props) {
   const maxPop = Math.max(...allMovies.map((m) => m.popularity))
+  const maxRev = Math.max(...allMovies.map((m) => m.revenue))
   const kobisMovies = allMovies.filter((m) => m.audi_acc != null)
   const maxAudi = kobisMovies.length ? Math.max(...kobisMovies.map((m) => m.audi_acc ?? 0)) : 1
   const hasKobis = movie.audi_acc != null
@@ -18,6 +19,7 @@ export function RadarStatChart({ movie, allMovies }: Props) {
   const data = [
     { subject: '평점', value: Math.round((movie.vote_average / 10) * 100) },
     { subject: '인기도', value: Math.round((movie.popularity / maxPop) * 100) },
+    { subject: '수익', value: Math.round((movie.revenue / maxRev) * 100) },
     ...(hasKobis
       ? [{ subject: '관객수', value: Math.round(((movie.audi_acc ?? 0) / maxAudi) * 100) }]
       : []),

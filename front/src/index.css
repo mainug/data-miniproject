@@ -1,14 +1,9 @@
 @import "tailwindcss";
-@variant dark (&:where(.dark, .dark *));
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-html {
-  scrollbar-gutter: stable;
 }
 
 html,
