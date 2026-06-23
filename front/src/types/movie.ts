@@ -1,7 +1,7 @@
 export interface Movie {
   id: number;
   title: string;
-  release_date: string; // 'YYYY-MM-DD'
+  release_date?: string | null; // 'YYYY-MM-DD'
   vote_average: number; // 0~10
   popularity: number;
   genres: string[];

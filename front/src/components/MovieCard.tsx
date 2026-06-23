@@ -11,8 +11,8 @@ const TMDB_IMG = "https://image.tmdb.org/t/p/w342";
 
 export function MovieCard({ movie, rank }: Props) {
   const navigate = useNavigate();
-  const year = movie.release_date.slice(0, 4);
-  const ratingPct = Math.round((movie.vote_average / 10) * 100);
+  const year = movie.release_date?.slice(0, 4) ?? "";
+  const ratingPct = Math.round(((movie.vote_average ?? 0) / 10) * 100);
   const posterUrl = movie.poster_path
     ? movie.poster_path.startsWith("http")
       ? movie.poster_path
@@ -61,7 +61,7 @@ export function MovieCard({ movie, rank }: Props) {
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/70 to-transparent" />
         <div className="absolute bottom-2.5 left-3 flex items-baseline gap-1">
           <span className="text-green-400 text-sm font-bold">
-            ★ {movie.vote_average.toFixed(1)}
+            ★ {(movie.vote_average ?? 0).toFixed(1)}
           </span>
           <span className="text-white/50 text-xs">/ 10</span>
         </div>
@@ -73,7 +73,7 @@ export function MovieCard({ movie, rank }: Props) {
           {movie.title}
         </p>
         <p className="text-xs text-gray-400 dark:text-gray-300 mt-1">
-          {year} · {movie.genres.slice(0, 2).join(", ")}
+          {year}{(movie.genres ?? []).length > 0 ? ` · ${(movie.genres ?? []).slice(0, 2).join(", ")}` : ""}
         </p>
       </div>
     </motion.div>

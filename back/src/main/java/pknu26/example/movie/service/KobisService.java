@@ -338,6 +338,7 @@ public class KobisService {
     }
 
     @EventListener(ApplicationReadyEvent.class)
+    @Transactional
     public void backfillOnStartup() {
         log.info("[백필] 기존 중복 데이터 정리 시작");
         int dailyDups = dailyRepo.deleteDuplicates();

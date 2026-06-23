@@ -70,7 +70,7 @@ export function MovieDetailPage() {
     ? movies
         .filter(
           (m) =>
-            m.id !== movie.id && m.genres.some((g) => movie.genres.includes(g)),
+            m.id !== movie.id && (m.genres ?? []).some((g) => (movie.genres ?? []).includes(g)),
         )
         .sort((a, b) => b.vote_average - a.vote_average)
         .slice(0, 6)
@@ -156,12 +156,12 @@ export function MovieDetailPage() {
 
             {/* Meta row */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-400">
-              <span>{movie.release_date.slice(0, 4)}</span>
+              <span>{movie.release_date?.slice(0, 4) ?? ""}</span>
             </div>
 
             {/* Genre badges */}
             <div className="flex flex-wrap gap-2">
-              {movie.genres.map((g) => (
+              {(movie.genres ?? []).map((g) => (
                 <span
                   key={g}
                   className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/10 text-gray-300 border border-white/10"
@@ -184,7 +184,7 @@ export function MovieDetailPage() {
               <div className="h-8 w-px bg-white/10" />
               <div>
                 <span className="text-2xl font-bold text-green-400">
-                  ★ {movie.vote_average.toFixed(1)}
+                  ★ {(movie.vote_average ?? 0).toFixed(1)}
                 </span>
                 <span className="text-gray-500 text-sm ml-1">/ 10</span>
                 {movie.vote_count && (
